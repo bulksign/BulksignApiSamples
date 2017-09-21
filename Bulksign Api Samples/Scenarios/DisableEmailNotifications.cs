@@ -5,9 +5,9 @@ using Bulksign_Api_Samples;
 
 namespace Bulksign.ApiSamples
 {
-    public class SingleDocumentSingleSigner
+    public class DisableEmailNotifications
     {
-        public void Send()
+        public void SendBundle()
         {
             BulkSignApi api = new BulkSignApi();
 
@@ -18,6 +18,9 @@ namespace Bulksign.ApiSamples
             bb.Message = "Please sign this document";
             bb.Subject = "Please Bulksign this document";
             bb.Name = "Test bundle";
+
+            //this will disable notifications for this bundle
+            bb.DisableNotifications = true;
 
             BulksignRecipient recipient = new BulksignRecipient();
             recipient.Name = "Bulksign Test";

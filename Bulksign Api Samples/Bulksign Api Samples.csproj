@@ -49,9 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiKeys.cs" />
+    <Compile Include="Scenarios\DisableEmailNotifications.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SingleDocumentSingleSigner.cs" />
+    <Compile Include="Scenarios\MultipleSignersInBulkFlow.cs" />
+    <Compile Include="Scenarios\MultipleSignersInSerialFlow.cs" />
+    <Compile Include="Scenarios\SingleDocumentSingleSigner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
