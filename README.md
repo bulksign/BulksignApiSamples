@@ -3,9 +3,16 @@ Bulksign API sample code (in C#).
 
 This repository contains sample C# code for interacting with Bulksign API. To make matters very simple is using the [Bulksign dotNet SDK](https://www.nuget.org/packages/BulksignSdk)
 
-### Samples included
+### [Samples and scenarios included](https://github.com/bulksign/Bulksign-API-sample/tree/master/Bulksign%20Api%20Samples/Scenarios)
 
-SingleDocumentSingleSigner.cs : shows how to send a document for signing with Bulksign for a single recipient. 
+[SingleDocumentSingleSigner.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/SingleDocumentSingleSigner.cs) : simplest scenario, shows how to send a document for signing with Bulksign for a single recipient. 
+
+[MultipleSignersInSerialFlow.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/MultipleSignersInSerialFlow.cs) : shows how to send a document for signing with multiple recipients in serial mode.
+
+[DisableEmailNotifications.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/DisableEmailNotifications.cs) : shows how to disable email notifications for a specific bundle.
+
+[MultipleSignersInBulkFlow.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/MultipleSignersInBulkFlow.cs) : shows how to send a document for signing to multiple recipients in <a href="https://bulksign.com/Public/Features"> bulk mode. <a/>
+
 
 
 
