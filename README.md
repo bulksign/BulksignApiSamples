@@ -13,7 +13,7 @@ This repository contains sample C# code for interacting with Bulksign API. To ma
 
 [MultipleSignersInBulkFlow.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/MultipleSignersInBulkFlow.cs) : shows how to send a document for signing to multiple recipients in <a href="https://bulksign.com/Public/Features"> bulk mode. <a/>
 
-
+[AddNewSignatureToDocument.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/AddNewSignatureToDocument.cs) : shows you how to add a new signature field to a document and assign it to thwe recipient.
 
 
 ### Running the code
