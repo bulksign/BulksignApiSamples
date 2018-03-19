@@ -15,7 +15,7 @@ This repository contains sample C# code for interacting with Bulksign API. To ma
 
 [AddNewSignatureToDocument.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/AddNewSignatureToDocument.cs) : shows you how to add a new signature field to a document and assign it to the recipient.
 
-[AllowRecipientDelegation.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/AllowRecipientDelegation.cs) : 
+[AllowRecipientDelegation.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/AllowRecipientDelegation.cs) : shows you how to enable recipient delegation for a bundle.
 
 [PreventFinishedDocumentToAllSigners.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/PreventFinishedDocumentToAllSigners.cs) : how to prevent signers from receiving a copy of the finished document.
 
