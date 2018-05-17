@@ -1,4 +1,4 @@
-﻿using Bulksign.Api;
+using Bulksign.Api;
 using System;
 using System.IO;
 using Bulksign_Api_Samples;
@@ -48,7 +48,7 @@ namespace Bulksign.ApiSamples
             {
                 document
             };
-            
+
 
             BulksignAuthorization token = new ApiKeys().GetAuthorizationToken();
 

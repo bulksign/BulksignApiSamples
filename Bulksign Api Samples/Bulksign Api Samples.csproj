@@ -33,10 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bulksign.NetSdk, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\BulksignSdk.1.2.6\lib\net\Bulksign.NetSdk.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.1.2.7\lib\net\Bulksign.NetSdk.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.1.2.6\lib\net\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\BulksignSdk.1.2.7\lib\net\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,6 +51,7 @@
     <Compile Include="ApiKeys.cs" />
     <Compile Include="Scenarios\AddNewSignatureToDocument.cs" />
     <Compile Include="Scenarios\AllowRecipientDelegation.cs" />
+    <Compile Include="Scenarios\CustomDocumentAccess.cs" />
     <Compile Include="Scenarios\DisableEmailNotifications.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +65,7 @@
     <None Include="Files\bulksign_test_sample.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Files\forms.pdf" />
     <None Include="Files\singlepage.pdf" />
     <None Include="packages.config" />
   </ItemGroup>

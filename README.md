@@ -19,6 +19,8 @@ This repository contains sample C# code for interacting with Bulksign API. To ma
 
 [PreventFinishedDocumentToAllSigners.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/PreventFinishedDocumentToAllSigners.cs) : how to prevent signers from receiving a copy of the finished document.
 
+[CustomDocumentAccess.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/CustomDocumentAccess.cs) : shows to assign different documents to different recipients in same bundle.
+
 
 ### Running the code
 
