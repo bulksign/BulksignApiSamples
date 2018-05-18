@@ -21,6 +21,8 @@ This repository contains sample C# code for interacting with Bulksign API. To ma
 
 [CustomDocumentAccess.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/CustomDocumentAccess.cs) : shows to assign different documents to different recipients in same bundle.
 
+[SetFormFieldValues.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/SetFormFieldValues.cs) : example of setting a pdf form field value when sending the bundle for signing.
+
 
 ### Running the code
 

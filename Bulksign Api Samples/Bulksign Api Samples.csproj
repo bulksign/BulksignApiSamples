@@ -33,10 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bulksign.NetSdk, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\BulksignSdk.1.2.7\lib\net\Bulksign.NetSdk.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.1.3.0\lib\net\Bulksign.NetSdk.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.1.2.7\lib\net\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.1.3.0\lib\net\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,6 +58,7 @@
     <Compile Include="Scenarios\MultipleSignersInBulkFlow.cs" />
     <Compile Include="Scenarios\MultipleSignersInSerialFlow.cs" />
     <Compile Include="Scenarios\PreventFinishedDocumentToAllSigners.cs" />
+    <Compile Include="Scenarios\SetFormFieldValues.cs" />
     <Compile Include="Scenarios\SingleDocumentSingleSigner.cs" />
   </ItemGroup>
   <ItemGroup>
