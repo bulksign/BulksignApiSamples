@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ApiKeys.cs" />
     <Compile Include="Scenarios\AddNewSignatureToDocument.cs" />
+    <Compile Include="Scenarios\AddTextAnnotationsToDocument.cs" />
     <Compile Include="Scenarios\AllowRecipientDelegation.cs" />
     <Compile Include="Scenarios\CustomDocumentAccess.cs" />
     <Compile Include="Scenarios\DisableEmailNotifications.cs" />
@@ -66,8 +67,12 @@
     <None Include="Files\bulksign_test_sample.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Files\forms.pdf" />
-    <None Include="Files\singlepage.pdf" />
+    <None Include="Files\forms.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\singlepage.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
