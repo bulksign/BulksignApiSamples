@@ -24,6 +24,9 @@ This repository contains sample C# code for interacting with Bulksign API. To ma
 [SetFormFieldValues.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/SetFormFieldValues.cs) : example of setting a pdf form field value when sending the bundle for signing.
 
 
+[AddTextAnnotationsToDocument.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/AddTextAnnotationsToDocument.cs) : example of adding new text annotations to documents.
+
+
 ### Running the code
 
 - create a [Bulksign](http://bulksign.com) account
