@@ -63,7 +63,7 @@ namespace Bulksign.ApiSamples.Scenarios
                     Top = 650,
                     FontSize = 28,
                     Type = BulksignAnnotationType.Custom,
-                    CustomText = "Annotation with custom text spaning multiple lines of text because the text is too long"
+                    CustomText = "Annotation with custom text spanning multiple lines of text because the text is too long"
                 };
 
                 BulksignNewAnnotation annSenderName = new BulksignNewAnnotation
