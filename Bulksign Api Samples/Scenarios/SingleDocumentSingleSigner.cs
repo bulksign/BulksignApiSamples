@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using Bulksign.Api;
-using Bulksign_Api_Samples;
 
 namespace Bulksign.ApiSamples
 {
@@ -11,32 +10,34 @@ namespace Bulksign.ApiSamples
         {
             BulkSignApi api = new BulkSignApi();
 
-            BulksignBundle bb = new BulksignBundle();
+            BundleApiModel bb = new BundleApiModel();
             bb.DaysUntilExpire = 10;
-            bb.DisableNotifications = false;
-            bb.NotificationOptions = new BulksignNotificationOptions();
             bb.Message = "Please sign this document";
             bb.Subject = "Please Bulksign this document";
             bb.Name = "Test bundle";
 
-            BulksignRecipient recipient = new BulksignRecipient();
+            RecipientApiModel recipient = new RecipientApiModel();
             recipient.Name = "Bulksign Test";
             recipient.Email = "contact@bulksign.com";
             recipient.Index = 1;
-            recipient.RecipientType = BulksignApiRecipientType.Signer;
+            recipient.RecipientType = RecipientTypeApi.Signer;
 
             bb.Recipients = new[]
             {
                 recipient
             };
 
-            BulksignDocument document = new BulksignDocument();
+            DocumentApiModel document = new DocumentApiModel();
             document.Index = 1;
             document.FileName = "test.pdf";
-            document.ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf");
+            document.FileContentByteArray = new FileContentByteArray()
+            {
+                ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
+
+            };
             bb.Documents = new[] { document };
 
-            BulksignAuthorization token = new ApiKeys().GetAuthorizationToken();
+            AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
 
             if (string.IsNullOrEmpty(token.UserToken))
             {
@@ -45,7 +46,7 @@ namespace Bulksign.ApiSamples
             }
 
 
-            BulksignResult<BulksignSendBundleResult> result = api.SendBundle(token, bb);
+            BulksignResult<SendBundleResultApiModel> result = api.SendBundle(token, bb);
 
             Console.WriteLine("Api call is successfull: " + result.IsSuccessful);
 

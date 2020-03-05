@@ -2,13 +2,13 @@
 
 namespace Bulksign.ApiSamples
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            new SingleDocumentSingleSigner().SendBundle();
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			new SingleDocumentSingleSigner().SendBundle();
 
-            Console.ReadLine();
-        }
-    }
+			Console.ReadLine();
+		}
+	}
 }

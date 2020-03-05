@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
 using Bulksign.Api;
-using Bulksign_Api_Samples;
 
-namespace Bulksign.ApiSamples.Scenarios
+namespace Bulksign.ApiSamples
 {
 	public class SetFormFieldValues
 	{
@@ -12,52 +11,49 @@ namespace Bulksign.ApiSamples.Scenarios
 
 			BulkSignApi api = new BulkSignApi();
 
-			BulksignBundle bb = new BulksignBundle();
+			BundleApiModel bb = new BundleApiModel();
 			bb.DaysUntilExpire = 10;
-			bb.DisableNotifications = false;
-			bb.NotificationOptions = new BulksignNotificationOptions();
 			bb.Message = "Please sign this document";
 			bb.Subject = "Please Bulksign this document";
 			bb.Name = "Test bundle";
 
-			BulksignRecipient firstRecipient = new BulksignRecipient();
+			RecipientApiModel firstRecipient = new RecipientApiModel();
 			firstRecipient.Name = "Bulksign Test";
 			firstRecipient.Email = "contact@bulksign.com";
 			firstRecipient.Index = 1;
-			firstRecipient.RecipientType = BulksignApiRecipientType.Signer;
+			firstRecipient.RecipientType = RecipientTypeApi.Signer;
 
 			bb.Recipients = new[]
 			{
 					 firstRecipient
 			};
 
-			BulksignDocument document = new BulksignDocument();
+			DocumentApiModel document = new DocumentApiModel();
 			document.Index = 2;
 			document.FileName = "forms.pdf";
-			document.ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\forms.pdf");
+			document.FileContentByteArray = new FileContentByteArray()
+			{
+				ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\forms.pdf")
+			};
 
 			//set pdf from fields values
 
-			document.SetFormFieldValues = new BulksignSetFormFieldValue[2];
-			document.SetFormFieldValues[0] = new BulksignSetFormFieldValue()
+			document.OverwriteValues = new OverwriteFieldValueApiModel[2];
+			document.OverwriteValues[0] = new OverwriteFieldValueApiModel()
 			{
 				FieldName = "Text1",
 				FieldValue = "This is a test text"
 			};
 
-			document.SetFormFieldValues[1] = new BulksignSetFormFieldValue()
+			document.OverwriteValues[1] = new OverwriteFieldValueApiModel()
 			{
 				FieldName = "Group3",
 				FieldValue = "Choice2"
 			};
 
-			bb.Documents = new[]
-			{
-				document
-			};
-
+			bb.Documents = new[] {document};
 			
-			BulksignAuthorization token = new ApiKeys().GetAuthorizationToken();
+			AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
 
 			if (string.IsNullOrEmpty(token.UserToken))
 			{
@@ -66,7 +62,7 @@ namespace Bulksign.ApiSamples.Scenarios
 			}
 
 
-			BulksignResult<BulksignSendBundleResult> result = api.SendBundle(token, bb);
+			BulksignResult<SendBundleResultApiModel> result = api.SendBundle(token, bb);
 
 			Console.WriteLine("Api call is successfull: " + result.IsSuccessful);
 
