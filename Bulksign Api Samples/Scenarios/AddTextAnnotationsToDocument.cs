@@ -10,6 +10,16 @@ namespace Bulksign.ApiSamples.Scenarios
 		{
 			try
 			{
+
+				AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
+
+				if (string.IsNullOrEmpty(token.UserToken))
+				{
+					Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+					return;
+				}
+
+
 				BulkSignApi api = new BulkSignApi();
 
 				BundleApiModel bb = new BundleApiModel();
@@ -21,8 +31,6 @@ namespace Bulksign.ApiSamples.Scenarios
 					RecurrentEachDays = 2
 				};
 
-				RecipientApiModel recipient = new RecipientApiModel();
-
 				bb.Recipients = new[]
 				{
 						  new RecipientApiModel()
@@ -32,7 +40,7 @@ namespace Bulksign.ApiSamples.Scenarios
 								Index = 1,
 								RecipientType = RecipientTypeApi.Signer
 						  }
-					 };
+				};
 
 
 				DocumentApiModel document = new DocumentApiModel();
@@ -54,60 +62,57 @@ namespace Bulksign.ApiSamples.Scenarios
 
 
 				//add new text annotations
-				document.NewAnnotations = new NewAnnotationApiModel[3];
-
-				//width,height, left and top values are in pixels
-				NewAnnotationApiModel annCustom = new NewAnnotationApiModel
+				document.NewAnnotations = new[]
 				{
-					Height = 300,
-					PageIndex = 1,
-					Left = 10,
-					Top = 650,
-					FontSize = 28,
-					Type = AnnotationTypeApi.Custom,
-					CustomText = "Annotation with custom text spanning multiple lines of text because the text is too long"
-				};
+					//width,height, left and top values are in pixels
+					new NewAnnotationApiModel
+					{
+						Height = 300,
+						PageIndex = 1,
+						Left = 10,
+						Top = 650,
+						FontSize = 28,
+						Type = AnnotationTypeApi.Custom,
+						CustomText = "Annotation with custom text spanning multiple lines of text because the text is too long"
+					},
 
-				NewAnnotationApiModel annSenderName = new NewAnnotationApiModel
+					new NewAnnotationApiModel
+					{
+						Height = 100,
+						PageIndex = 1,
+						Left = 10,
+						Top = 900,
+						FontSize = 28,
+						Type = AnnotationTypeApi.SenderName
+					},
+
+					new NewAnnotationApiModel
+					{
+						Height = 100,
+						PageIndex = 1,
+						Left = 10,
+						Top = 940,
+						FontSize = 28,
+						Type = AnnotationTypeApi.OrganizationName
+					}
+
+			};
+
+
+				bb.Documents = new[]
 				{
-					Height = 100,
-					PageIndex = 1,
-					Left = 10,
-					Top = 900,
-					FontSize = 28,
-					Type = AnnotationTypeApi.SenderName
-				};
+					new DocumentApiModel()
+					{
+						FileContentByteArray = new FileContentByteArray()
+						{
+							ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\forms.pdf")
+						},
+						FileName = "forms.pdf"
+					}
+			};
 
-				NewAnnotationApiModel annOrganization = new NewAnnotationApiModel
-				{
-					Height = 100,
-					PageIndex = 1,
-					Left = 10,
-					Top = 940,
-					FontSize = 28,
-					Type = AnnotationTypeApi.OrganizationName
-				};
-
-				document.NewAnnotations = new[] {annCustom, annSenderName, annOrganization};
-
-				document.FileContentByteArray = new FileContentByteArray()
-				{
-					ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\forms.pdf")
-				};
-
-				bb.Documents = new[] {document};
-
-				AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
-
-				if (string.IsNullOrEmpty(token.UserToken))
-				{
-					Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
-					return;
-				}
 
 				BulksignResult<SendBundleResultApiModel> result = api.SendBundle(token, bb);
-
-				Console.WriteLine("Api call is successfull: " + result.IsSuccessful);
 
 				if (result.IsSuccessful)
 				{
@@ -124,5 +129,7 @@ namespace Bulksign.ApiSamples.Scenarios
 				Console.WriteLine(bex.Message + Environment.NewLine + bex.Response);
 			}
 		}
+
+
 	}
 }

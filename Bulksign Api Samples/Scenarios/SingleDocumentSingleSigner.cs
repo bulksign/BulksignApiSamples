@@ -4,57 +4,65 @@ using Bulksign.Api;
 
 namespace Bulksign.ApiSamples
 {
-    public class SingleDocumentSingleSigner
-    {
-        public void SendBundle()
-        {
-            BulkSignApi api = new BulkSignApi();
+	public class SingleDocumentSingleSigner
+	{
+		public void SendBundle()
+		{
 
-            BundleApiModel bb = new BundleApiModel();
-            bb.DaysUntilExpire = 10;
-            bb.Message = "Please sign this document";
-            bb.Subject = "Please Bulksign this document";
-            bb.Name = "Test bundle";
+			AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
 
-            RecipientApiModel recipient = new RecipientApiModel();
-            recipient.Name = "Bulksign Test";
-            recipient.Email = "contact@bulksign.com";
-            recipient.Index = 1;
-            recipient.RecipientType = RecipientTypeApi.Signer;
+			if (string.IsNullOrEmpty(token.UserToken))
+			{
+				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				return;
+			}
 
-            bb.Recipients = new[]
-            {
-                recipient
-            };
+			BulkSignApi api = new BulkSignApi();
 
-            DocumentApiModel document = new DocumentApiModel();
-            document.Index = 1;
-            document.FileName = "test.pdf";
-            document.FileContentByteArray = new FileContentByteArray()
-            {
-                ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
+			BundleApiModel bundle = new BundleApiModel();
+			bundle.DaysUntilExpire = 10;
+			bundle.Message = "Please sign this document";
+			bundle.Subject = "Please Bulksign this document";
+			bundle.Name = "Test bundle";
 
-            };
-            bb.Documents = new[] { document };
+			bundle.Recipients = new[]
+			{
+					new RecipientApiModel()
+					{
+						Name = "Bulksign Test",
+						Email = "contact@bulksign.com",
+						Index = 1,
+						RecipientType = RecipientTypeApi.Signer
+					}
+			};
 
-            AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
+			bundle.Documents = new[]
+			{
+					new DocumentApiModel()
+					{
+						Index = 1,
+						FileName = "test.pdf",
+						FileContentByteArray = new FileContentByteArray()
+						{
+							ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
+						}
+					}
+			};
 
-            if (string.IsNullOrEmpty(token.UserToken))
-            {
-                Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
-                return;
-            }
+
+			BulksignResult<SendBundleResultApiModel> result = api.SendBundle(token, bundle);
 
 
-            BulksignResult<SendBundleResultApiModel> result = api.SendBundle(token, bb);
+			if (result.IsSuccessful)
+			{
+				Console.WriteLine("Access code for recipient " + result.Response.AccessCodes[0].RecipientName + " is " + result.Response.AccessCodes[0].AccessCode);
+				Console.WriteLine("Bundle id is : " + result.Response.BundleId);
+			}
+			else
+			{
+				Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+			}
 
-            Console.WriteLine("Api call is successfull: " + result.IsSuccessful);
-
-            if (result.IsSuccessful)
-            {
-                Console.WriteLine("Access code for recipient " + result.Response.AccessCodes[0].RecipientName + " is " + result.Response.AccessCodes[0].AccessCode);
-                Console.WriteLine("Bundle id is : " + result.Response.BundleId);
-            }
-        }
-    }
+		}
+	}
 }
