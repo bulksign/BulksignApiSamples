@@ -22,9 +22,9 @@ namespace Bulksign.ApiSamples.Scenarios
 
 				BulkSignApi api = new BulkSignApi();
 
-				BundleApiModel bb = new BundleApiModel();
+				EnvelopeApiModel bb = new EnvelopeApiModel();
 				bb.DaysUntilExpire = 10;
-				bb.DisableNotifications = false;
+				bb.DisableSignerEmailNotifications = false;
 				bb.ReminderOptions = new ReminderOptionsApiModel()
 				{
 					EnableReminders = true,
@@ -67,18 +67,16 @@ namespace Bulksign.ApiSamples.Scenarios
 					//width,height, left and top values are in pixels
 					new NewAnnotationApiModel
 					{
-						Height = 300,
 						PageIndex = 1,
 						Left = 10,
 						Top = 650,
 						FontSize = 28,
-						Type = AnnotationTypeApi.Custom,
+						Type = AnnotationTypeApi.SenderCustom,
 						CustomText = "Annotation with custom text spanning multiple lines of text because the text is too long"
 					},
 
 					new NewAnnotationApiModel
 					{
-						Height = 100,
 						PageIndex = 1,
 						Left = 10,
 						Top = 900,
@@ -88,12 +86,11 @@ namespace Bulksign.ApiSamples.Scenarios
 
 					new NewAnnotationApiModel
 					{
-						Height = 100,
 						PageIndex = 1,
 						Left = 10,
 						Top = 940,
 						FontSize = 28,
-						Type = AnnotationTypeApi.OrganizationName
+						Type = AnnotationTypeApi.SenderOrganizationName
 					}
 
 			};
@@ -112,12 +109,12 @@ namespace Bulksign.ApiSamples.Scenarios
 			};
 
 
-				BulksignResult<SendBundleResultApiModel> result = api.SendBundle(token, bb);
+				BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, bb);
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine("Access code for recipient " + result.Response.AccessCodes[0].RecipientName + " is " + result.Response.AccessCodes[0].AccessCode);
-					Console.WriteLine("Bundle id is : " + result.Response.BundleId);
+					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+					Console.WriteLine("Bundle id is : " + result.Response.EnvelopeId);
 				}
 				else
 				{

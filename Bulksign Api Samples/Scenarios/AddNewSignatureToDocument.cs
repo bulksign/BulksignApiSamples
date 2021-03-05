@@ -22,9 +22,9 @@ namespace Bulksign.ApiSamples
 
 			BulkSignApi api = new BulkSignApi();
 
-			BundleApiModel bundle = new BundleApiModel();
+			EnvelopeApiModel bundle = new EnvelopeApiModel();
 			bundle.DaysUntilExpire = 10;
-			bundle.DisableNotifications = false;
+			bundle.DisableSignerEmailNotifications = false;
 
 
 
@@ -68,12 +68,12 @@ namespace Bulksign.ApiSamples
 			};
 			
 
-			BulksignResult<SendBundleResultApiModel> result = api.SendBundle(token, bundle);
+			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, bundle);
 
 			if (result.IsSuccessful)
 			{
-				Console.WriteLine("Access code for recipient " + result.Response.AccessCodes[0].RecipientName + " is " + result.Response.AccessCodes[0].AccessCode);
-				Console.WriteLine("Bundle id is : " + result.Response.BundleId);
+				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+				Console.WriteLine("EnvelopeId is : " + result.Response.EnvelopeId);
 			}
 			else
 			{

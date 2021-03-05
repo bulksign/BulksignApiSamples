@@ -28,7 +28,7 @@ namespace Bulksign.ApiSamples.Scenarios
 			//this will upload the PDF file, analyze it and return a unique file identifier and the PDF file form fields
 			BulksignResult<AnalyzedFileResultApiModel> analyzeResult = api.AnalyzeFile(token, pfdContent);
 
-			BundleApiModel bundle = new BundleApiModel();
+			EnvelopeApiModel bundle = new EnvelopeApiModel();
 
 			bundle.Recipients = new[]
 			{
@@ -107,12 +107,12 @@ namespace Bulksign.ApiSamples.Scenarios
 
 			bundle.Documents[0].NewSignatures = newSignatures.ToArray();
 
-			BulksignResult<SendBundleResultApiModel> result = api.SendBundle(token, bundle);
+			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, bundle);
 
 			if (result.IsSuccessful)
 			{
-				Console.WriteLine("Access code for recipient " + result.Response.AccessCodes[0].RecipientName + " is " + result.Response.AccessCodes[0].AccessCode);
-				Console.WriteLine("Bundle id is : " + result.Response.BundleId);
+				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+				Console.WriteLine("Bundle id is : " + result.Response.EnvelopeId);
 			}
 			else
 			{
