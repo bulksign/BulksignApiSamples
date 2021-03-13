@@ -6,7 +6,7 @@ namespace Bulksign.ApiSamples.Scenarios
 {
 	public class CustomDocumentAccess
 	{
-		public void SendBundle()
+		public void SendEnvelope()
 		{
 
 			AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
@@ -20,13 +20,13 @@ namespace Bulksign.ApiSamples.Scenarios
 
 			BulkSignApi api = new BulkSignApi();
 
-			EnvelopeApiModel bundle = new EnvelopeApiModel();
-			bundle.DaysUntilExpire = 10;
-			bundle.Message = "Please sign this document";
-			bundle.Subject = "Please Bulksign this document";
-			bundle.Name = "Test bundle";
+			EnvelopeApiModel envelope = new EnvelopeApiModel();
+			envelope.DaysUntilExpire = 10;
+			envelope.EmailMessage = "Please sign this document";
+			envelope.EmailSubject = "Please Bulksign this document";
+			envelope.Name = "Test envelope";
 
-			bundle.Recipients = new[]
+			envelope.Recipients = new[]
 			{
 				new RecipientApiModel()
 				{
@@ -47,7 +47,7 @@ namespace Bulksign.ApiSamples.Scenarios
 
 
 
-			bundle.Documents = new[]
+			envelope.Documents = new[]
 			{
 				new DocumentApiModel()
 				{
@@ -69,23 +69,23 @@ namespace Bulksign.ApiSamples.Scenarios
 				}
 			};
 
-			bundle.FileAccessMode = FileAccessModeApi.Custom;
+			envelope.FileAccessMode = FileAccessModeApi.Custom;
 
 			//assign different files to different recipients
 
-			bundle.CustomFileAccess = new[]
+			envelope.CustomFileAccess = new[]
 			{
 				//assign first file to first recipient
 				new CustomFileAccessApiModel()
 				{
-					RecipientEmail = bundle.Recipients[0].Email,
+					RecipientEmail = envelope.Recipients[0].Email,
 					FileNames = new []{ "bulksign_test_Sample.pdf" }
 				},
 
 				//assign first file to first recipient
 				new CustomFileAccessApiModel()
 				{
-					RecipientEmail = bundle.Recipients[1].Email,
+					RecipientEmail = envelope.Recipients[1].Email,
 					FileNames = new[]
 					{
 						"forms.pdf"
@@ -93,13 +93,13 @@ namespace Bulksign.ApiSamples.Scenarios
 				}
 			};
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, bundle);
+			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
 
 
 			if (result.IsSuccessful)
 			{
 				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("Bundle id is : " + result.Response.EnvelopeId);
+				Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
 			}
 			else
 			{

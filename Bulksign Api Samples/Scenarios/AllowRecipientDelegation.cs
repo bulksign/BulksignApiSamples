@@ -7,7 +7,7 @@ namespace Bulksign.ApiSamples.Scenarios
 	public class AllowRecipientDelegation
 	{
 
-		public void SendBundle()
+		public void SendEnvelope()
 		{
 			AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
 
@@ -20,17 +20,17 @@ namespace Bulksign.ApiSamples.Scenarios
 
 			BulkSignApi api = new BulkSignApi();
 
-			EnvelopeApiModel bb = new EnvelopeApiModel();
-			bb.DaysUntilExpire = 10;
+			EnvelopeApiModel envelope = new EnvelopeApiModel();
+			envelope.DaysUntilExpire = 10;
 
-			bb.Message = "Please sign this document";
-			bb.Subject = "Please Bulksign this document";
-			bb.Name = "Test bundle";
+			envelope.EmailMessage = "Please sign this document";
+			envelope.EmailSubject = "Please Bulksign this document";
+			envelope.Name = "Test envelope";
 
 			//setting this to true will allow the recipient to delegate signing to another person
-			bb.AllowRecipientDelegation = true;
+			envelope.AllowRecipientDelegation = true;
 
-			bb.Recipients = new[]
+			envelope.Recipients = new[]
 			{
 				new RecipientApiModel(){
 					Name = "Bulksign Test",
@@ -40,7 +40,7 @@ namespace Bulksign.ApiSamples.Scenarios
 				}
 			};
 
-			bb.Documents = new[]
+			envelope.Documents = new[]
 			{
 				new DocumentApiModel(){
 				Index = 1,
@@ -52,12 +52,12 @@ namespace Bulksign.ApiSamples.Scenarios
 				}
 			};
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, bb);
+			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
 
 			if (result.IsSuccessful)
 			{
 				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("Bundle id is : " + result.Response.EnvelopeId);
+				Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
 			}
 			else
 			{

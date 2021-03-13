@@ -9,7 +9,7 @@ namespace Bulksign.ApiSamples.Scenarios
 	public class AnalyzeFileAndDynamicallyAddSignatureFields
 	{
 
-		public void SendBundle()
+		public void SendEnvelope()
 		{
 			BulkSignApi api = new BulkSignApi();
 
@@ -28,9 +28,9 @@ namespace Bulksign.ApiSamples.Scenarios
 			//this will upload the PDF file, analyze it and return a unique file identifier and the PDF file form fields
 			BulksignResult<AnalyzedFileResultApiModel> analyzeResult = api.AnalyzeFile(token, pfdContent);
 
-			EnvelopeApiModel bundle = new EnvelopeApiModel();
+			EnvelopeApiModel envelope = new EnvelopeApiModel();
 
-			bundle.Recipients = new[]
+			envelope.Recipients = new[]
 			{
 				new RecipientApiModel()
 				{
@@ -50,8 +50,8 @@ namespace Bulksign.ApiSamples.Scenarios
 			};
 
 
-			//since we have already sent the PDF document to AnalyzeFile, "reuse it" for the SendBundle request and just pass the file identifier
-			bundle.Documents = new[]
+			//since we have already sent the PDF document to AnalyzeFile, "reuse it" for the SendEnvelope request and just pass the file identifier
+			envelope.Documents = new[]
 			{
 				new DocumentApiModel()
 				{
@@ -68,7 +68,7 @@ namespace Bulksign.ApiSamples.Scenarios
 			List<FormFieldResultApiModel> fields = analyzeResult.Response.Fields.Where(model => model.FieldType != FormFieldTypeApi.Signature).ToList();
 
 			AssignmentApiModel assignment = new AssignmentApiModel();
-			assignment.AssignedToRecipientEmail = bundle.Recipients[0].Email;
+			assignment.AssignedToRecipientEmail = envelope.Recipients[0].Email;
 			assignment.Signatures = new SignatureAssignmentApiModel[signatures.Count];
 
 
@@ -83,7 +83,7 @@ namespace Bulksign.ApiSamples.Scenarios
 				assignment.Fields[i].FieldId = fields[i].Id;
 			}
 
-			bundle.Documents[0].FieldAssignments = new[] { assignment };
+			envelope.Documents[0].FieldAssignments = new[] { assignment };
 
 
 			//now add a signature field for the second recipient on each page of the document
@@ -100,19 +100,19 @@ namespace Bulksign.ApiSamples.Scenarios
 				sig.Left = 10;
 				sig.Top = 100;
 				sig.SignatureType = SignatureTypeApi.ClickToSign;
-				sig.AssignedToRecipientEmail = bundle.Recipients[1].Email;
+				sig.AssignedToRecipientEmail = envelope.Recipients[1].Email;
 
 				newSignatures.Add(sig);
 			}
 
-			bundle.Documents[0].NewSignatures = newSignatures.ToArray();
+			envelope.Documents[0].NewSignatures = newSignatures.ToArray();
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, bundle);
+			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
 
 			if (result.IsSuccessful)
 			{
 				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("Bundle id is : " + result.Response.EnvelopeId);
+				Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
 			}
 			else
 			{

@@ -6,7 +6,7 @@ namespace Bulksign.ApiSamples
 {
 	public class MultipleSignersInSerialFlow
 	{
-		public void SendBundle()
+		public void SendEnvelope()
 		{
 			AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
 
@@ -18,14 +18,14 @@ namespace Bulksign.ApiSamples
 
 			BulkSignApi api = new BulkSignApi();
 
-			EnvelopeApiModel bundle = new EnvelopeApiModel();
-			bundle.DaysUntilExpire = 10;
-			bundle.DisableSignerEmailNotifications = false;
-			bundle.Message = "Please sign this document";
-			bundle.Subject = "Please Bulksign this document";
-			bundle.Name = "Test bundle";
+			EnvelopeApiModel envelope = new EnvelopeApiModel();
+			envelope.DaysUntilExpire = 10;
+			envelope.DisableSignerEmailNotifications = false;
+			envelope.EmailMessage = "Please sign this document";
+			envelope.EmailSubject = "Please Bulksign this document";
+			envelope.Name = "Test envelope";
 
-			bundle.Recipients = new []
+			envelope.Recipients = new []
 			{
 				//the Index property will determine the order in which the recipients will sign the document(s). 
 
@@ -45,7 +45,7 @@ namespace Bulksign.ApiSamples
 				} 
 			};
 
-			bundle.Documents = new[]
+			envelope.Documents = new[]
 			{
 				new DocumentApiModel()
 				{
@@ -59,14 +59,14 @@ namespace Bulksign.ApiSamples
 			};
 
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendBulkEnvelope(token, bundle);
+			BulksignResult<SendEnvelopeResultApiModel> result = api.SendBulkEnvelope(token, envelope);
 
 			Console.WriteLine("Api request is successful: " + result.IsSuccessful);
 
 			if (result.IsSuccessful)
 			{
 				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("Bundle id is : " + result.Response.EnvelopeId);
+				Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
 			}
 			else
 			{

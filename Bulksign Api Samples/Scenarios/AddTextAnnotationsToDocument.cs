@@ -6,7 +6,7 @@ namespace Bulksign.ApiSamples.Scenarios
 {
 	public class AddTextAnnotationsToDocument
 	{
-		public void SendBundle()
+		public void SendEnvelope()
 		{
 			try
 			{
@@ -22,16 +22,16 @@ namespace Bulksign.ApiSamples.Scenarios
 
 				BulkSignApi api = new BulkSignApi();
 
-				EnvelopeApiModel bb = new EnvelopeApiModel();
-				bb.DaysUntilExpire = 10;
-				bb.DisableSignerEmailNotifications = false;
-				bb.ReminderOptions = new ReminderOptionsApiModel()
+				EnvelopeApiModel envelope = new EnvelopeApiModel();
+				envelope.DaysUntilExpire = 10;
+				envelope.DisableSignerEmailNotifications = false;
+				envelope.ReminderOptions = new ReminderOptionsApiModel()
 				{
 					EnableReminders = true,
 					RecurrentEachDays = 2
 				};
 
-				bb.Recipients = new[]
+				envelope.Recipients = new[]
 				{
 						  new RecipientApiModel()
 						  {
@@ -96,7 +96,7 @@ namespace Bulksign.ApiSamples.Scenarios
 			};
 
 
-				bb.Documents = new[]
+				envelope.Documents = new[]
 				{
 					new DocumentApiModel()
 					{
@@ -109,12 +109,12 @@ namespace Bulksign.ApiSamples.Scenarios
 			};
 
 
-				BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, bb);
+				BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
 
 				if (result.IsSuccessful)
 				{
 					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-					Console.WriteLine("Bundle id is : " + result.Response.EnvelopeId);
+					Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
 				}
 				else
 				{

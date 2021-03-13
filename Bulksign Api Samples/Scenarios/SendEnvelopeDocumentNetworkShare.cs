@@ -3,10 +3,10 @@ using Bulksign.Api;
 
 namespace Bulksign.ApiSamples.Scenarios
 {
-	public class SendBundleDocumentNetworkShare
+	public class SendEnvelopeDocumentNetworkShare
 	{
 
-		public void SendBundle()
+		public void SendEnvelope()
 		{
 			BulkSignApi api = new BulkSignApi();
 
@@ -19,9 +19,9 @@ namespace Bulksign.ApiSamples.Scenarios
 				return;
 			}
 
-			EnvelopeApiModel bundle = new EnvelopeApiModel();
+			EnvelopeApiModel envelope = new EnvelopeApiModel();
 
-			bundle.Recipients = new[]
+			envelope.Recipients = new[]
 			{
 				new RecipientApiModel()
 				{
@@ -33,7 +33,7 @@ namespace Bulksign.ApiSamples.Scenarios
 			};
 
 
-			bundle.Documents = new []
+			envelope.Documents = new []
 			{
 				new DocumentApiModel()
 				{
@@ -51,12 +51,12 @@ namespace Bulksign.ApiSamples.Scenarios
 				},
 			};
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, bundle);
+			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
 
 			if (result.IsSuccessful)
 			{
 				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("Bundle id is : " + result.Response.EnvelopeId);
+				Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
 			}
 			else
 			{

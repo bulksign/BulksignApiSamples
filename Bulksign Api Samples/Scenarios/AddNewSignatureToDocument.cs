@@ -7,7 +7,7 @@ namespace Bulksign.ApiSamples
 	public class AddNewSignatureToDocument
 	{
 
-		public void SendBundle()
+		public void SendEnvelope()
 		{
 
 			AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
@@ -22,13 +22,13 @@ namespace Bulksign.ApiSamples
 
 			BulkSignApi api = new BulkSignApi();
 
-			EnvelopeApiModel bundle = new EnvelopeApiModel();
-			bundle.DaysUntilExpire = 10;
-			bundle.DisableSignerEmailNotifications = false;
+			EnvelopeApiModel envelope = new EnvelopeApiModel();
+			envelope.DaysUntilExpire = 10;
+			envelope.DisableSignerEmailNotifications = false;
 
 
 
-			bundle.Recipients = new []
+			envelope.Recipients = new []
 			{
 				new RecipientApiModel()
 				{
@@ -40,7 +40,7 @@ namespace Bulksign.ApiSamples
 			};
 
 		
-			bundle.Documents = new[]
+			envelope.Documents = new[]
 			{
 				new DocumentApiModel()
 				{
@@ -61,14 +61,14 @@ namespace Bulksign.ApiSamples
 							Left = 20,
 							Top = 30,
 							//assign the signature field to the recipient. The assignment is done by the email address
-							AssignedToRecipientEmail = bundle.Recipients[0].Email
+							AssignedToRecipientEmail = envelope.Recipients[0].Email
 						}
 					}
 				}, 
 			};
 			
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, bundle);
+			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
 
 			if (result.IsSuccessful)
 			{

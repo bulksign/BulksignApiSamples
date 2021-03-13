@@ -6,7 +6,7 @@ namespace Bulksign.ApiSamples
 	{
 		static void Main(string[] args)
 		{
-			new SingleDocumentSingleSigner().SendBundle();
+			new SingleDocumentSingleSigner().SendEnvelope();
 
 			Console.ReadLine();
 		}
