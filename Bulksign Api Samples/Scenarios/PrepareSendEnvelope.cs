@@ -9,9 +9,9 @@ namespace Bulksign.ApiSamples.Scenarios
 		public void PrepareAndSendEnvelope()
 		{
 
-			AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
+			AuthenticationApiModel token = new ApiKeys().GetAuthorizationToken();
 
-			if (string.IsNullOrEmpty(token.UserToken))
+			if (string.IsNullOrEmpty(token.Token))
 			{
 				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
 				return;
@@ -19,22 +19,31 @@ namespace Bulksign.ApiSamples.Scenarios
 
 			BulkSignApi api = new BulkSignApi();
 
-			FileInput fi = new FileInput()
+			FileInput firstFile = new FileInput()
 			{
 				Filename = "bulksign_test_Sample.pdf",
 				FileContent = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
 			};
 
-			BulksignResult<EnvelopeApiModel> result = api.PrepareSendEnvelope(token, new[] { fi });
+			FileInput secondFile = new FileInput()
+			{
+				Filename = "bulksign_test_Sample.pdf",
+				FileContent = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
+			};
+
+
+			BulksignResult<EnvelopeApiModel> result = api.PrepareSendEnvelope(token, new[] { firstFile, secondFile });
 
 
 			if (result.IsSuccessful)
 			{
 				EnvelopeApiModel model = result.Response;
 
-				//change this with valid email address, otherwise the SendEnvelope request will fail
+				//now change the email placeholder with the real recipient email address
 				model.Recipients[0].Email = "enter_recipient_email_here";
 				model.Recipients[0].Name = "RecipientName";
+
+
 
 				foreach (DocumentApiModel document in model.Documents)
 				{

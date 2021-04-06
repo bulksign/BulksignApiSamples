@@ -9,9 +9,9 @@ namespace Bulksign.ApiSamples.Scenarios
 
 		public void SendEnvelope()
 		{
-			AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
+			AuthenticationApiModel token = new ApiKeys().GetAuthorizationToken();
 
-			if (string.IsNullOrEmpty(token.UserToken))
+			if (string.IsNullOrEmpty(token.Token))
 			{
 				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
 				return;

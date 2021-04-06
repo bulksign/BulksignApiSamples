@@ -33,13 +33,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bulksign.ApiTypeDefinitions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.0.1-alpha\lib\net\Bulksign.ApiTypeDefinitions.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.0.2-alpha\lib\net\Bulksign.ApiTypeDefinitions.dll</HintPath>
     </Reference>
     <Reference Include="Bulksign.NetSdk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.0.1-alpha\lib\net\Bulksign.NetSdk.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.0.2-alpha\lib\net\Bulksign.NetSdk.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.0.1-alpha\lib\net\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.0.2-alpha\lib\net\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,7 +65,7 @@
     <Compile Include="Scenarios\PrepareSendEnvelope.cs" />
     <Compile Include="Scenarios\PreventFinishedDocumentToAllSigners.cs" />
     <Compile Include="Scenarios\SendEnvelopeDocumentNetworkShare.cs" />
-    <Compile Include="Scenarios\SetFormFieldValues.cs" />
+    <Compile Include="Scenarios\OverwriteFormFieldValues.cs" />
     <Compile Include="Scenarios\SingleDocumentSingleSigner.cs" />
   </ItemGroup>
   <ItemGroup>

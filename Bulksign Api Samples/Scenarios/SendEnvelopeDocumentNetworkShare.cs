@@ -11,9 +11,9 @@ namespace Bulksign.ApiSamples.Scenarios
 			BulkSignApi api = new BulkSignApi();
 
 
-			AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
+			AuthenticationApiModel token = new ApiKeys().GetAuthorizationToken();
 
-			if (string.IsNullOrEmpty(token.UserToken))
+			if (string.IsNullOrEmpty(token.Token))
 			{
 				Console.WriteLine("Please edit ApiKeys.cs and put your own token/email");
 				return;

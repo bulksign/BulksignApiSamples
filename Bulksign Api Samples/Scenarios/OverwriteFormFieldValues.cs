@@ -4,13 +4,13 @@ using Bulksign.Api;
 
 namespace Bulksign.ApiSamples
 {
-	public class SetFormFieldValues
+	public class OverwriteFormFieldValues
 	{
 		public void SendEnvelope()
 		{
-			AuthorizationApiModel token = new ApiKeys().GetAuthorizationToken();
+			AuthenticationApiModel token = new ApiKeys().GetAuthorizationToken();
 
-			if (string.IsNullOrEmpty(token.UserToken))
+			if (string.IsNullOrEmpty(token.Token))
 			{
 				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
 				return;
@@ -30,7 +30,7 @@ namespace Bulksign.ApiSamples
 				new RecipientApiModel()
 				{
 					Name = "Bulksign Test",
-					Email = "contact@bulksign.com",
+					Email = "enter_your_email_address",
 					Index = 1,
 					RecipientType = RecipientTypeApi.Signer
 				}
@@ -49,16 +49,40 @@ namespace Bulksign.ApiSamples
 
 					OverwriteValues = new []
 					{
+						//overwrite textbox value 
 						new OverwriteFieldValueApiModel()
 						{
 							FieldName = "Text1",
 							FieldValue = "This is a test text"
 						},
+						//select a specific radio button 
 						new OverwriteFieldValueApiModel()
 						{
 							FieldName = "Group3",
 							FieldValue = "Choice2"
+						},
+
+						//select a checkbox 
+						new OverwriteFieldValueApiModel()
+						{
+							FieldName = "Check Box2",
+							FieldValue = "True"
+						},
+
+						//selected value in combobox
+						new OverwriteFieldValueApiModel()
+						{
+							FieldName = "Dropdown5",
+							FieldValue = "Item3"
+						},
+
+						//selected value in combobox
+						new OverwriteFieldValueApiModel()
+						{
+							FieldName = "List Box4",
+							FieldValue = "Item2"
 						}
+
 					}
 				}
 			};
