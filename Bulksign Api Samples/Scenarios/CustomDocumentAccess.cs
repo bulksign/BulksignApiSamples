@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Bulksign.Api;
 
-namespace Bulksign.ApiSamples.Scenarios
+namespace Bulksign.ApiSamples
 {
 	public class CustomDocumentAccess
 	{
@@ -69,7 +69,7 @@ namespace Bulksign.ApiSamples.Scenarios
 				}
 			};
 
-			envelope.FileAccessMode = FileAccessModeApi.Custom;
+			envelope.FileAccessMode = FileAccessModeTypeApi.Custom;
 
 			//assign different files to different recipients
 

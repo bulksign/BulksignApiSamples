@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Bulksign.Api;
 
-namespace Bulksign.ApiSamples.Scenarios
+namespace Bulksign.ApiSamples
 {
 	public class AnalyzeFileAndDynamicallyAddSignatureFields
 	{

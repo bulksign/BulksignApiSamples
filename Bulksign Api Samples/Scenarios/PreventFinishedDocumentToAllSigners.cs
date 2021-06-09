@@ -27,7 +27,7 @@ namespace Bulksign.ApiSamples
 			envelope.Name = "Test envelope";
 
 			//setting this to true will prevents the envelope signers to automatically receive a copy of finished document
-			envelope.DisableSignersShouldReceiveFinishedDocument = true;
+			envelope.DisableSignersShouldReceiveCompletedDocuments = true;
 
 			envelope.Recipients = new []
 			{

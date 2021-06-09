@@ -2,7 +2,7 @@
 using System.IO;
 using Bulksign.Api;
 
-namespace Bulksign.ApiSamples.Scenarios
+namespace Bulksign.ApiSamples
 {
 	public class AddTextAnnotationsToDocument
 	{
