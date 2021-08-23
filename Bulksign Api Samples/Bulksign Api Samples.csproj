@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ApiKeys.cs" />
     <Compile Include="Scenarios\AddNewSignatureToDocument.cs" />
+    <Compile Include="Scenarios\AddRecipientsAndDocumentstoExistingDraft.cs" />
     <Compile Include="Scenarios\AddTextAnnotationsToDocument.cs" />
     <Compile Include="Scenarios\AllowRecipientDelegation.cs" />
     <Compile Include="Scenarios\AnalyzeFileAndDynamicallyAddSignatureFields.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Scenarios\PreventFinishedDocumentToAllSigners.cs" />
     <Compile Include="Scenarios\SendEnvelopeDocumentNetworkShare.cs" />
     <Compile Include="Scenarios\OverwriteFormFieldValues.cs" />
+    <Compile Include="Scenarios\SendEnvelopeFromTemplateOverwriteRecipients.cs" />
     <Compile Include="Scenarios\SingleDocumentSingleSigner.cs" />
     <Compile Include="Scenarios\UpdateUserSettings.cs" />
   </ItemGroup>
