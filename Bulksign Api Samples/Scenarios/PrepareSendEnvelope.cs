@@ -43,8 +43,8 @@ namespace Bulksign.ApiSamples
 				model.Recipients[0].Email = "enter_recipient_email_here";
 				model.Recipients[0].Name = "RecipientName";
 
-
-
+				//assign all form fields to the first recipient . 
+				//Obviously if you have multiple recipients, assign the fields as needed
 				foreach (DocumentApiModel document in model.Documents)
 				{
 					foreach (AssignmentApiModel assignment in document.FieldAssignments)
@@ -52,6 +52,8 @@ namespace Bulksign.ApiSamples
 						assignment.AssignedToRecipientEmail = model.Recipients[0].Email;
 					}
 				}
+
+
 
 				BulksignResult<SendEnvelopeResultApiModel> envelope = api.SendEnvelope(token, model);
 
