@@ -33,13 +33,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bulksign.ApiTypeDefinitions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.1.0\lib\net\Bulksign.ApiTypeDefinitions.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.4.1\lib\net\Bulksign.ApiTypeDefinitions.dll</HintPath>
     </Reference>
-    <Reference Include="Bulksign.NetSdk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.1.0\lib\net\Bulksign.NetSdk.dll</HintPath>
+    <Reference Include="Bulksign.NetSdk, Version=4.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BulksignSdk.4.4.1\lib\net\Bulksign.NetSdk.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.1.0\lib\net\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\BulksignSdk.4.4.1\lib\net\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,6 +57,7 @@
     <Compile Include="Scenarios\AddTextAnnotationsToDocument.cs" />
     <Compile Include="Scenarios\AllowRecipientDelegation.cs" />
     <Compile Include="Scenarios\AnalyzeFileAndDynamicallyAddSignatureFields.cs" />
+    <Compile Include="Scenarios\DocumentTimestamping.cs" />
     <Compile Include="Scenarios\OnboardNewOrganization.cs" />
     <Compile Include="Scenarios\CustomDocumentAccess.cs" />
     <Compile Include="Scenarios\DisableEmailNotifications.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Scenarios\OverwriteFormFieldValues.cs" />
     <Compile Include="Scenarios\SendEnvelopeFromTemplateOverwriteRecipients.cs" />
     <Compile Include="Scenarios\SingleDocumentSingleSigner.cs" />
+    <Compile Include="Scenarios\TextFieldValidation.cs" />
     <Compile Include="Scenarios\UpdateUserSettings.cs" />
   </ItemGroup>
   <ItemGroup>
