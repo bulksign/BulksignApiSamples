@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulksign Api Samples", "Bulksign Api Samples\Bulksign Api Samples.csproj", "{640DA757-E819-443E-B4A0-B7A4938E5796}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulksign API Samples", "Bulksign Api Samples\Bulksign API Samples.csproj", "{640DA757-E819-443E-B4A0-B7A4938E5796}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

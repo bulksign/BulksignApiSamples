@@ -10,9 +10,9 @@ namespace Bulksign.ApiSamples
 
 		public void CreateOrganization()
 		{
-			AuthenticationApiModel token = new ApiKeys().GetAuthorizationToken();
+			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
 
-			if (string.IsNullOrEmpty(token.Token))
+			if (string.IsNullOrEmpty(token.Key))
 			{
 				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
 				return;
@@ -38,7 +38,7 @@ namespace Bulksign.ApiSamples
 			//make the new requests authenticated 
 			AuthenticationApiModel newOrgToken = new AuthenticationApiModel()
 			{
-				Token = result.Response, 
+				Key = result.Response, 
 				UserEmail = "admin@email.com"
 			};
 

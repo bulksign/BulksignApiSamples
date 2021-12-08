@@ -4,17 +4,18 @@ namespace Bulksign.ApiSamples
 {
    public class ApiKeys
    {
-       //to authenticate with a user personal token, just set UserEmail to a empty string
+       //to authenticate with a user key, just set UserEmail to a empty string
+       //to authenticate with an organization key, please set both Key and UserEmail
 
-       public const string TOKEN = "";
+       public const string API_KEY = "";
        public const string EMAIL = "";
 
-       public AuthenticationApiModel GetAuthorizationToken()
+       public AuthenticationApiModel GetAuthentication()
        {
            return new AuthenticationApiModel()
            {
                UserEmail = EMAIL,
-               Token = TOKEN
+               Key = API_KEY
            };
        }
 

@@ -8,9 +8,9 @@ namespace Bulksign.ApiSamples
 		public void Update()
 		{
 
-			AuthenticationApiModel token = new ApiKeys().GetAuthorizationToken();
+			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
 
-			if (string.IsNullOrEmpty(token.Token))
+			if (string.IsNullOrEmpty(token.Key))
 			{
 				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
 				return;
