@@ -33,13 +33,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bulksign.ApiTypeDefinitions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.5.0\lib\net\Bulksign.ApiTypeDefinitions.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.13.0\lib\net\Bulksign.ApiTypeDefinitions.dll</HintPath>
     </Reference>
     <Reference Include="Bulksign.NetSdk, Version=4.4.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\BulksignSdk.4.5.0\lib\net\Bulksign.NetSdk.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.13.0\lib\net\Bulksign.NetSdk.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.5.0\lib\net\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.13.0\lib\net\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,12 +65,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenarios\MultipleSignersInBulkFlow.cs" />
     <Compile Include="Scenarios\MultipleSignersInSerialFlow.cs" />
+    <Compile Include="Scenarios\OpenIdConnectAuthenticationForSigner.cs" />
     <Compile Include="Scenarios\PrepareSendEnvelope.cs" />
     <Compile Include="Scenarios\PreventFinishedDocumentToAllSigners.cs" />
     <Compile Include="Scenarios\SendEnvelopeDocumentNetworkShare.cs" />
     <Compile Include="Scenarios\OverwriteFormFieldValues.cs" />
     <Compile Include="Scenarios\SendEnvelopeFromTemplateOverwriteRecipients.cs" />
-    <Compile Include="Scenarios\SingleDocumentSingleSigner.cs" />
+    <Compile Include="Scenarios\SingleDocumentApproverAndSigner.cs" />
     <Compile Include="Scenarios\TextFieldValidation.cs" />
     <Compile Include="Scenarios\UpdateUserSettings.cs" />
   </ItemGroup>

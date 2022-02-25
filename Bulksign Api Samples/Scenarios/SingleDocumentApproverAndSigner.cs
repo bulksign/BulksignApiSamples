@@ -4,11 +4,10 @@ using Bulksign.Api;
 
 namespace Bulksign.ApiSamples
 {
-	public class SingleDocumentSingleSigner
+	public class SingleDocumentApproverAndSigner
 	{
 		public void SendEnvelope()
 		{
-
 			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
 
 			if (string.IsNullOrEmpty(token.Key))
@@ -27,31 +26,36 @@ namespace Bulksign.ApiSamples
 
 			envelope.Recipients = new[]
 			{
-					new RecipientApiModel()
-					{
-						Name = "Bulksign Test",
-						Email = "contact@bulksign.com",
-						Index = 1,
-						RecipientType = RecipientTypeApi.Signer
-					}
+				new RecipientApiModel
+				{
+					Name          = "Approver Recipient",
+					Email         = "recipient_email_approver@test.com",
+					Index         = 1,
+					RecipientType = RecipientTypeApi.Approver
+				},
+				new RecipientApiModel
+				{
+					Name          = "Bulksign Test",
+					Email         = "recipient_email@test.com",
+					Index         = 2,
+					RecipientType = RecipientTypeApi.Signer
+				}
 			};
 
 			envelope.Documents = new[]
 			{
-					new DocumentApiModel()
+				new DocumentApiModel
+				{
+					Index    = 1,
+					FileName = "test.pdf",
+					FileContentByteArray = new FileContentByteArray
 					{
-						Index = 1,
-						FileName = "test.pdf",
-						FileContentByteArray = new FileContentByteArray()
-						{
-							ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
-						}
+						ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
 					}
+				}
 			};
 
-
 			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
-
 
 			if (result.IsSuccessful)
 			{
@@ -62,7 +66,6 @@ namespace Bulksign.ApiSamples
 			{
 				Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
 			}
-
 		}
 	}
 }

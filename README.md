@@ -5,7 +5,7 @@ This repository contains sample C# code for interacting with Bulksign API. To ma
 
 ### [Samples and scenarios included](https://github.com/bulksign/Bulksign-API-sample/tree/master/Bulksign%20Api%20Samples/Scenarios)
 
-[SingleDocumentSingleSigner.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/SingleDocumentSingleSigner.cs) : simplest scenario, shows how to send a document for signing with Bulksign for a single recipient. 
+[SingleDocumentApproverAndSigner.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/SingleDocumentApproverAndSigner.cs) : simplest scenario, shows how to send a document for approving and signing with Bulksign. 
 
 [MultipleSignersInSerialFlow.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/MultipleSignersInSerialFlow.cs) : shows how to send a document for signing with multiple recipients in serial mode.
 
@@ -23,9 +23,9 @@ This repository contains sample C# code for interacting with Bulksign API. To ma
 
 [SetFormFieldValues.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/SetFormFieldValues.cs) : example of setting a pdf form field value when sending the bundle for signing.
 
-
 [AddTextAnnotationsToDocument.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/AddTextAnnotationsToDocument.cs) : example of adding new text annotations to documents.
 
+[OpenIdConnectAuthenticationForSigner.cs.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/OpenIdConnectAuthenticationForSigner.cs) : example of using an OpenId Connection authentication for a signer.
 
 ### Running the code
 
