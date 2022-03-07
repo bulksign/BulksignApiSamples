@@ -8,9 +8,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Bulksign.ApiSamples</RootNamespace>
     <AssemblyName>BulksignApiSamples</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,13 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bulksign.ApiTypeDefinitions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.13.0\lib\net\Bulksign.ApiTypeDefinitions.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.14.0\lib\net\Bulksign.ApiTypeDefinitions.dll</HintPath>
     </Reference>
     <Reference Include="Bulksign.NetSdk, Version=4.4.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\BulksignSdk.4.13.0\lib\net\Bulksign.NetSdk.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.14.0\lib\net\Bulksign.NetSdk.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.13.0\lib\net\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.14.0\lib\net\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
