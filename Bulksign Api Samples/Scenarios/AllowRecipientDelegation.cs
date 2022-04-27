@@ -21,8 +21,8 @@ namespace Bulksign.ApiSamples
 			BulkSignApi api = new BulkSignApi();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
+			envelope.EnvelopeType    = EnvelopeTypeApi.Serial;
 			envelope.DaysUntilExpire = 10;
-
 			envelope.EmailMessage = "Please sign this document";
 			envelope.EmailSubject = "Please Bulksign this document";
 			envelope.Name = "Test envelope";

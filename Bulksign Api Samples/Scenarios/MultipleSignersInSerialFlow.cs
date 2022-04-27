@@ -19,11 +19,12 @@ namespace Bulksign.ApiSamples
 			BulkSignApi api = new BulkSignApi();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
-			envelope.DaysUntilExpire = 10;
+			envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
+			envelope.DaysUntilExpire                 = 10;
 			envelope.DisableSignerEmailNotifications = false;
-			envelope.EmailMessage = "Please sign this document";
-			envelope.EmailSubject = "Please Bulksign this document";
-			envelope.Name = "Test envelope";
+			envelope.EmailMessage                    = "Please sign this document";
+			envelope.EmailSubject                    = "Please Bulksign this document";
+			envelope.Name                            = "Test envelope";
 
 			envelope.Recipients = new []
 			{
@@ -59,7 +60,7 @@ namespace Bulksign.ApiSamples
 			};
 
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendBulkEnvelope(token, envelope);
+			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
 
 			Console.WriteLine("Api request is successful: " + result.IsSuccessful);
 

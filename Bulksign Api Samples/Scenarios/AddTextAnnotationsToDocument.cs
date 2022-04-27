@@ -23,7 +23,8 @@ namespace Bulksign.ApiSamples
 				BulkSignApi api = new BulkSignApi();
 
 				EnvelopeApiModel envelope = new EnvelopeApiModel();
-				envelope.DaysUntilExpire = 10;
+				envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
+				envelope.DaysUntilExpire                 = 10;
 				envelope.DisableSignerEmailNotifications = false;
 				envelope.ReminderOptions = new ReminderOptionsApiModel()
 				{

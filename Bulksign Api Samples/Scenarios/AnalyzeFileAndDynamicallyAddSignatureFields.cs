@@ -29,6 +29,7 @@ namespace Bulksign.ApiSamples
 			BulksignResult<AnalyzedFileResultApiModel> analyzeResult = api.AnalyzeFile(token, pfdContent);
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
+			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
 
 			envelope.Recipients = new[]
 			{
