@@ -34,13 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bulksign.ApiTypeDefinitions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.17.0-beta\lib\net\Bulksign.ApiTypeDefinitions.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.17.1\lib\net\Bulksign.ApiTypeDefinitions.dll</HintPath>
     </Reference>
     <Reference Include="Bulksign.NetSdk, Version=4.4.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\BulksignSdk.4.17.0-beta\lib\net\Bulksign.NetSdk.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.17.1\lib\net\Bulksign.NetSdk.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.17.0-beta\lib\net\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.17.1\lib\net\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,8 +58,14 @@
     <Compile Include="Scenarios\AddTextAnnotationsToDocument.cs" />
     <Compile Include="Scenarios\AllowRecipientDelegation.cs" />
     <Compile Include="Scenarios\AnalyzeFileAndDynamicallyAddSignatureFields.cs" />
+    <Compile Include="Scenarios\AddSharedContact.cs" />
+    <Compile Include="Scenarios\AddUserContact.cs" />
+    <Compile Include="Scenarios\GetSharedContacts.cs" />
+    <Compile Include="Scenarios\GetUserContacts.cs" />
     <Compile Include="Scenarios\DocumentTimestamping.cs" />
     <Compile Include="Scenarios\GetCompletedFormFields.cs" />
+    <Compile Include="Scenarios\License.cs" />
+    <Compile Include="Scenarios\Version.cs" />
     <Compile Include="Scenarios\MultipleSignersConcurrentFlow.cs" />
     <Compile Include="Scenarios\OnboardNewOrganization.cs" />
     <Compile Include="Scenarios\CustomDocumentAccess.cs" />
@@ -91,5 +97,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
