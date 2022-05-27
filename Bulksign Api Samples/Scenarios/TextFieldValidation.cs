@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bulksign.Api;
 
-namespace Bulksign.ApiSamples.Scenarios
+namespace Bulksign.ApiSamples
 {
 	public class TextFieldValidation
 	{

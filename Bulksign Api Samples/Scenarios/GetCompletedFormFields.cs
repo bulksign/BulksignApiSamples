@@ -1,7 +1,7 @@
 ﻿using System;
 using Bulksign.Api;
 
-namespace Bulksign.ApiSamples.Scenarios
+namespace Bulksign.ApiSamples
 {
 	public class GetCompletedFormFields
 	{
@@ -18,7 +18,7 @@ namespace Bulksign.ApiSamples.Scenarios
 
 			BulkSignApi api = new BulkSignApi();
 
-			//add your own envelopeId here, m 
+			//set your own envelopeId here
 			string envelopeId = "..............";
 
 			BulksignResult<RecipientFormFillApiModel[]> formFields = api.GetCompletedFormFields(token,  envelopeId );

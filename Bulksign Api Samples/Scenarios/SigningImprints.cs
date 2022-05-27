@@ -1,7 +1,7 @@
 ﻿using System;
 using Bulksign.Api;
 
-namespace Bulksign.ApiSamples.Scenarios
+namespace Bulksign.ApiSamples
 {
 	public class SigningImprints
 	{

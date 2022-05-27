@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
 using Bulksign.Api;
-using Bulksign.ApiSamples;
 
-namespace Bulksign
+namespace Bulksign.ApiSamples
 {
 	public class AddRecipientsAndDocumentsToExistingDraft
 	{
