@@ -60,11 +60,17 @@
     <Compile Include="Scenarios\AnalyzeFileAndDynamicallyAddSignatureFields.cs" />
     <Compile Include="Scenarios\AddSharedContact.cs" />
     <Compile Include="Scenarios\AddUserContact.cs" />
+    <Compile Include="Scenarios\AuthenticationProviders.cs" />
     <Compile Include="Scenarios\GetSharedContacts.cs" />
     <Compile Include="Scenarios\GetUserContacts.cs" />
     <Compile Include="Scenarios\DocumentTimestamping.cs" />
     <Compile Include="Scenarios\GetCompletedFormFields.cs" />
     <Compile Include="Scenarios\License.cs" />
+    <Compile Include="Scenarios\OrganizationAuthenticationProviders.cs" />
+    <Compile Include="Scenarios\OrganizationAutomaticSigningProfile.cs" />
+    <Compile Include="Scenarios\OrganizationUsers.cs" />
+    <Compile Include="Scenarios\SigningImprints.cs" />
+    <Compile Include="Scenarios\UpdateOrganizationSettings.cs" />
     <Compile Include="Scenarios\Version.cs" />
     <Compile Include="Scenarios\MultipleSignersConcurrentFlow.cs" />
     <Compile Include="Scenarios\OnboardNewOrganization.cs" />
