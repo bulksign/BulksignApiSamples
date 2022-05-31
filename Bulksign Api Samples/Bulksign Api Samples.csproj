@@ -62,6 +62,9 @@
     <Compile Include="Scenarios\AddSharedContact.cs" />
     <Compile Include="Scenarios\AddUserContact.cs" />
     <Compile Include="Scenarios\AuthenticationProviders.cs" />
+    <Compile Include="Scenarios\GetEnvelopesByStatus.cs" />
+    <Compile Include="Scenarios\GetEnvelopeStatus.cs" />
+    <Compile Include="Scenarios\GetEnvelopesToSign.cs" />
     <Compile Include="Scenarios\GetSharedContacts.cs" />
     <Compile Include="Scenarios\GetUserContacts.cs" />
     <Compile Include="Scenarios\DocumentTimestamping.cs" />
@@ -69,6 +72,10 @@
     <Compile Include="Scenarios\License.cs" />
     <Compile Include="Scenarios\OrganizationAutomaticSigningProfile.cs" />
     <Compile Include="Scenarios\OrganizationUsers.cs" />
+    <Compile Include="Scenarios\SearchEnvelopes.cs" />
+    <Compile Include="Scenarios\SearchTeamMembersDrafts.cs" />
+    <Compile Include="Scenarios\SearchTeamMembersEnvelopes.cs" />
+    <Compile Include="Scenarios\SearchTeamMembersTemplates.cs" />
     <Compile Include="Scenarios\SigningImprints.cs" />
     <Compile Include="Scenarios\UpdateOrganizationSettings.cs" />
     <Compile Include="Scenarios\Version.cs" />
