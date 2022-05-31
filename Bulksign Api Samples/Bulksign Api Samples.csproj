@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiKeys.cs" />
+    <Compile Include="DownloadEnvelopeCompletedDocuments.cs" />
     <Compile Include="Scenarios\AddNewSignatureToDocument.cs" />
     <Compile Include="Scenarios\AddOrganizationAutomaticSigningProfile.cs" />
     <Compile Include="Scenarios\AddRecipientsAndDocumentstoExistingDraft.cs" />
