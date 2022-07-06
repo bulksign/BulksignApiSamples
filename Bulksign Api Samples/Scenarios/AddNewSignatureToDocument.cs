@@ -53,6 +53,10 @@ namespace Bulksign.ApiSamples
 					},
 					NewSignatures = new []
 					{
+
+						//see https://bulksign.com/docs/howdoi.htm#is-there-a-easy-way-to-determine-the-position-top-and-left-of-the-new-form-fields-on-the-page-
+						//about how to set the signature field at a fixed position
+
 						new NewSignatureApiModel()
 						{
 							//width,height, left and top values are in pixels
@@ -61,6 +65,7 @@ namespace Bulksign.ApiSamples
 							PageIndex = 1,
 							Left = 20,
 							Top = 30,
+							SignatureType = SignatureTypeApi.ClickToSign,
 							//assign the signature field to the recipient. The assignment is done by the email address
 							AssignedToRecipientEmail = envelope.Recipients[0].Email
 						}
