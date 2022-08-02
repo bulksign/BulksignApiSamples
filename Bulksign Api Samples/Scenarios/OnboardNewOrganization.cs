@@ -63,7 +63,7 @@ namespace Bulksign.ApiSamples
 				Email = "new.user@mycompnay.com", 
 				FirstName = "John", 
 				LastName = "JohnLastName", 
-				IsAdministrator = true
+				Role = UserRoleApiType.Administrator
 			});
 
 			//if we need to send email in a new language also create the email templates 
