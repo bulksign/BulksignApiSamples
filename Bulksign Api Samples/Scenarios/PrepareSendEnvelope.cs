@@ -25,15 +25,21 @@ namespace Bulksign.ApiSamples
 				FileContent = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
 			};
 
-			FileInput secondFile = new FileInput()
+			PrepareEnvelopeApiModel prepare = new PrepareEnvelopeApiModel();
+
+			//flag that determines if the PDF documents should be parsed for tags
+			prepare.DocumentParseOptions = new DocumentParseOptionApiModel()
 			{
-				Filename = "bulksign_test_Sample.pdf",
-				FileContent = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
+				ParseTags     = false,
+				DeleteTagText = false
 			};
 
+			prepare.Files = new[]
+			{
+				firstFile
+			};
 
-			BulksignResult<EnvelopeApiModel> result = api.PrepareSendEnvelope(token, new[] { firstFile, secondFile });
-
+			BulksignResult<EnvelopeApiModel> result = api.PrepareSendEnvelope(token, prepare);
 
 			if (result.IsSuccessful)
 			{
@@ -52,8 +58,6 @@ namespace Bulksign.ApiSamples
 						assignment.AssignedToRecipientEmail = model.Recipients[0].Email;
 					}
 				}
-
-
 
 				BulksignResult<SendEnvelopeResultApiModel> envelope = api.SendEnvelope(token, model);
 
