@@ -8,7 +8,6 @@ namespace Bulksign.ApiSamples
 	{
 		public void PrepareAndSendEnvelope()
 		{
-
 			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
 
 			if (string.IsNullOrEmpty(token.Key))

@@ -22,11 +22,13 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-
 			byte[] pfdContent = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\singlepage.pdf");
 
-			//this will upload the PDF file, analyze it and return a unique file identifier and the PDF file form fields
-			BulksignResult<AnalyzedFileResultApiModel> analyzeResult = api.AnalyzeFile(token, pfdContent);
+			BulksignResult<AnalyzedFileResultApiModel> analyzeResult = api.AnalyzeFile(token, new FileInput()
+			{
+				FileContent = pfdContent,
+				Filename = "pfdContent.pdf"
+			});
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
@@ -35,7 +37,7 @@ namespace Bulksign.ApiSamples
 			{
 				new RecipientApiModel()
 				{
-					Email = "test@test.com",
+					Email = "test@test.com", //please replace this with own own email address
 					Index = 1,
 					Name = "Test",
 					RecipientType = RecipientTypeApi.Signer
@@ -43,7 +45,7 @@ namespace Bulksign.ApiSamples
 
 				new RecipientApiModel()
 				{
-					Email = "other@test.com",
+					Email = "other@test.com", //please replace this with own own email address
 					Index = 1,
 					Name = "Other",
 					RecipientType = RecipientTypeApi.Signer
@@ -56,9 +58,9 @@ namespace Bulksign.ApiSamples
 			{
 				new DocumentApiModel()
 				{
-					FileIdentifier = new FileIdentifier()
+					FileContentByteArray = new FileContentByteArray()
 					{
-						Identifier = analyzeResult.Response.FileIdentifier
+						ContentBytes = pfdContent,
 					}
 				}
 			};
