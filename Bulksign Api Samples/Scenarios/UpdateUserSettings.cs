@@ -18,6 +18,7 @@ namespace Bulksign.ApiSamples
 
 			BulkSignApi api = new BulkSignApi();
 
+			//this will update all NON-NULL values that we send
 			BulksignResult<string> result = api.UpdateUserSettings(token, new UserUpdateSettingsApiModel()
 			{
 				JobTitle = "My job", 
