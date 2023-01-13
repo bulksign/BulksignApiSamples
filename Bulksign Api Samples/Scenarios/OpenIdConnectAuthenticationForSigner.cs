@@ -18,7 +18,7 @@ namespace Bulksign.ApiSamples
 			}
 
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 
 			//this will return all authentication providers defined per organization

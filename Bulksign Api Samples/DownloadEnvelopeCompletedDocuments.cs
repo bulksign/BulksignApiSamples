@@ -15,7 +15,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 			BulksignResult<byte[]> result = api.DownloadEnvelopeCompletedDocuments(token, "your_envelope_id");
 			

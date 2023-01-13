@@ -16,7 +16,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 			//set your own envelopeId here
 			string envelopeId = "..............";

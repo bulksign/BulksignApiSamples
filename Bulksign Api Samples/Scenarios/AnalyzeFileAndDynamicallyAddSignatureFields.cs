@@ -11,7 +11,7 @@ namespace Bulksign.ApiSamples
 
 		public void SendEnvelope()
 		{
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 
 			AuthenticationApiModel token = new ApiKeys().GetAuthentication();

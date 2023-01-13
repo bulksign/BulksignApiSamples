@@ -16,7 +16,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 			var newProfile = new AutomaticSigningProfileApiModel();
 			newProfile.Name = "My Profile";

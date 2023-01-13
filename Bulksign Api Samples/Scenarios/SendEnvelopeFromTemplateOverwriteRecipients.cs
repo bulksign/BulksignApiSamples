@@ -17,7 +17,7 @@ namespace Bulksign.ApiSamples
 			}
 			
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 			//replace the identifier with your template Id
 			string templateId = "d8a308e8-dd03-ec11-908d-d050997b638e";

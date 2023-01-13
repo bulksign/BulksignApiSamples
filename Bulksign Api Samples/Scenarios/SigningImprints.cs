@@ -15,7 +15,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 			BulksignResult<string[]> result = api.GetSignatureImprints(token);
 

@@ -15,7 +15,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 			//we need to set only the values you want updated
 			OrganizationUpdateSettingsApiModel newSettings = new OrganizationUpdateSettingsApiModel();

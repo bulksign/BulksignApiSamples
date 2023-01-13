@@ -17,7 +17,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType    = EnvelopeTypeApi.Serial;

@@ -15,7 +15,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 			BulksignResult<EnvelopeStatusTypeApi> result = api.GetEnvelopeStatus(token , "your_envelope_id");
 

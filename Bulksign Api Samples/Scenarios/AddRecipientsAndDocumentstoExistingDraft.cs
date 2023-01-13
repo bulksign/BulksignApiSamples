@@ -20,7 +20,7 @@ namespace Bulksign.ApiSamples
 			}
 
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 
 			api.AddDocumentsRecipientsToDraft(token, new AddDocumentsOrRecipientsToDraftApiModel()

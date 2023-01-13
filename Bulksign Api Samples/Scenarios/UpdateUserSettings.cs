@@ -16,7 +16,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulkSignApi api = new BulkSignApi();
+			BulksignApiClient api = new BulksignApiClient();
 
 			//this will update all NON-NULL values that we send
 			BulksignResult<string> result = api.UpdateUserSettings(token, new UserUpdateSettingsApiModel()
