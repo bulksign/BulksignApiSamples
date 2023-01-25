@@ -34,13 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bulksign.ApiTypeDefinitions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.50.1\lib\netstandard2.0\Bulksign.ApiTypeDefinitions.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.51.1\lib\netstandard2.0\Bulksign.ApiTypeDefinitions.dll</HintPath>
     </Reference>
     <Reference Include="Bulksign.NetSdk, Version=4.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.50.1\lib\netstandard2.0\Bulksign.NetSdk.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.51.1\lib\netstandard2.0\Bulksign.NetSdk.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\BulksignSdk.4.50.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\BulksignSdk.4.51.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,6 +56,7 @@
     <Compile Include="DownloadEnvelopeCompletedDocuments.cs" />
     <Compile Include="Scenarios\GetDrafts.cs" />
     <Compile Include="Scenarios\PrepareSendEnvelopeWithTags.cs" />
+    <Compile Include="Scenarios\SendEnvelopeRemoteSignatureProvider.cs" />
     <Compile Include="Scenarios\StampSignatures.cs" />
     <Compile Include="Scenarios\AddNewSignatureToDocument.cs" />
     <Compile Include="Scenarios\AddOrganizationAutomaticSigningProfile.cs" />
