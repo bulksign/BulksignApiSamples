@@ -1,9 +1,28 @@
-# Bulksign Api samples
+# Bulksign API Samples
 Bulksign API sample code (in C#).
 
-This repository contains sample C# code for interacting with Bulksign API. To make matters very simple is using the [Bulksign dotNet SDK](https://www.nuget.org/packages/BulksignSdk)
+This repository contains sample C# code for interacting with Bulksign API. This is using the [Bulksign dotNet SDK](https://www.nuget.org/packages/BulksignSdk)
+<br/>
+<br/>
+### Running the code
 
-### [Samples and scenarios included](https://github.com/bulksign/Bulksign-API-sample/tree/master/Bulksign%20Api%20Samples/Scenarios)
+- create a [Bulksign](http://bulksign.com) account
+- login, go to Settings\My API Keys.
+- copy the value of the "Default" key
+- edit ApiKeys.cs and replace the API_KEY and EMAIL constants with the token value and your email address.
+- build and run the project 
+<br/>
+<br/>
+### Target your on-premise instance
+
+To target a specific Bulksign instance, specify the root to WebAPI
+
+```
+	BulksignApiClient api = new BulksignApiClient("https://__your_instance__/webapi/");
+```
+
+
+### Samples and scenarios included
 
 [SingleDocumentApproverAndSigner.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/SingleDocumentApproverAndSigner.cs) : simplest scenario, shows how to send a document for approving and signing with Bulksign. 
 
@@ -27,11 +46,4 @@ This repository contains sample C# code for interacting with Bulksign API. To ma
 
 [OpenIdConnectAuthenticationForSigner.cs.cs](https://github.com/bulksign/Bulksign-API-sample/blob/master/Bulksign%20Api%20Samples/Scenarios/OpenIdConnectAuthenticationForSigner.cs) : example of using an OpenId Connection authentication for a signer.
 
-### Running the code
-
-- create a [Bulksign](http://bulksign.com) account
-- login, go to Settings\Api Token.
-- copy the value of the "Default" token
-- edit ApiKeys.cs and replace the TOKEN and EMAIL constants with the token value and your email address.
-- build and run the project 
-
+++ <a href="https://github.com/bulksign/Bulksign-API-sample/tree/master/Bulksign%20Api%20Samples/Scenarios">and more </a>
