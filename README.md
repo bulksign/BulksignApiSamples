@@ -4,6 +4,7 @@ Bulksign API sample code (in C#).
 This repository contains sample C# code for interacting with Bulksign API. This is using the [Bulksign dotNet SDK](https://www.nuget.org/packages/BulksignSdk)
 <br/>
 <br/>
+
 ### Running the code
 
 - create a [Bulksign](http://bulksign.com) account
@@ -13,7 +14,8 @@ This repository contains sample C# code for interacting with Bulksign API. This 
 - build and run the project 
 <br/>
 <br/>
-### Target your on-premise instance
+
+### Target on-premise instance
 
 To target a specific Bulksign instance, specify the root to WebAPI
 
