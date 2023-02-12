@@ -20,7 +20,7 @@ This repository contains sample C# code for interacting with Bulksign API. This 
 To target a specific Bulksign instance, specify the root to WebAPI
 
 ```
-	BulksignApiClient api = new BulksignApiClient("https://__your_instance__/webapi/");
+BulksignApiClient api = new BulksignApiClient("https://__your_instance__/webapi/");
 ```
 
 
