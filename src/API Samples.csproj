@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{640DA757-E819-443E-B4A0-B7A4938E5796}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Bulksign.ApiSamples</RootNamespace>
+    <AssemblyName>BulksignApiSamples</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bulksign.ApiTypeDefinitions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BulksignSdk.4.53.0\lib\netstandard2.0\Bulksign.ApiTypeDefinitions.dll</HintPath>
+    </Reference>
+    <Reference Include="Bulksign.NetSdk, Version=4.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BulksignSdk.4.53.0\lib\netstandard2.0\Bulksign.NetSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\BulksignSdk.4.53.0\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiErrorCode.cs" />
+    <Compile Include="ApiKeys.cs" />
+    <Compile Include="Scenarios\DownloadEnvelopeCompletedDocuments.cs" />
+    <Compile Include="Scenarios\CancelEnvelope.cs" />
+    <Compile Include="Scenarios\GetDrafts.cs" />
+    <Compile Include="Scenarios\GetEnvelopeDetails.cs" />
+    <Compile Include="Scenarios\PrepareSendEnvelopeWithTags.cs" />
+    <Compile Include="Scenarios\ReplaceEnvelopeRecipient.cs" />
+    <Compile Include="Scenarios\RestartEnvelope.cs" />
+    <Compile Include="Scenarios\SendEnvelopeRemoteSignatureProvider.cs" />
+    <Compile Include="Scenarios\StampSignatures.cs" />
+    <Compile Include="Scenarios\AddNewSignatureToDocument.cs" />
+    <Compile Include="Scenarios\AddOrganizationAutomaticSigningProfile.cs" />
+    <Compile Include="Scenarios\AddRecipientsAndDocumentstoExistingDraft.cs" />
+    <Compile Include="Scenarios\AddTextAnnotationsToDocument.cs" />
+    <Compile Include="Scenarios\AllowRecipientDelegation.cs" />
+    <Compile Include="Scenarios\AnalyzeFileAndDynamicallyAddSignatureFields.cs" />
+    <Compile Include="Scenarios\AddSharedContact.cs" />
+    <Compile Include="Scenarios\AddUserContact.cs" />
+    <Compile Include="Scenarios\AuthenticationProviders.cs" />
+    <Compile Include="Scenarios\GetEnvelopesByStatus.cs" />
+    <Compile Include="Scenarios\GetEnvelopeStatus.cs" />
+    <Compile Include="Scenarios\GetEnvelopesToSign.cs" />
+    <Compile Include="Scenarios\GetSharedContacts.cs" />
+    <Compile Include="Scenarios\GetUserContacts.cs" />
+    <Compile Include="Scenarios\DocumentTimestamping.cs" />
+    <Compile Include="Scenarios\GetCompletedFormFields.cs" />
+    <Compile Include="Scenarios\LicenseInformation.cs" />
+    <Compile Include="Scenarios\OrganizationAutomaticSigningProfile.cs" />
+    <Compile Include="Scenarios\OrganizationUsers.cs" />
+    <Compile Include="Scenarios\SearchEnvelopes.cs" />
+    <Compile Include="Scenarios\SearchTeamMembersDrafts.cs" />
+    <Compile Include="Scenarios\SearchTeamMembersEnvelopes.cs" />
+    <Compile Include="Scenarios\SearchTeamMembersTemplates.cs" />
+    <Compile Include="Scenarios\GetSigningImprints.cs" />
+    <Compile Include="Scenarios\UnlockConcurrentRecipient.cs" />
+    <Compile Include="Scenarios\UpdateOrganizationSettings.cs" />
+    <Compile Include="Scenarios\GetUserDetails.cs" />
+    <Compile Include="Scenarios\Version.cs" />
+    <Compile Include="Scenarios\MultipleSignersConcurrentFlow.cs" />
+    <Compile Include="Scenarios\OnboardNewOrganization.cs" />
+    <Compile Include="Scenarios\CustomDocumentAccess.cs" />
+    <Compile Include="Scenarios\DisableEmailNotifications.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenarios\MultipleSignersInBulkFlow.cs" />
+    <Compile Include="Scenarios\MultipleSignersInSerialFlow.cs" />
+    <Compile Include="Scenarios\OpenIdConnectAuthenticationForSigner.cs" />
+    <Compile Include="Scenarios\PrepareSendEnvelope.cs" />
+    <Compile Include="Scenarios\PreventFinishedDocumentToAllSigners.cs" />
+    <Compile Include="Scenarios\SendEnvelopeDocumentNetworkShare.cs" />
+    <Compile Include="Scenarios\OverwriteFormFieldValues.cs" />
+    <Compile Include="Scenarios\SendEnvelopeFromTemplateOverwriteRecipients.cs" />
+    <Compile Include="Scenarios\SingleDocumentApproverAndSigner.cs" />
+    <Compile Include="Scenarios\TextFieldValidation.cs" />
+    <Compile Include="Scenarios\UpdateUserSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <Resource Include="Files\bulksign_advanced_tags.odt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Files\bulksign_test_sample.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
