@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="ApiErrorCode.cs" />
     <Compile Include="ApiKeys.cs" />
+    <Compile Include="Scenarios\AddAttachment.cs" />
     <Compile Include="Scenarios\DownloadEnvelopeCompletedDocuments.cs" />
     <Compile Include="Scenarios\CancelEnvelope.cs" />
     <Compile Include="Scenarios\GetDrafts.cs" />
