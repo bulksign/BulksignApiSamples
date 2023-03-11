@@ -11,17 +11,24 @@ This repository contains sample C# code for interacting with Bulksign API. This 
 - login, go to Settings\My API Keys.
 - copy the value of the "Default" key
 - edit ApiKeys.cs and replace the API_KEY and EMAIL constants with the token value and your email address.
-- build and run the project 
+- build and run the project (edit Program.cs to run the different samples)
 <br/>
 <br/>
 
-### Target on-premise instance
+### Target on-premise Bulksign instance
 
-To target a specific Bulksign instance, specify the root to WebAPI
+To target a specific Bulksign instance, specify the root path to Bulksign WebAPI
 
 ```
 BulksignApiClient api = new BulksignApiClient("https://__your_instance__/webapi/");
 ```
+
+### API Documentation
+
+
+- API high level overview and FAQ is available <a href="https://bulksign.com/docs/api.htm" target="_blank" />
+
+- Swagger definition and documentation about all  API properties and their meaning is available <a href="https://bulksign.com/webapi/swagger" target="_blank" />
 
 
 ### Samples and scenarios included
