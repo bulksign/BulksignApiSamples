@@ -26,9 +26,9 @@ BulksignApiClient api = new BulksignApiClient("https://__your_instance__/webapi/
 ### API Documentation
 
 
-- API high level overview and FAQ is available <a href="https://bulksign.com/docs/api.htm" target="_blank" />
+- API high level overview and FAQ is available <a href="https://bulksign.com/docs/api.htm" target="_blank">here</a>
 
-- Swagger definition and documentation about all  API properties and their meaning is available <a href="https://bulksign.com/webapi/swagger" target="_blank" />
+- Swagger definition and documentation about all  API properties and their meaning is available <a href="https://bulksign.com/webapi/swagger" target="_blank">here</a>
 
 
 ### Samples and scenarios included
