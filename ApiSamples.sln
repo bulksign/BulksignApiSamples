@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API Samples Net Framework", "src\APISamplesNetFramework.csproj", "{640DA757-E819-443E-B4A0-B7A4938E5796}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APISamplesNetFramework", "src\APISamplesNetFramework.csproj", "{640DA757-E819-443E-B4A0-B7A4938E5796}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api Samples Net Core", "src\ApiSamplesNetCore.csproj", "{84782270-1A31-4A62-883E-63759987E6EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiSamplesNetCore", "src\ApiSamplesNetCore.csproj", "{84782270-1A31-4A62-883E-63759987E6EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
