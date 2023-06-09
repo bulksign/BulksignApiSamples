@@ -7,10 +7,9 @@ This repository contains sample C# code for interacting with Bulksign API. This 
 
 ### Running the code
 
-- create a [Bulksign](http://bulksign.com) account
-- login, go to Settings\My API Keys.
+- create a [Bulksign](http://bulksign.com) account , login and go to Settings\My API Keys.
 - copy the value of the "Default" key
-- edit ApiKeys.cs and replace the API_KEY and EMAIL constants with the token value and your email address.
+- edit ApiKeys.cs and replace the API_KEY constant with the copied key value
 - build and run the project (edit Program.cs to run the different samples)
 <br/>
 <br/>
@@ -22,6 +21,12 @@ To target a specific Bulksign instance, specify the root path to Bulksign WebAPI
 ```
 BulksignApiClient api = new BulksignApiClient("https://__your_instance__/webapi/");
 ```
+
+
+### Looking for GRPC API sample code ?
+
+Please see this repository  https://github.com/bulksign/GRPC-API-Samples
+
 
 ### API Documentation
 
