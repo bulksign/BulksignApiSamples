@@ -1,5 +1,4 @@
-﻿using System;
-using Bulksign.Api;
+﻿using Bulksign.Api;
 
 namespace Bulksign.ApiSamples
 {
@@ -20,10 +19,13 @@ namespace Bulksign.ApiSamples
 			BulksignResult<LicenseResultApiModel> result = api.GetLicense(token);
 
 			if (result.IsSuccessful)
-				Console.WriteLine("Contact was successfully added");
+			{
+				Console.WriteLine($"Remaining envelopes : {result.Response.EnvelopesTotal - result.Response.EnvelopesUsed}");
+			}
 			else
+			{
 				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+			}
 		}
-
 	}
 }
