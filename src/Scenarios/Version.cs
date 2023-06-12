@@ -7,13 +7,7 @@ namespace Bulksign.ApiSamples
 	{
 		public void RunSample()
 		{
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
-
-			if (string.IsNullOrEmpty(token.Key))
-			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
-				return;
-			}
+			//NOTE : this is the only API which doesn't require authentication. It's usually used for health checks
 
 			BulksignApiClient api = new BulksignApiClient();
 
