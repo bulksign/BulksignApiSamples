@@ -8,8 +8,7 @@ namespace Bulksign.ApiSamples
 	{
 		public void RunSample()
 		{
-
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -17,14 +16,14 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
-			envelope.EnvelopeType    = EnvelopeTypeApi.Serial;
+			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
 			envelope.DaysUntilExpire = 10;
-			envelope.EmailMessage    = "Please sign this document";
-			envelope.EmailSubject    = "Please Bulksign this document";
-			envelope.Name            = "Test envelope";
+			envelope.EmailMessage = "Please sign this document";
+			envelope.EmailSubject = "Please Bulksign this document";
+			envelope.Name = "Test envelope";
 
 			envelope.Recipients = new[]
 			{
@@ -50,29 +49,33 @@ namespace Bulksign.ApiSamples
 				}
 			};
 
-
 			//Timestamping must be enabled from Settings\Signing for this to work
 
 			//enable timestamping once per document after all signers have signed the document(s)
 			envelope.DocumentTimestampType = DocumentTimestampTypeApi.Envelope;
 
-			//enable timestamping after each signer finishes signing the document(s)
+			//to enable timestamping after each signer finishes signing the document(s), just use
 			//envelope.DocumentTimestampType = DocumentTimestampTypeApi.Recipient;
 
-
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
-
-
-			if (result.IsSuccessful)
+			try
 			{
-				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
-			}
-			else
-			{
-				Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
-			}
+				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+					Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
+				}
+				else
+				{
+					Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				}
+			}
+			catch (BulksignException bex)
+			{
+				//handle failed request here. See
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			}
 		}
 	}
 }

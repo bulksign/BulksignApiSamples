@@ -10,7 +10,7 @@ namespace Bulksign.ApiSamples
 		public void RunSample()
 		{
 
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -18,18 +18,16 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-
-
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
-			envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
-			envelope.DaysUntilExpire                 = 10;
+			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
+			envelope.DaysUntilExpire = 10;
 			envelope.DisableSignerEmailNotifications = false;
 
 
 
-			envelope.Recipients = new []
+			envelope.Recipients = new[]
 			{
 				new RecipientApiModel()
 				{
@@ -37,10 +35,10 @@ namespace Bulksign.ApiSamples
 					Email = "contact@bulksign.com",
 					Index = 1,
 					RecipientType = RecipientTypeApi.Signer
-				} 
+				}
 			};
 
-		
+
 			envelope.Documents = new[]
 			{
 				new DocumentApiModel()
@@ -51,7 +49,7 @@ namespace Bulksign.ApiSamples
 					{
 						ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\singlepage.pdf")
 					},
-					NewSignatures = new []
+					NewSignatures = new[]
 					{
 
 						//see https://bulksign.com/docs/howdoi.htm#is-there-a-easy-way-to-determine-the-position-top-and-left-of-the-new-form-fields-on-the-page-
@@ -70,20 +68,27 @@ namespace Bulksign.ApiSamples
 							AssignedToRecipientEmail = envelope.Recipients[0].Email
 						}
 					}
-				}, 
+				},
 			};
-			
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
-
-			if (result.IsSuccessful)
+			try
 			{
-				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("EnvelopeId is : " + result.Response.EnvelopeId);
+				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
+
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+					Console.WriteLine("EnvelopeId is : " + result.Response.EnvelopeId);
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 
 		}

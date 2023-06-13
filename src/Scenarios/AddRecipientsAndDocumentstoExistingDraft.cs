@@ -11,7 +11,7 @@ namespace Bulksign.ApiSamples
 			//set your existing draftId here
 			string existingDraftId = ".....";
 
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -20,23 +20,22 @@ namespace Bulksign.ApiSamples
 			}
 
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-
-			api.AddDocumentsRecipientsToDraft(token, new AddDocumentsOrRecipientsToDraftApiModel()
+			AddDocumentsOrRecipientsToDraftApiModel model = new AddDocumentsOrRecipientsToDraftApiModel()
 			{
 				DraftId = existingDraftId,
 				Recipients = new[]
 				{
 					new RecipientApiModel()
 					{
-						Email = "test.recipient@test.com", 
-						Name = "Recipient Name", 
+						Email = "test.recipient@test.com",
+						Name = "Recipient Name",
 						Index = 3,
 						RecipientType = RecipientTypeApi.Signer
 					}
 				},
-				Documents = new []
+				Documents = new[]
 				{
 					new DocumentApiModel()
 					{
@@ -48,7 +47,27 @@ namespace Bulksign.ApiSamples
 						}
 					}
 				}
-			});
+			};
+
+			try
+			{
+				BulksignResult<string> result = client.AddDocumentsRecipientsToDraft(token, model);
+				
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine($"Data was successfully added to draft");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
+			}
+			catch (BulksignException bex)
+			{
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			}
+
 		}
 	}
 }

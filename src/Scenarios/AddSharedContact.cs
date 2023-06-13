@@ -7,7 +7,7 @@ namespace Bulksign.ApiSamples
 	{
 		public void RunSample()
 		{
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -15,7 +15,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			NewContactApiModel contact = new NewContactApiModel
 			{
@@ -25,15 +25,23 @@ namespace Bulksign.ApiSamples
 				Name    = "Contact Name"
 			};
 
-			BulksignResult<string> result = api.AddSharedContact(token, contact);
+			try
+			{
+				BulksignResult<string> result = client.AddSharedContact(token, contact);
 
-			if (result.IsSuccessful)
-			{
-				Console.WriteLine("Contact was successfully added");
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Contact was successfully added");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				//handle failed request here. See
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
 	}

@@ -11,7 +11,7 @@ namespace Bulksign.ApiSamples
 			BulksignApiClient api = new BulksignApiClient();
 
 
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{

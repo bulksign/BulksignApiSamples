@@ -7,7 +7,7 @@ namespace Bulksign.ApiSamples
 	{
 		public void RunSample()
 		{
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -15,14 +15,26 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<string[]> result = api.GetSignatureImprints(token);
+			try
+			{
+				BulksignResult<string[]> result = client.GetSignatureImprints(token);
 
-			if (result.IsSuccessful)
-				Console.WriteLine($"Found {result.Response.Length} signature imprints");
-			else
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine($"Found {result.Response.Length} signature imprints");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
+			}
+			catch (BulksignException bex)
+			{
+				//handle failed request here. See
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			}
 		}
 	}
 }

@@ -7,7 +7,7 @@ namespace Bulksign.ApiSamples
 	{
 		public void RunSample()
 		{
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -15,19 +15,26 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<ItemResultApiModel[]> result = api.GetEnvelopesByStatus(token, EnvelopeStatusTypeApi.InProgress);
-
-			if (result.IsSuccessful)
+			try
 			{
-				Console.WriteLine($"{result.Response.Length} envelopes found");
+				BulksignResult<ItemResultApiModel[]> result = client.GetEnvelopesByStatus(token, EnvelopeStatusTypeApi.InProgress);
+
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine($"{result.Response.Length} envelopes found");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				//handle failed request here. See
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
-
 	}
 }

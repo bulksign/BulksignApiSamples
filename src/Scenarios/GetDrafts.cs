@@ -7,7 +7,7 @@ namespace Bulksign.ApiSamples
 	{
 		public void RunSample()
 		{
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -15,19 +15,25 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<DraftItemResultApiModel[]> result = api.GetDrafts(token);
-
-			//check if the result was successful
-
-			if (result.IsSuccessful == false)
+			try
 			{
-				Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				BulksignResult<DraftItemResultApiModel[]> result = client.GetDrafts(token);
+
+				if (result.IsSuccessful == false)
+				{
+					Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				}
+				else
+				{
+					Console.WriteLine(result.Response.Length + " drafts found");
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine(result.Response.Length + " drafts found");
+				//handle failed request here. See
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
 	}

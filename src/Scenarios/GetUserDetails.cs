@@ -8,7 +8,7 @@ namespace Bulksign.ApiSamples
 		public void RunSample()
 		{
 
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -16,23 +16,26 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<UserDetailsApiModel> result = api.GetUserDetails(token);
-			
-			//check if the result was successful
-
-			if (result.IsSuccessful == false)
+			try
 			{
-				Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				BulksignResult<UserDetailsApiModel> result = client.GetUserDetails(token);
+
+				if (result.IsSuccessful == false)
+				{
+					Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				}
+				else
+				{
+					Console.WriteLine($"User name is : {result.Response.FirstName} {result.Response.LastName}");
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine($"User name is : {result.Response.FirstName} {result.Response.LastName}");
+				//handle failed request here. See
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
-
-
 		}
-
 	}
 }

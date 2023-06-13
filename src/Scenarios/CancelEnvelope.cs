@@ -10,7 +10,7 @@ namespace Bulksign.ApiSamples
 
 		public void RunSample()
 		{
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -18,19 +18,27 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-            //this works only for "InProgress" envelopes
-			BulksignResult<string> result = api.CancelEnvelope(token, ENVELOPE_ID);
+			try
+			{
+				//this works only for "InProgress" envelopes
+				BulksignResult<string> result = client.CancelEnvelope(token, ENVELOPE_ID);
 
-			if (result.IsSuccessful)
-            {
-				Console.WriteLine($"Envelope was canceled");
-            }
-			else
-            {
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
-            }
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine($"Envelope was canceled");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
+			}
+			catch (BulksignException bex)
+			{
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			}
 		}
 
 	}

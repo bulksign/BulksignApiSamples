@@ -10,8 +10,7 @@ namespace Bulksign.ApiSamples
 		{
 			try
 			{
-
-				AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+				AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 				if (string.IsNullOrEmpty(token.Key))
 				{
@@ -19,12 +18,11 @@ namespace Bulksign.ApiSamples
 					return;
 				}
 
-
-				BulksignApiClient api = new BulksignApiClient();
+				BulksignApiClient client = new BulksignApiClient();
 
 				EnvelopeApiModel envelope = new EnvelopeApiModel();
-				envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
-				envelope.DaysUntilExpire                 = 10;
+				envelope.EnvelopeType = EnvelopeTypeApi.Serial;
+				envelope.DaysUntilExpire = 10;
 				envelope.DisableSignerEmailNotifications = false;
 				envelope.ReminderOptions = new ReminderOptionsApiModel()
 				{
@@ -34,13 +32,13 @@ namespace Bulksign.ApiSamples
 
 				envelope.Recipients = new[]
 				{
-						  new RecipientApiModel()
-						  {
-								Name = "Bulksign Test",
-								Email = "contact@bulksign.com",
-								Index = 1,
-								RecipientType = RecipientTypeApi.Signer
-						  }
+					new RecipientApiModel()
+					{
+						Name = "Bulksign Test",
+						Email = "contact@bulksign.com",
+						Index = 1,
+						RecipientType = RecipientTypeApi.Signer
+					}
 				};
 
 
@@ -51,14 +49,14 @@ namespace Bulksign.ApiSamples
 
 				document.NewSignatures = new[]
 				{
-						  new NewSignatureApiModel()
-						  {
-								Height = 100,
-								Width = 250,
-								PageIndex = 1,
-								Left = 100,
-								Top = 500
-						  }
+					new NewSignatureApiModel()
+					{
+						Height = 100,
+						Width = 250,
+						PageIndex = 1,
+						Left = 100,
+						Top = 500
+					}
 				};
 
 
@@ -94,7 +92,7 @@ namespace Bulksign.ApiSamples
 						Type = AnnotationTypeApi.SenderOrganizationName
 					}
 
-			};
+				};
 
 
 				envelope.Documents = new[]
@@ -107,10 +105,10 @@ namespace Bulksign.ApiSamples
 						},
 						FileName = "forms.pdf"
 					}
-			};
+				};
 
 
-				BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
+				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
 				if (result.IsSuccessful)
 				{

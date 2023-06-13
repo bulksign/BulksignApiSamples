@@ -7,7 +7,7 @@ namespace Bulksign.ApiSamples
 	{
 		public void RunSample()
 		{
-			AuthenticationApiModel token = new ApiKeys().GetAuthentication();
+			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -15,17 +15,25 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<AuthenticationProviderResultApiModel[]> result = api.GetAuthenticationProviders(token);
-
-			if (result.IsSuccessful)
+			try
 			{
-				Console.WriteLine($"Found {result.Response.Length} authentication providers");
+				BulksignResult<AuthenticationProviderResultApiModel[]> result = client.GetAuthenticationProviders(token);
+
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine($"Found {result.Response.Length} authentication providers");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
 	}
