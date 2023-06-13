@@ -16,15 +16,26 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<ItemResultApiModel[]> result = api.SearchTeamMembersTemplates(token,"test");
+			try
+			{
+				BulksignResult<ItemResultApiModel[]> result = client.SearchTeamMembersTemplates(token, "test");
 
-			if (result.IsSuccessful)
-				Console.WriteLine($"Found {result.Response.Length} team member templates");
-			else
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine($"Found {result.Response.Length} team member templates");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
+			}
+			catch (BulksignException bex)
+			{
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			}
 		}
-		
 	}
 }

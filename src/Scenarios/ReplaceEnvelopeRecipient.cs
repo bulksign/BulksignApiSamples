@@ -15,14 +15,14 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			ReplaceEnvelopeRecipientApiModel re = new ReplaceEnvelopeRecipientApiModel
 			{
-				EnvelopeId  = "",
-				Name        = "New Recipient Name",
+				EnvelopeId = "",
+				Name = "New Recipient Name",
 				PhoneNumber = "+000000000000",
-				Email       = "new_email_address",
+				Email = "new_email_address",
 
 				//here is how to set up password authentication for the new recipient
 				RecipientAuthenticationMethods = new[]
@@ -30,7 +30,7 @@ namespace Bulksign.ApiSamples
 					new RecipientAuthenticationApiModel
 					{
 						AuthenticationType = RecipientAuthenticationTypeApi.Password,
-						Details            = "_insert_recipient_password"
+						Details = "_insert_recipient_password"
 					}
 				},
 
@@ -39,19 +39,27 @@ namespace Bulksign.ApiSamples
 				ByEmail = new FindRecipientByEmailApiModel
 				{
 					RecipientEmail = "existing_recipient_email",
-					RecipientType  = RecipientTypeApi.Signer
+					RecipientType = RecipientTypeApi.Signer
 				}
 			};
 
-			BulksignResult<string> result = api.ReplaceEnvelopeRecipient(token,re);
+			try
+			{
+				BulksignResult<string> result = client.ReplaceEnvelopeRecipient(token, re);
 
-			if (result.IsSuccessful)
-			{
-				Console.WriteLine("Recipient has been successfully replaced");
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Recipient has been successfully replaced");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
 	}

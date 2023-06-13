@@ -17,7 +17,7 @@ namespace Bulksign.ApiSamples
 
 			BulksignApiClient client = new BulksignApiClient();
 
-			UnlockConcurrentRecipientApiModel um = new UnlockConcurrentRecipientApiModel
+			UnlockConcurrentRecipientApiModel model = new UnlockConcurrentRecipientApiModel
 			{
 				EnvelopeId     = "000000000000000000000000",
 				RecipientEmail = "email_of_recipient_which_locked_signing"
@@ -25,11 +25,11 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<string> result = client.UnlockConcurrentRecipient(token, um);
+				BulksignResult<string> result = client.UnlockConcurrentRecipient(token, model);
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"{um.EnvelopeId} was unlocked");
+					Console.WriteLine($"{model.EnvelopeId} was unlocked");
 				}
 				else
 				{

@@ -108,7 +108,7 @@ namespace Bulksign.ApiSamples
 			}
 			catch (BulksignException bex)
 			{
-				//handle failed request here. See
+				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}

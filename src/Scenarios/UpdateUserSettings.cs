@@ -17,24 +17,34 @@ namespace Bulksign.ApiSamples
 
 			BulksignApiClient client = new BulksignApiClient();
 
-			//this will update all NON-NULL values that we send
-			BulksignResult<string> result = client.UpdateUserSettings(token, new UserUpdateSettingsApiModel()
+			//only set the properties that you want modified
+			UserUpdateSettingsApiModel model = new UserUpdateSettingsApiModel()
 			{
-				JobTitle = "My job", 
-				DefaultDraftLanguage = "en-US", 
-				NotificationRecipientOpenedSignStep = true, 
+				JobTitle = "My job",
+				DefaultDraftLanguage = "en-US",
+				NotificationRecipientOpenedSignStep = true,
 				LastName = "MyLastName"
-			});
+			};
 
-			//check if the result was successful
-
-			if (result.IsSuccessful == false)
+			try
 			{
-				Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				//this will update all NON-NULL values that we send
+				BulksignResult<string> result = client.UpdateUserSettings(token, model);
+
+				if (result.IsSuccessful == false)
+				{
+					Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
 			}
-
-
+			catch (BulksignException bex)
+			{
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			}
 		}
-
 	}
 }

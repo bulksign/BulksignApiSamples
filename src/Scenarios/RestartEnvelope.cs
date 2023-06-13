@@ -18,17 +18,25 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<string> result = api.RestartEnvelope(token,EXPIRED_ENVELOPE_ID);
-
-			if (result.IsSuccessful)
+			try
 			{
-				Console.WriteLine("Envelope was successfully restarted");
+				BulksignResult<string> result = client.RestartEnvelope(token, EXPIRED_ENVELOPE_ID);
+
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Envelope was successfully restarted");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				//handle failed request here. See
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
 	}

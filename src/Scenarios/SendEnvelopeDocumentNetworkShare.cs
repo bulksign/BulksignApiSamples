@@ -32,7 +32,7 @@ namespace Bulksign.ApiSamples
 				}
 			};
 
-			//NOTE : this oly works on the on-premise version
+			//NOTE : specifying a network path for input files ONLY works on the on-premise version
 			envelope.Documents = new[]
 			{
 				new DocumentApiModel()
@@ -67,7 +67,7 @@ namespace Bulksign.ApiSamples
 			}
 			catch (BulksignException bex)
 			{
-				//handle failed request here. See
+				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}

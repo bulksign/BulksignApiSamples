@@ -18,24 +18,22 @@ namespace Bulksign.ApiSamples
 			BulksignApiClient client = new BulksignApiClient();
 
 			//replace the identifier with your template Id
-			string templateId = "d8a308e8-dd03-ec11-908d-d050997b638e";
+			string templateId = "__your+template_identifier__";
 
-
-			//we are sending 
-			BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelopeFromTemplate(token, new EnvelopeFromTemplateApiModel()
+			EnvelopeFromTemplateApiModel model = new EnvelopeFromTemplateApiModel()
 			{
 				ReplaceRecipients = new[]
 				{
 					new TemplateReplaceRecipientApiModel()
 					{
 						//determine the recipient that we are replacing by specifying the email address
-						ByEmail = new FindRecipientByEmailApiModel()
+						ByEmail = new FindRecipientByEmailApiModel() 
 						{
 							RecipientEmail = "a@a.com",
 							RecipientType = RecipientTypeApi.Signer
 						},
 						//specify the information for the new recipient
-						Name = "Test A", 
+						Name = "Test A",
 						Email = "myemail@email.com"
 					},
 					new TemplateReplaceRecipientApiModel()
@@ -45,23 +43,32 @@ namespace Bulksign.ApiSamples
 							RecipientEmail = "b@b.com",
 							RecipientType = RecipientTypeApi.Signer
 						},
-						Name = "Test B", 
+						Name = "Test B",
 						Email = "myemailbb@email.com"
 					}
 				},
 				TemplateId = templateId
-			});
+			};
 
-			if (result.IsSuccessful)
+			try
 			{
-				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("EnvelopeId is : " + result.Response.EnvelopeId);
-			}
-			else
-			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
-			}
+				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelopeFromTemplate(token, model);
 
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+					Console.WriteLine("EnvelopeId is : " + result.Response.EnvelopeId);
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
+			}
+			catch (BulksignException bex)
+			{
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			}
 		}
 	}
 }
