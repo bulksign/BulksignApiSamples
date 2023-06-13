@@ -11,11 +11,11 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			UnlockConcurrentRecipientApiModel um = new UnlockConcurrentRecipientApiModel
 			{
@@ -23,15 +23,23 @@ namespace Bulksign.ApiSamples
 				RecipientEmail = "email_of_recipient_which_locked_signing"
 			};
 
-			BulksignResult<string> result = api.UnlockConcurrentRecipient(token,um);
+			try
+			{
+				BulksignResult<string> result = client.UnlockConcurrentRecipient(token, um);
 
-			if (result.IsSuccessful)
-			{
-				Console.WriteLine($"{um.EnvelopeId} was unlocked");
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine($"{um.EnvelopeId} was unlocked");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
 	}

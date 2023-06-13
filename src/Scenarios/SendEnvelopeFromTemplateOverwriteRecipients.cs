@@ -7,24 +7,22 @@ namespace Bulksign.ApiSamples
 	{
 		public void RunSample()
 		{
-
 			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 			
-
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			//replace the identifier with your template Id
 			string templateId = "d8a308e8-dd03-ec11-908d-d050997b638e";
 
 
 			//we are sending 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelopeFromTemplate(token, new EnvelopeFromTemplateApiModel()
+			BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelopeFromTemplate(token, new EnvelopeFromTemplateApiModel()
 			{
 				ReplaceRecipients = new[]
 				{

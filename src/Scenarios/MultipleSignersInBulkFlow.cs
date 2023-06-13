@@ -13,19 +13,18 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
-
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
-			envelope.EnvelopeType    = EnvelopeTypeApi.Bulk;
+			envelope.EnvelopeType = EnvelopeTypeApi.Bulk;
 			envelope.DaysUntilExpire = 10;
-			envelope.EmailMessage    = "Please sign this document";
-			envelope.EmailSubject    = "Please Bulksign this document";
-			envelope.Name            = "Test envelope";
+			envelope.EmailMessage = "Please sign this document";
+			envelope.EmailSubject = "Please Bulksign this document";
+			envelope.Name = "Test envelope";
 
 			//in bulk mode all recipients have the same index
 			envelope.Recipients = new[]
@@ -37,18 +36,18 @@ namespace Bulksign.ApiSamples
 					Index = 1,
 					RecipientType = RecipientTypeApi.Signer
 				},
-				
+
 				new RecipientApiModel()
 				{
 					Name = "Second Test",
 					Email = "test@test.com",
 					Index = 1,
 					RecipientType = RecipientTypeApi.Signer
-				} 
+				}
 			};
 
-			envelope.Documents = new[] 
-			{ 
+			envelope.Documents = new[]
+			{
 				new DocumentApiModel()
 				{
 					Index = 1,
@@ -60,19 +59,25 @@ namespace Bulksign.ApiSamples
 				}
 			};
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
-
-			if (result.IsSuccessful)
+			try
 			{
-				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
-			}
-			else
-			{
-				Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
-			}
+				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+					Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
+				}
+				else
+				{
+					Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				}
+			}
+			catch (BulksignException bex)
+			{
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			}
 		}
 	}
-
 }

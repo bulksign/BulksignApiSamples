@@ -13,41 +13,42 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
-
-			BulksignApiClient api = new BulksignApiClient();
-
+			BulksignApiClient client = new BulksignApiClient();
 
 			//this will return all authentication providers defined per organization
 			//Obviously you need to define at least 1 provider for this to work
-			BulksignResult<AuthenticationProviderResultApiModel[]> providers = api.GetAuthenticationProviders(token);
+			BulksignResult<AuthenticationProviderResultApiModel[]> providers = client.GetAuthenticationProviders(token);
 
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
-			envelope.EnvelopeType    = EnvelopeTypeApi.Serial;
+			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
 			envelope.DaysUntilExpire = 10;
-			envelope.EmailMessage    = "Please sign this document";
-			envelope.EmailSubject    = "Please Bulksign this document";
-			envelope.Name            = "Test envelope";
+			envelope.EmailMessage = "Please sign this document";
+			envelope.EmailSubject = "Please Bulksign this document";
+			envelope.Name = "Test envelope";
 
 			envelope.Recipients = new[]
 			{
 				new RecipientApiModel
 				{
-					Name          = "Bulksign Test",
-					Email         = "recipient_email@test.com",
-					Index         = 1,
+					Name = "Bulksign Test",
+					Email = "recipient_email@test.com",
+					Index = 1,
 					RecipientType = RecipientTypeApi.Signer,
 
 					//set the user authentication here and use the first retrieved provider
-					RecipientAuthenticationMethods = new []{new RecipientAuthenticationApiModel()
+					RecipientAuthenticationMethods = new[]
 					{
-						AuthenticationType = RecipientAuthenticationTypeApi.AuthenticationProvider,
-						Details = providers.Response.FirstOrDefault().Identifier
-					}}
+						new RecipientAuthenticationApiModel()
+						{
+							AuthenticationType = RecipientAuthenticationTypeApi.AuthenticationProvider,
+							Details = providers.Response.FirstOrDefault().Identifier
+						}
+					}
 				}
 			};
 
@@ -55,7 +56,7 @@ namespace Bulksign.ApiSamples
 			{
 				new DocumentApiModel
 				{
-					Index    = 1,
+					Index = 1,
 					FileName = "test.pdf",
 					FileContentByteArray = new FileContentByteArray
 					{
@@ -64,16 +65,24 @@ namespace Bulksign.ApiSamples
 				}
 			};
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
+			try
+			{
+				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
-			if (result.IsSuccessful)
-			{
-				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+					Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
+				}
+				else
+				{
+					Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
 	}

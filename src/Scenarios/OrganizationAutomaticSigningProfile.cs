@@ -12,18 +12,30 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<AutomaticSigningProfileResultApiModel[]> result = api.GetOrganizationAutomaticSigningProfiles(token);
+			try
+			{
+				BulksignResult<AutomaticSigningProfileResultApiModel[]> result = client.GetOrganizationAutomaticSigningProfiles(token);
 
-			if (result.IsSuccessful)
-				Console.WriteLine($"Found {result.Response.Length} organization automatic signing profiles ");
-			else
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine($"Found {result.Response.Length} organization automatic signing profiles ");
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
+			}
+			catch (BulksignException bex)
+			{
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			}
 		}
 	}
 }

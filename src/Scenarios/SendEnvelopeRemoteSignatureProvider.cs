@@ -21,36 +21,36 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
-			envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
-			envelope.DaysUntilExpire                 = 10;
+			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
+			envelope.DaysUntilExpire = 10;
 			envelope.DisableSignerEmailNotifications = false;
 
 			envelope.Recipients = new[]
 			{
 				new RecipientApiModel
 				{
-					Name          = "Bulksign Test",
-					Email         = "signer_email_address",
-					Index         = 1,
+					Name = "Bulksign Test",
+					Email = "signer_email_address",
+					Index = 1,
 					RecipientType = RecipientTypeApi.Signer,
 
-					RemoteSignatureConfiguration = new []
+					RemoteSignatureConfiguration = new[]
 					{
 						new RemoteSignatureConfigurationApiModel()
 						{
-							RemoteSignatureName = REMOTE_SIGNATURE_NAME, 
+							RemoteSignatureName = REMOTE_SIGNATURE_NAME,
 							//set the configuration data specific to this provider
-							Configuration = new Dictionary<string,string>()
+							Configuration = new Dictionary<string, string>()
 							{
-								{"FirstKey","11111"},
-								{"SecondKey","222"}
+								{ "FirstKey", "11111" },
+								{ "SecondKey", "222" }
 							}
 						}
 					}
@@ -61,7 +61,7 @@ namespace Bulksign.ApiSamples
 			{
 				new DocumentApiModel
 				{
-					Index    = 1,
+					Index = 1,
 					FileName = "singlepage.pdf",
 					FileContentByteArray = new FileContentByteArray
 					{
@@ -75,16 +75,16 @@ namespace Bulksign.ApiSamples
 						new NewSignatureApiModel
 						{
 							//width,height, left and top values are in pixels
-							Height        = 100,
-							Width         = 250,
-							PageIndex     = 1,
-							Left          = 20,
-							Top           = 30,
+							Height = 100,
+							Width = 250,
+							PageIndex = 1,
+							Left = 20,
+							Top = 30,
 							SignatureType = SignatureTypeApi.RemoteSignatureProvider,
 
 							//set the RemoteSignature provider identifier
 							RemoteSignatureName = REMOTE_SIGNATURE_NAME,
-							
+
 							//assign the signature field to the recipient. The assignment is done by the email address
 							AssignedToRecipientEmail = envelope.Recipients[0].Email
 						}
@@ -92,16 +92,24 @@ namespace Bulksign.ApiSamples
 				}
 			};
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token,envelope);
+			try
+			{
+				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
-			if (result.IsSuccessful)
-			{
-				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("EnvelopeId is : " + result.Response.EnvelopeId);
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+					Console.WriteLine("EnvelopeId is : " + result.Response.EnvelopeId);
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				//handle failed request here. See
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
 	}

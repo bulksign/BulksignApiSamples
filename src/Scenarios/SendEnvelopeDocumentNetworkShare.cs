@@ -8,16 +8,15 @@ namespace Bulksign.ApiSamples
 
 		public void RunSample()
 		{
-			BulksignApiClient api = new BulksignApiClient();
-
-
 			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit ApiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
+
+			BulksignApiClient client = new BulksignApiClient();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
@@ -34,7 +33,7 @@ namespace Bulksign.ApiSamples
 			};
 
 			//NOTE : this oly works on the on-premise version
-			envelope.Documents = new []
+			envelope.Documents = new[]
 			{
 				new DocumentApiModel()
 				{
@@ -52,19 +51,25 @@ namespace Bulksign.ApiSamples
 				},
 			};
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
-
-			if (result.IsSuccessful)
+			try
 			{
-				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
-			}
-			else
-			{
-				Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}" );
-			}
+				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+					Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
+				}
+				else
+				{
+					Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				}
+			}
+			catch (BulksignException bex)
+			{
+				//handle failed request here. See
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			}
 		}
-
 	}
 }

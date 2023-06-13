@@ -13,13 +13,13 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<string[]> stamps = api.GetSignatureStamps(token);
+			BulksignResult<string[]> stamps = client.GetSignatureStamps(token);
 
 			//for this sample we require to define at least 1 signature stamp
 
@@ -30,21 +30,21 @@ namespace Bulksign.ApiSamples
 			}
 
 			//load the imprints too
-			BulksignResult<string[]> imprints = api.GetSignatureImprints(token);
+			BulksignResult<string[]> imprints = client.GetSignatureImprints(token);
 
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
-			envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
-			envelope.DaysUntilExpire                 = 10;
+			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
+			envelope.DaysUntilExpire = 10;
 			envelope.DisableSignerEmailNotifications = false;
 
 			envelope.Recipients = new[]
 			{
 				new RecipientApiModel
 				{
-					Name          = "Bulksign Test",
-					Email         = "contact@bulksign.com",
-					Index         = 1,
+					Name = "Bulksign Test",
+					Email = "contact@bulksign.com",
+					Index = 1,
 					RecipientType = RecipientTypeApi.Signer
 				}
 			};
@@ -53,7 +53,7 @@ namespace Bulksign.ApiSamples
 			{
 				new DocumentApiModel
 				{
-					Index    = 1,
+					Index = 1,
 					FileName = "singlepage.pdf",
 					FileContentByteArray = new FileContentByteArray
 					{
@@ -67,12 +67,12 @@ namespace Bulksign.ApiSamples
 						new NewSignatureApiModel
 						{
 							//width,height, left and top values are in pixels
-							Height                   = 100,
-							Width                    = 250,
-							PageIndex                = 1,
-							Left                     = 20,
-							Top                      = 30,
-							SignatureType            = SignatureTypeApi.Stamp,
+							Height = 100,
+							Width = 250,
+							PageIndex = 1,
+							Left = 20,
+							Top = 30,
+							SignatureType = SignatureTypeApi.Stamp,
 							AssignedToRecipientEmail = envelope.Recipients[0].Email,
 							StampSignatureConfiguration = new StampSignatureConfigurationApiModel
 							{
@@ -82,12 +82,12 @@ namespace Bulksign.ApiSamples
 						},
 						new NewSignatureApiModel
 						{
-							Height                   = 100,
-							Width                    = 250,
-							PageIndex                = 1,
-							Left                     = 20,
-							Top                      = 70,
-							SignatureType            = SignatureTypeApi.Stamp,
+							Height = 100,
+							Width = 250,
+							PageIndex = 1,
+							Left = 20,
+							Top = 70,
+							SignatureType = SignatureTypeApi.Stamp,
 							AssignedToRecipientEmail = envelope.Recipients[0].Email,
 							StampSignatureConfiguration = new StampSignatureConfigurationApiModel
 							{
@@ -106,16 +106,24 @@ namespace Bulksign.ApiSamples
 				}
 			};
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token,envelope);
+			try
+			{
+				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
-			if (result.IsSuccessful)
-			{
-				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("EnvelopeId is : " + result.Response.EnvelopeId);
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+					Console.WriteLine("EnvelopeId is : " + result.Response.EnvelopeId);
+				}
+				else
+				{
+					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				//handle failed request here. See
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
 	}

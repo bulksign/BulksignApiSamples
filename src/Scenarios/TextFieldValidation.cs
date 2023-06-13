@@ -12,26 +12,26 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
-			envelope.EnvelopeType    = EnvelopeTypeApi.Serial;
+			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
 			envelope.DaysUntilExpire = 10;
-			envelope.EmailMessage    = "Please sign this document";
-			envelope.EmailSubject    = "Please Bulksign this document";
-			envelope.Name            = "Test envelope";
+			envelope.EmailMessage = "Please sign this document";
+			envelope.EmailSubject = "Please Bulksign this document";
+			envelope.Name = "Test envelope";
 
 			envelope.Recipients = new[]
 			{
 				new RecipientApiModel
 				{
-					Name          = "Bulksign Test",
-					Email         = "contact@bulksign.com",
-					Index         = 1,
+					Name = "Bulksign Test",
+					Email = "contact@bulksign.com",
+					Index = 1,
 					RecipientType = RecipientTypeApi.Signer
 				}
 			};
@@ -40,7 +40,7 @@ namespace Bulksign.ApiSamples
 			{
 				new DocumentApiModel
 				{
-					Index    = 1,
+					Index = 1,
 					FileName = "test.pdf",
 					FileContentByteArray = new FileContentByteArray
 					{
@@ -55,14 +55,14 @@ namespace Bulksign.ApiSamples
 							{
 								new FieldAssignmentApiModel
 								{
-									FieldId    = "Text1",
+									FieldId = "Text1",
 									IsRequired = true,
 
 									//enable numeric validation and also range (only numbers between 3-28 are allowed)
 									TextBoxValidation = new InputValidationApiModel
 									{
-										Tooltip        = "Please enter a numeric value between 3 and 28",
-										Placeholder    = "3 to 28",
+										Tooltip = "Please enter a numeric value between 3 and 28",
+										Placeholder = "3 to 28",
 										ValidationType = TextInputValidationTypeApi.Number,
 										NumberValidation = new NumberValidationApiModel
 										{
@@ -70,7 +70,7 @@ namespace Bulksign.ApiSamples
 											Range = new NumericRangeApiModel
 											{
 												From = "3",
-												To   = "28"
+												To = "28"
 											}
 										}
 									}
@@ -78,33 +78,33 @@ namespace Bulksign.ApiSamples
 								//phone number - the allowed format is +{countrycode}{phone}
 								new FieldAssignmentApiModel
 								{
-									FieldId    = "Text1",
+									FieldId = "Text1",
 									IsRequired = true,
 									TextBoxValidation = new InputValidationApiModel
 									{
-										Tooltip        = "Please enter your phone number in format +{countrycode}{phone}",
+										Tooltip = "Please enter your phone number in format +{countrycode}{phone}",
 										ValidationType = TextInputValidationTypeApi.PhoneNumber
 									}
 								},
 								//email address
 								new FieldAssignmentApiModel
 								{
-									FieldId    = "Text1",
+									FieldId = "Text1",
 									IsRequired = true,
 									TextBoxValidation = new InputValidationApiModel
 									{
-										Tooltip        = "Please enter a email address",
+										Tooltip = "Please enter a email address",
 										ValidationType = TextInputValidationTypeApi.EmailAddress
 									}
 								},
 								//custom regex
 								new FieldAssignmentApiModel
 								{
-									FieldId    = "Text1",
+									FieldId = "Text1",
 									IsRequired = true,
 									TextBoxValidation = new InputValidationApiModel
 									{
-										Tooltip        = "Please enter the custom value",
+										Tooltip = "Please enter the custom value",
 										ValidationType = TextInputValidationTypeApi.Regex,
 										RegexValidation = new RegexValidationApiModel
 										{
@@ -115,11 +115,11 @@ namespace Bulksign.ApiSamples
 								//date, you must provide the format
 								new FieldAssignmentApiModel
 								{
-									FieldId    = "Text1",
+									FieldId = "Text1",
 									IsRequired = true,
 									TextBoxValidation = new InputValidationApiModel
 									{
-										Tooltip        = "Please enter the date in format yyyy-mm-dd",
+										Tooltip = "Please enter the date in format yyyy-mm-dd",
 										ValidationType = TextInputValidationTypeApi.Date,
 										DateValidation = new DateValidationApiModel
 										{
@@ -130,11 +130,11 @@ namespace Bulksign.ApiSamples
 								//time, format is hh:mm
 								new FieldAssignmentApiModel
 								{
-									FieldId    = "Text1",
+									FieldId = "Text1",
 									IsRequired = true,
 									TextBoxValidation = new InputValidationApiModel
 									{
-										Tooltip        = "Please enter the time in format hh:mm",
+										Tooltip = "Please enter the time in format hh:mm",
 										ValidationType = TextInputValidationTypeApi.Time
 									}
 								}
@@ -144,16 +144,24 @@ namespace Bulksign.ApiSamples
 				}
 			};
 
-			BulksignResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token,envelope);
+			try
+			{
+				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
-			if (result.IsSuccessful)
-			{
-				Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-				Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
+				if (result.IsSuccessful)
+				{
+					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
+					Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
+				}
+				else
+				{
+					Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				}
 			}
-			else
+			catch (BulksignException bex)
 			{
-				Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				//handle failed request here
+				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
 	}

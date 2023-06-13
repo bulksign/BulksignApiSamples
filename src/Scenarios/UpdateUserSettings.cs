@@ -7,19 +7,18 @@ namespace Bulksign.ApiSamples
 	{
 		public void RunSample()
 		{
-
 			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			//this will update all NON-NULL values that we send
-			BulksignResult<string> result = api.UpdateUserSettings(token, new UserUpdateSettingsApiModel()
+			BulksignResult<string> result = client.UpdateUserSettings(token, new UserUpdateSettingsApiModel()
 			{
 				JobTitle = "My job", 
 				DefaultDraftLanguage = "en-US", 

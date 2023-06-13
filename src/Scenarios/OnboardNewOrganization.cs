@@ -5,7 +5,7 @@ namespace Bulksign.ApiSamples
 {
 	public class OnboardNewOrganization
 	{
-		//NOTE : The CreateORganization API is ONLY available for the OnPremise version of Bulksign.
+		//NOTE : The CreateOrganization API is ONLY available for the OnPremise version of Bulksign.
 		//It will NOT work on SAAS version at https://bulksign.com
 
 		public void RunSample()
@@ -14,13 +14,13 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<string> result = api.CreateOrganization(token, new CreateOrganizationApiModel()
+			BulksignResult<string> result = client.CreateOrganization(token, new CreateOrganizationApiModel()
 			{
 				OrganizationName = "MyOrganization",
 				AdministratorEmail = "admin@email.com",
@@ -45,7 +45,7 @@ namespace Bulksign.ApiSamples
 			//update the org settings with whichever values we require.
 			//Note that all properties are optional, you should only set values for the properties that you want updated and ignore the rest
 
-			api.UpdateOrganizationSettings(newOrgToken, new OrganizationUpdateSettingsApiModel()
+			client.UpdateOrganizationSettings(newOrgToken, new OrganizationUpdateSettingsApiModel()
 			{
 				EmailSenderType = EmailSenderTypeApi.Organization,
 
@@ -58,7 +58,7 @@ namespace Bulksign.ApiSamples
 			});
 
 			//now add more users to this organization
-			api.InviteUserToOrganization(newOrgToken, new UserInvitationApiModel()
+			client.InviteUserToOrganization(newOrgToken, new UserInvitationApiModel()
 			{
 				Email = "new.user@mycompnay.com", 
 				FirstName = "John", 
@@ -71,7 +71,7 @@ namespace Bulksign.ApiSamples
 
 			string language = "pt-BR";
 
-			api.AddEmailTemplate(newOrgToken, new EmailTemplateApiModel()
+			client.AddEmailTemplate(newOrgToken, new EmailTemplateApiModel()
 			{
 				Language = language,
 				Templates = new EmailTemplateDescriptorApiModel[]

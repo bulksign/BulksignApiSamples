@@ -12,11 +12,11 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit APiKeys.cs and put your own token/email");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			FileInput firstFile = new FileInput()
 			{
@@ -38,7 +38,7 @@ namespace Bulksign.ApiSamples
 				firstFile
 			};
 
-			BulksignResult<EnvelopeApiModel> result = api.PrepareSendEnvelope(token, prepare);
+			BulksignResult<EnvelopeApiModel> result = client.PrepareSendEnvelope(token, prepare);
 
 			if (result.IsSuccessful)
 			{
@@ -58,7 +58,7 @@ namespace Bulksign.ApiSamples
 					}
 				}
 
-				BulksignResult<SendEnvelopeResultApiModel> envelope = api.SendEnvelope(token, model);
+				BulksignResult<SendEnvelopeResultApiModel> envelope = client.SendEnvelope(token, model);
 
 				if (result.IsSuccessful)
 				{
