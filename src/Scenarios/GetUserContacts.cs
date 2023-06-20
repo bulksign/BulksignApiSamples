@@ -23,7 +23,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($" {result.Response.Length} contacts found ");
+					Console.WriteLine($" {result.Result.Length} contacts found ");
 				}
 				else
 				{

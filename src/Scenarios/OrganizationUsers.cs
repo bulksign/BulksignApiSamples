@@ -23,7 +23,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Found {result.Response.Length} users ");
+					Console.WriteLine($"Found {result.Result.Length} users ");
 				}
 				else
 				{

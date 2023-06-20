@@ -1,7 +1,7 @@
 # Bulksign API Samples
-Bulksign API sample code (in C#).
+Bulksign API sample code in C# 
 
-This repository contains sample C# code for interacting with Bulksign API. This is using the [Bulksign dotNet SDK](https://www.nuget.org/packages/BulksignSdk) and contains projects for both .NET 7 and .NET Framework 4.8
+This repository contains sample C# code for interacting with Bulksign API. This is using the [Bulksign dotNet SDK](https://www.nuget.org/packages/BulksignSdk) and contains projects for .NET 7. The SDK targets NET Standard 2.0 and can also be used with .NET Framework  (feel free to copy the samples into your .NET Framework project) 
 <br/>
 <br/>
 

@@ -24,7 +24,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Found {result.Response.Length} team member templates");
+					Console.WriteLine($"Found {result.Result.Length} team member templates");
 				}
 				else
 				{

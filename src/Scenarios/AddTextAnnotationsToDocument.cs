@@ -112,8 +112,8 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-					Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
+					Console.WriteLine("Access code for recipient " + result.Result.RecipientAccess[0].RecipientEmail + " is " + result.Result.RecipientAccess[0].AccessCode);
+					Console.WriteLine("Envelope id is : " + result.Result.EnvelopeId);
 				}
 				else
 				{

@@ -24,7 +24,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Found {result.Response.Length} organization automatic signing profiles ");
+					Console.WriteLine($"Found {result.Result.Length} organization automatic signing profiles ");
 				}
 				else
 				{

@@ -23,7 +23,7 @@ namespace Bulksign.ApiSamples
 
 			//for this sample we require to define at least 1 signature stamp
 
-			if (stamps.Response.Length == 0)
+			if (stamps.Result.Length == 0)
 			{
 				Console.WriteLine("This sample requires to have at least 1 signature stamp. ");
 				return;
@@ -95,10 +95,10 @@ namespace Bulksign.ApiSamples
 								StampType = StampSignatureTypeApi.PredefinedStamp,
 
 								//we'll use the first stamp defined in the organization
-								StampName = stamps.Response.FirstOrDefault(),
+								StampName = stamps.Result.FirstOrDefault(),
 
 								//apply an imprint too for this signature
-								ImprintName = imprints.Response.FirstOrDefault()
+								ImprintName = imprints.Result.FirstOrDefault()
 
 							}
 						}
@@ -112,8 +112,8 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-					Console.WriteLine("EnvelopeId is : " + result.Response.EnvelopeId);
+					Console.WriteLine("Access code for recipient " + result.Result.RecipientAccess[0].RecipientEmail + " is " + result.Result.RecipientAccess[0].AccessCode);
+					Console.WriteLine("EnvelopeId is : " + result.Result.EnvelopeId);
 				}
 				else
 				{

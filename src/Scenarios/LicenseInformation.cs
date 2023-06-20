@@ -22,7 +22,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Remaining envelopes : {result.Response.EnvelopesTotal - result.Response.EnvelopesUsed}");
+					Console.WriteLine($"Remaining envelopes : {result.Result.EnvelopesTotal - result.Result.EnvelopesUsed}");
 				}
 				else
 				{

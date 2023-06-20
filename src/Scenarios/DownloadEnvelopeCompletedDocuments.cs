@@ -24,7 +24,7 @@ namespace Bulksign.ApiSamples
 				if (result.IsSuccessful)
 				{
 					//the result here will by a byte[] of a zip file which contains all signed documents + audit trail file
-					Console.WriteLine($"File size :  {result.Response.Length}");
+					Console.WriteLine($"File size :  {result.Result.Length}");
 				}
 				else
 				{

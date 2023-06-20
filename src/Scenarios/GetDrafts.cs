@@ -27,7 +27,7 @@ namespace Bulksign.ApiSamples
 				}
 				else
 				{
-					Console.WriteLine(result.Response.Length + " drafts found");
+					Console.WriteLine(result.Result.Length + " drafts found");
 				}
 			}
 			catch (BulksignException bex)

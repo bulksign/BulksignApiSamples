@@ -59,7 +59,7 @@ namespace Bulksign.ApiSamples
 
 			//the model will include 2 placeholder recipients because we have 2 tags in the documents with different indexes
 
-			EnvelopeApiModel model = result.Response;
+			EnvelopeApiModel model = result.Result;
 
 			//now change the email placeholder with the real recipient email address
 			model.Recipients[0].Email = "test@email.com";
@@ -106,7 +106,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Envelope with id {envelope.Response.EnvelopeId} was created");
+					Console.WriteLine($"Envelope with id {envelope.Result.EnvelopeId} was created");
 				}
 				else
 				{

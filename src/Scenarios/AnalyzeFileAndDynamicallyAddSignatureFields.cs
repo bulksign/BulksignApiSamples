@@ -66,8 +66,8 @@ namespace Bulksign.ApiSamples
 
 			//assign all form fields / signature field to first recipient
 
-			List<FormFieldResultApiModel> signatures = analyzeResult.Response.Fields.Where(model => model.FieldType == FormFieldTypeApi.Signature).ToList();
-			List<FormFieldResultApiModel> fields = analyzeResult.Response.Fields.Where(model => model.FieldType != FormFieldTypeApi.Signature).ToList();
+			List<FormFieldResultApiModel> signatures = analyzeResult.Result.Fields.Where(model => model.FieldType == FormFieldTypeApi.Signature).ToList();
+			List<FormFieldResultApiModel> fields = analyzeResult.Result.Fields.Where(model => model.FieldType != FormFieldTypeApi.Signature).ToList();
 
 			AssignmentApiModel assignment = new AssignmentApiModel();
 			assignment.AssignedToRecipientEmail = envelope.Recipients[0].Email;
@@ -89,7 +89,7 @@ namespace Bulksign.ApiSamples
 
 
 			//now add a signature field for the second recipient on each page of the document
-			int numberPages = analyzeResult.Response.NumberOfPages;
+			int numberPages = analyzeResult.Result.NumberOfPages;
 
 			List<NewSignatureApiModel> newSignatures = new List<NewSignatureApiModel>();
 
@@ -115,8 +115,8 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine("Access code for recipient " + result.Response.RecipientAccess[0].RecipientEmail + " is " + result.Response.RecipientAccess[0].AccessCode);
-					Console.WriteLine("Envelope id is : " + result.Response.EnvelopeId);
+					Console.WriteLine("Access code for recipient " + result.Result.RecipientAccess[0].RecipientEmail + " is " + result.Result.RecipientAccess[0].AccessCode);
+					Console.WriteLine("Envelope id is : " + result.Result.EnvelopeId);
 				}
 				else
 				{

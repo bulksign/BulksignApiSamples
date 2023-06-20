@@ -23,7 +23,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Found {result.Response.Length} envelopes to sign");
+					Console.WriteLine($"Found {result.Result.Length} envelopes to sign");
 				}
 				else
 				{

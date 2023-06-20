@@ -38,7 +38,7 @@ namespace Bulksign.ApiSamples
 			//make the new requests authenticated 
 			AuthenticationApiModel newOrgToken = new AuthenticationApiModel()
 			{
-				Key = result.Response, 
+				Key = result.Result, 
 				UserEmail = "admin@email.com"
 			};
 

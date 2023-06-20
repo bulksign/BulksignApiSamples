@@ -26,7 +26,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Envelope '{ENVELOPE_ID}' has name : '{result.Response.Name}' ");
+					Console.WriteLine($"Envelope '{ENVELOPE_ID}' has name : '{result.Result.Name}' ");
 				}
 				else
 				{

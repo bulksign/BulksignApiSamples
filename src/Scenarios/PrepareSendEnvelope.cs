@@ -56,7 +56,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			EnvelopeApiModel model = result.Response;
+			EnvelopeApiModel model = result.Result;
 
 			//now change the email placeholder with the real recipient email address
 			model.Recipients[0].Email = "enter_recipient_email_here";
@@ -78,7 +78,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Envelope with id {envelope.Response.EnvelopeId} was created");
+					Console.WriteLine($"Envelope with id {envelope.Result.EnvelopeId} was created");
 				}
 				else
 				{

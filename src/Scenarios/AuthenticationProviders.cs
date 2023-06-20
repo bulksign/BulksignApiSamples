@@ -23,7 +23,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Found {result.Response.Length} authentication providers");
+					Console.WriteLine($"Found {result.Result.Length} authentication providers");
 				}
 				else
 				{

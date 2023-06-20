@@ -23,7 +23,7 @@ namespace Bulksign.ApiSamples
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Envelope status is {result.Response.ToString()}");
+					Console.WriteLine($"Envelope status is {result.Result.ToString()}");
 				}
 				else
 				{

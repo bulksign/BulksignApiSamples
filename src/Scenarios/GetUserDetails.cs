@@ -28,7 +28,7 @@ namespace Bulksign.ApiSamples
 				}
 				else
 				{
-					Console.WriteLine($"User name is : {result.Response.FirstName} {result.Response.LastName}");
+					Console.WriteLine($"User name is : {result.Result.FirstName} {result.Result.LastName}");
 				}
 			}
 			catch (BulksignException bex)

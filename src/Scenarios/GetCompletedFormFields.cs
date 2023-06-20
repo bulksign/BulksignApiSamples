@@ -31,7 +31,7 @@ namespace Bulksign.ApiSamples
 					return;
 				}
 
-				foreach (RecipientFormFillApiModel model in formFields.Response)
+				foreach (RecipientFormFillApiModel model in formFields.Result)
 				{
 					Console.WriteLine($"Processing form fields for recipient {model.RecipientEmail}");
 
