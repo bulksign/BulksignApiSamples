@@ -38,26 +38,26 @@ Please see this repository  https://github.com/bulksign/GRPC-API-Samples
 
 ### Samples and scenarios included
 
-[SingleDocumentApproverAndSigner.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/SingleDocumentApproverAndSigner.cs) : simplest scenario, shows how to send a document for approving and signing with Bulksign. 
+[SingleDocumentApproverAndSigner.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/SingleDocumentApproverAndSigner.cs) : simplest scenario, shows how to send a document for approving and signing with Bulksign. 
 
-[MultipleSignersInSerialFlow.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/MultipleSignersInSerialFlow.cs) : shows how to send a document for signing with multiple recipients in serial mode.
+[MultipleSignersInSerialFlow.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/MultipleSignersInSerialFlow.cs) : shows how to send a document for signing with multiple recipients in serial mode.
 
-[DisableEmailNotifications.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/DisableEmailNotifications.cs) : shows how to disable email notifications for a specific bundle.
+[DisableEmailNotifications.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/DisableEmailNotifications.cs) : shows how to disable email notifications for a specific bundle.
 
-[MultipleSignersInBulkFlow.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/MultipleSignersInBulkFlow.cs) : shows how to send a document for signing to multiple recipients in <a href="https://bulksign.com/Public/Features"> bulk mode. <a/>
+[MultipleSignersInBulkFlow.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/MultipleSignersInBulkFlow.cs) : shows how to send a document for signing to multiple recipients in <a href="https://bulksign.com/Public/Features"> bulk mode. <a/>
 
-[AddNewSignatureToDocument.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/AddNewSignatureToDocument.cs) : shows you how to add a new signature field to a document and assign it to the recipient.
+[AddNewSignatureToDocument.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/AddNewSignatureToDocument.cs) : shows you how to add a new signature field to a document and assign it to the recipient.
 
-[AllowRecipientDelegation.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/AllowRecipientDelegation.cs) : shows you how to enable recipient delegation for a bundle.
+[AllowRecipientDelegation.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/AllowRecipientDelegation.cs) : shows you how to enable recipient delegation for a bundle.
 
-[PreventFinishedDocumentToAllSigners.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/PreventFinishedDocumentToAllSigners.cs) : how to prevent signers from receiving a copy of the finished document.
+[PreventFinishedDocumentToAllSigners.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/PreventFinishedDocumentToAllSigners.cs) : how to prevent signers from receiving a copy of the finished document.
 
-[CustomDocumentAccess.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/CustomDocumentAccess.cs) : shows to assign different documents to different recipients in same bundle.
+[CustomDocumentAccess.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/CustomDocumentAccess.cs) : shows to assign different documents to different recipients in same bundle.
 
-[SetFormFieldValues.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/SetFormFieldValues.cs) : example of setting a pdf form field value when sending the bundle for signing.
+[SetFormFieldValues.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/SetFormFieldValues.cs) : example of setting a pdf form field value when sending the bundle for signing.
 
-[AddTextAnnotationsToDocument.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/AddTextAnnotationsToDocument.cs) : example of adding new text annotations to documents.
+[AddTextAnnotationsToDocument.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/AddTextAnnotationsToDocument.cs) : example of adding new text annotations to documents.
 
-[OpenIdConnectAuthenticationForSigner.cs.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/Bulksign%20Api%20Samples/Scenarios/OpenIdConnectAuthenticationForSigner.cs) : example of using an OpenId Connection authentication for a signer.
+[OpenIdConnectAuthenticationForSigner.cs.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/BulksignAPISamples/Scenarios/OpenIdConnectAuthenticationForSigner.cs) : example of using an OpenId Connection authentication for a signer.
 
 ++ <a href="https://github.com/bulksign/BulksignAPISamples/tree/master/BulksignAPISamples/Scenarios">and more </a>
