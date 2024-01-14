@@ -9,6 +9,21 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Files\bulksign_advanced_tags.odt" />
+      <None Remove="Files\bulksign_test_sample.pdf" />
+      <None Remove="Files\Sample-Contract-Agreement-Template.pdf" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Files\bulksign_advanced_tags.odt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Files\bulksign_test_sample.pdf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Files\Sample-Contract-Agreement-Template.pdf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
