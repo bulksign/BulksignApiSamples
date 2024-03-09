@@ -46,6 +46,7 @@ namespace Bulksign.ApiSamples
 			};
 
 
+			//please note that you need to overwrite ALL settings
 			envelope.OverwriteSignSettings = new SignSettingsApiModel()
 			{
 				ForceSignerToReadDocument = true,
@@ -54,6 +55,8 @@ namespace Bulksign.ApiSamples
 				ShowSignerIntroductionDetailsPage = false,
 				AutoNavigationOnOpen = false,
 				AutomaticFinishAfterSigning = true,
+				SigningConfirmationForProfileAndClickToSign = true,
+				AllowSignerToUploadImageForDrawToSign = false,
 				
 				DocumentDownload = SignerDownloadDocumentActionTypeApi.RedirectToUrl,
 				DocumentDownloadRedirectUrl = "https://mywebsite.com"
