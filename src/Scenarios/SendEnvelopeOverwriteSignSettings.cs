@@ -57,10 +57,10 @@ namespace Bulksign.ApiSamples
 				AutomaticFinishAfterSigning = true,
 				SigningConfirmationForProfileAndClickToSign = true,
 				AllowSignerToUploadImageForDrawToSign = false,
-				
+
 				DocumentDownload = SignerDownloadDocumentActionTypeApi.RedirectToUrl,
 				DocumentDownloadRedirectUrl = "https://mywebsite.com"
-			}
+			};
 
 			try
 			{
