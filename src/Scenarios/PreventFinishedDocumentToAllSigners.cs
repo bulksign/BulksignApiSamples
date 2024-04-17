@@ -23,8 +23,6 @@ namespace Bulksign.ApiSamples
 			envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
 			envelope.DaysUntilExpire                 = 10;
 			envelope.DisableSignerEmailNotifications = false;
-			envelope.EmailMessage                    = "Please sign this document";
-			envelope.EmailSubject                    = "Please Bulksign this document";
 			envelope.Name                            = "Test envelope";
 
 			//setting this to true will prevents the envelope signers to automatically receive a copy of finished document

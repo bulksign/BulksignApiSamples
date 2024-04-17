@@ -22,8 +22,6 @@ namespace Bulksign.ApiSamples
 			envelope.EnvelopeType = EnvelopeTypeApi.Concurrent;
 			envelope.DaysUntilExpire = 10;
 			envelope.DisableSignerEmailNotifications = false;
-			envelope.EmailMessage = "Please sign this document";
-			envelope.EmailSubject = "Please Bulksign this document";
 			envelope.Name = "Test envelope";
 
 			envelope.Recipients = new[]
