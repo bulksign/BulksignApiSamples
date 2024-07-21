@@ -44,7 +44,7 @@ public class DownloadEnvelopeAttachments
 					Console.WriteLine("ERROR : " + envelopeResult.ErrorCode + " " + envelopeResult.ErrorMessage);
 				}
 
-				foreach (RecipientResultApiModel recipient in envelopeResult.Result.Recipients)
+				foreach (EnvelopeRecipientResultApiModel recipient in envelopeResult.Result.Recipients)
 				{
 					if (recipient.Attachments != null)
 					{
