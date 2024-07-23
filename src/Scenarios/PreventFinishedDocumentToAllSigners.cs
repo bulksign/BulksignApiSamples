@@ -22,7 +22,7 @@ namespace Bulksign.ApiSamples
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
 			envelope.DaysUntilExpire                 = 10;
-			envelope.DisableSignerEmailNotifications = false;
+			envelope.DisableRecipientNotifications = false;
 			envelope.Name                            = "Test envelope";
 
 			//setting this to true will prevents the envelope signers to automatically receive a copy of finished document

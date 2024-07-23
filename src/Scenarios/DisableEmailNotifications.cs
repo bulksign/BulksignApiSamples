@@ -24,7 +24,7 @@ namespace Bulksign.ApiSamples
 			envelope.Name            = "Test envelope";
 
 			//this will disable notifications for this envelope
-			envelope.DisableSignerEmailNotifications = true;
+			envelope.DisableRecipientNotifications = true;
 
 			envelope.Recipients = new[]
 			{

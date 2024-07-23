@@ -21,7 +21,7 @@ namespace Bulksign.ApiSamples
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType = EnvelopeTypeApi.Concurrent;
 			envelope.DaysUntilExpire = 10;
-			envelope.DisableSignerEmailNotifications = false;
+			envelope.DisableRecipientNotifications = false;
 			envelope.Name = "Test envelope";
 
 			envelope.Recipients = new[]

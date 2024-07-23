@@ -19,7 +19,7 @@ namespace Bulksign.ApiSamples
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
 			envelope.DaysUntilExpire                 = 10;
-			envelope.DisableSignerEmailNotifications = false;
+			envelope.DisableRecipientNotifications = false;
 
 			//define recipients, each recipient has assigned a different language 
 			envelope.Recipients = new[]
