@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using Bulksign.Api;
 
 namespace Bulksign.ApiSamples
 {
-	public class UnlockConcurrentRecipientSample
+	public class GetUserInterfaceLanguages
 	{
 		public void RunSample()
 		{
@@ -17,19 +17,16 @@ namespace Bulksign.ApiSamples
 
 			BulksignApiClient client = new BulksignApiClient();
 
-			UnlockConcurrentRecipientApiModel model = new UnlockConcurrentRecipientApiModel
-			{
-				EnvelopeId     = "000000000000000000000000",
-				RecipientEmail = "email_of_recipient_which_locked_signing"
-			};
-
 			try
 			{
-				BulksignResult<string> result = client.UnlockConcurrentRecipient(token, model);
+				BulksignResult<string[]> result = client.GetUserInterfaceLanguages(token);
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"{model.EnvelopeId} was unlocked");
+					foreach (string lang in result.Result)
+					{
+						Console.WriteLine($"Found UI language {lang} ");
+					}
 				}
 				else
 				{

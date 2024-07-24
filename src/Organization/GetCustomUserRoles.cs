@@ -1,9 +1,8 @@
-﻿using System;
-using Bulksign.Api;
+﻿using Bulksign.Api;
 
 namespace Bulksign.ApiSamples
 {
-	public class GetSigningImprints
+	public class GetCustomUserRoles
 	{
 		public void RunSample()
 		{
@@ -19,11 +18,11 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<string[]> result = client.GetSignatureImprints(token);
+				BulksignResult<string[]> result = client.GetCustomUserRoles(token);
 
 				if (result.IsSuccessful)
 				{
-					Console.WriteLine($"Found {result.Result.Length} signature imprints");
+					Console.WriteLine($"Found {result.Result.Length} custom user roles");
 				}
 				else
 				{
@@ -32,7 +31,7 @@ namespace Bulksign.ApiSamples
 			}
 			catch (BulksignException bex)
 			{
-				//handle failed request here. See
+				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
