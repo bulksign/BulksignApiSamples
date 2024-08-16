@@ -21,7 +21,6 @@ namespace Bulksign.ApiSamples
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType = EnvelopeTypeApi.Bulk;
-			envelope.DaysUntilExpire = 10;
 			envelope.Name = "Test envelope";
 
 			//in bulk mode all recipients have the same index

@@ -21,7 +21,6 @@ namespace Bulksign.ApiSamples
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType    = EnvelopeTypeApi.Serial;
-			envelope.DaysUntilExpire = 10;
 			envelope.Name = "Test envelope";
 
 			//setting this to true will allow the recipient to delegate signing to another person

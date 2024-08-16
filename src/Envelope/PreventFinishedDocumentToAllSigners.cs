@@ -21,7 +21,6 @@ namespace Bulksign.ApiSamples
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
-			envelope.DaysUntilExpire                 = 10;
 			envelope.DisableRecipientNotifications = false;
 			envelope.Name                            = "Test envelope";
 
