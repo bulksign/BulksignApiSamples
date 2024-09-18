@@ -32,7 +32,7 @@ namespace Bulksign.ApiSamples
 				AuditTrailEntryApiModel[] finishedDates = response.Result.Where(a => a.AuditTrailType == AuditTrailTypeApi.Finished).ToArray();
 
 
-				//you can map the recipient identifier to the response of GetEnvelopeDetails to find teh recipient info (email, name , etc...)
+				//you can map the recipient identifier to the response of GetEnvelopeDetails to find the recipient info (email, name , etc...)
 
 				foreach (AuditTrailEntryApiModel date in finishedDates)
 				{
