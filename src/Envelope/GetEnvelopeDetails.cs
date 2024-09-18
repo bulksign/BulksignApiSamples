@@ -5,8 +5,8 @@ namespace Bulksign.ApiSamples
 {
 	public class GetEnvelopeDetailsSample
 	{
-        //replace this with your own envelope id 
-        const string ENVELOPE_ID = "000000000000000000000000";
+		//replace this with your own envelope id 
+		const string ENVELOPE_ID = "000000000000000000000000";
 
 		public void RunSample()
 		{
@@ -35,7 +35,7 @@ namespace Bulksign.ApiSamples
 			}
 			catch (BulksignException bex)
 			{
-				//handle failed request here. See
+				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 			}
 		}
