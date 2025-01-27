@@ -19,9 +19,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<ItemResultApiModel[]> result = client.GetEnvelopesByStatus(token, EnvelopeStatusTypeApi.InProgress);
+				ApiResult<ItemResultApiModel[]> result = client.GetEnvelopesByStatus(token, EnvelopeStatusTypeApi.InProgress);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine($"{result.Result.Length} envelopes found");
 				}
@@ -30,7 +30,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here. See
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

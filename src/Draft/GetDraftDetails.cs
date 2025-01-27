@@ -18,17 +18,17 @@ public class GetDraftDetails
 
 		try
 		{
-			BulksignResult<string> draftResult = client.CreateDraftFromFile(token,File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),"test.pdf");
+			ApiResult<string> draftResult = client.CreateDraftFromFile(token,File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),"test.pdf");
 
-			if (!draftResult.IsSuccessful)
+			if (!draftResult.IsSuccess)
 			{
 				Console.WriteLine($"Draft could noty be created : {draftResult.ErrorMessage}");
 				return;
 			}
 
-			BulksignResult<DraftDetailsResultApiModel> result = client.GetDraftDetails(token, draftResult.Result);
+			ApiResult<DraftDetailsResultApiModel> result = client.GetDraftDetails(token, draftResult.Result);
 
-			if (result.IsSuccessful)
+			if (result.IsSuccess)
 			{
 				Console.WriteLine($"Draft '{result.Result.Name}', id {result.Result.DraftId}");
 			}
@@ -37,7 +37,7 @@ public class GetDraftDetails
 				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 			}
 		}
-		catch (BulksignException bex)
+		catch (BulksignApiException bex)
 		{
 			//handle failed request here
 			Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

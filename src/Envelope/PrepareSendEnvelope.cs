@@ -37,20 +37,20 @@ namespace Bulksign.ApiSamples
 			};
 
 
-			BulksignResult<EnvelopeApiModel> result = null;
+			ApiResult<EnvelopeApiModel> result = null;
 
 			try
 			{
 				result = client.PrepareSendEnvelope(token, prepare);
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
 				return;
 			}
 
-			if (result.IsSuccessful == false)
+			if (result.IsSuccess == false)
 			{
 				Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
 				return;
@@ -74,9 +74,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<SendEnvelopeResultApiModel> envelope = client.SendEnvelope(token, model);
+				ApiResult<SendEnvelopeResultApiModel> envelope = client.SendEnvelope(token, model);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine($"Envelope with id {envelope.Result.EnvelopeId} was created");
 				}
@@ -85,7 +85,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

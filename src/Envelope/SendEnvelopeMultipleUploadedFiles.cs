@@ -22,27 +22,27 @@ namespace Bulksign.ApiSamples
 
 			//upload individually the PDF documents that will be part of the envelope
 
-			BulksignResult<string> temporaryFile = client.StoreTemporaryFile(token,new FileInput()
+			ApiResult<string> temporaryFile = client.StoreTemporaryFile(token,new FileInput()
 			{
 				FileContent = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),
 				Filename    = "bulksign_test_Sample.pdf"
 			});
 
 
-			if (temporaryFile.IsSuccessful == false)
+			if (temporaryFile.IsSuccess == false)
 			{
 				Console.WriteLine("Storing temporary file failed : " + temporaryFile.ErrorMessage);
 				return;
 			}
 
 
-			BulksignResult<string> temporarySecondFile = client.StoreTemporaryFile(token, new FileInput()
+			ApiResult<string> temporarySecondFile = client.StoreTemporaryFile(token, new FileInput()
 			{
 				FileContent = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\Sample-Contract-Agreement-Template.pdf"),
 				Filename    = "Sample-Contract-Agreement-Template.pdf"
 			});
 
-			if (temporarySecondFile.IsSuccessful == false)
+			if (temporarySecondFile.IsSuccess == false)
 			{
 				Console.WriteLine("Storing temporary file failed : " + temporarySecondFile.ErrorMessage);
 				return;
@@ -87,9 +87,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
+				ApiResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine("Access code for recipient " + result.Result.RecipientAccess[0].RecipientEmail + " is " + result.Result.RecipientAccess[0].AccessCode);
 					Console.WriteLine("Envelope id is : " + result.Result.EnvelopeId);
@@ -99,7 +99,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

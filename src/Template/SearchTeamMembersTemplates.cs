@@ -20,9 +20,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<ItemResultApiModel[]> result = client.SearchTeamMembersTemplates(token, "test");
+				ApiResult<ItemResultApiModel[]> result = client.SearchTeamMembersTemplates(token, "test");
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine($"Found {result.Result.Length} team member templates");
 				}
@@ -31,7 +31,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

@@ -33,9 +33,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<string> result = client.AddOrganizationAutomaticSigningProfile(token, newProfile);
+				ApiResult<string> result = client.AddOrganizationAutomaticSigningProfile(token, newProfile);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine($"Signing profile was successfully created ");
 				}
@@ -44,7 +44,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

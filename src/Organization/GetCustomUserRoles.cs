@@ -18,9 +18,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<string[]> result = client.GetCustomUserRoles(token);
+				ApiResult<string[]> result = client.GetCustomUserRoles(token);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine($"Found {result.Result.Length} custom user roles");
 				}
@@ -29,7 +29,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

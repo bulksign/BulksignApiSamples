@@ -19,7 +19,7 @@ namespace Bulksign.ApiSamples
 
 			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<string[]> stamps = client.GetSignatureStamps(token);
+			ApiResult<string[]> stamps = client.GetSignatureStamps(token);
 
 			//for this sample we require to define at least 1 signature stamp
 
@@ -30,7 +30,7 @@ namespace Bulksign.ApiSamples
 			}
 
 			//load the imprints too
-			BulksignResult<string[]> imprints = client.GetSignatureImprints(token);
+			ApiResult<string[]> imprints = client.GetSignatureImprints(token);
 
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
@@ -107,9 +107,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
+				ApiResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine("Access code for recipient " + result.Result.RecipientAccess[0].RecipientEmail + " is " + result.Result.RecipientAccess[0].AccessCode);
 					Console.WriteLine("EnvelopeId is : " + result.Result.EnvelopeId);
@@ -119,7 +119,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here. See
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

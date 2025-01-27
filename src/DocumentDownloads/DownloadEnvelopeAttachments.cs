@@ -21,9 +21,9 @@ public class DownloadEnvelopeAttachments
 
 		try
 		{
-			BulksignResult<byte[]> result = client.DownloadEnvelopeCompletedAttachments(token, ENVELOPE_ID);
+			ApiResult<byte[]> result = client.DownloadEnvelopeCompletedAttachments(token, ENVELOPE_ID);
 
-			if (result.IsSuccessful)
+			if (result.IsSuccess)
 			{
 				//the result here will by a byte[] of a zip file which contains ALL PDF attachments from all the envelope documents
 				Console.WriteLine($"File size :  {result.Result.Length}");
@@ -37,9 +37,9 @@ public class DownloadEnvelopeAttachments
 
 
 				//call GetEnvelopeDetails to obtain the envelope information
-				BulksignResult<EnvelopeDetailsResultApiModel> envelopeResult = client.GetEnvelopeDetails(token,ENVELOPE_ID);
+				ApiResult<EnvelopeDetailsResultApiModel> envelopeResult = client.GetEnvelopeDetails(token,ENVELOPE_ID);
 
-				if (!envelopeResult.IsSuccessful)
+				if (!envelopeResult.IsSuccess)
 				{
 					Console.WriteLine("ERROR : " + envelopeResult.ErrorCode + " " + envelopeResult.ErrorMessage);
 				}
@@ -62,7 +62,7 @@ public class DownloadEnvelopeAttachments
 				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 			}
 		}
-		catch (BulksignException bex)
+		catch (BulksignApiException bex)
 		{
 			//handle failed request here. See
 			Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

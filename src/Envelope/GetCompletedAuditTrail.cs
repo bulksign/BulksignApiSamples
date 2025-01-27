@@ -18,9 +18,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<AuditTrailEntryApiModel[]> response = client.GetCompletedAuditTrail(token, "your_completed_envelope_id");
+				ApiResult<AuditTrailEntryApiModel[]> response = client.GetCompletedAuditTrail(token, "your_completed_envelope_id");
 
-				if (response.IsSuccessful == false)
+				if (response.IsSuccess == false)
 				{
 					Console.WriteLine("ERROR : " + response.ErrorCode + " " + response.ErrorMessage);
 					return;
@@ -39,7 +39,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine($"Signer with identifier '{date.RecipientIdentifier}' finished signing at '{date.EntryDateUTC.ToString()}'");
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

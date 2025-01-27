@@ -22,9 +22,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<EnvelopeDetailsResultApiModel> result = client.GetEnvelopeDetails(token, ENVELOPE_ID);
+				ApiResult<EnvelopeDetailsResultApiModel> result = client.GetEnvelopeDetails(token, ENVELOPE_ID);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine($"Envelope '{ENVELOPE_ID}' has name : '{result.Result.Name}' ");
 				}
@@ -33,7 +33,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

@@ -27,9 +27,9 @@ public class DeleteDraft
 				EnableBatchSign = true
 			};
 
-			BulksignResult<string> result = client.CreateDraft(token,newDraft);
+			ApiResult<string> result = client.CreateDraft(token,newDraft);
 
-			if (result.IsSuccessful)
+			if (result.IsSuccess)
 			{
 				Console.WriteLine($"Draft with id '{result.Result}' was created");
 			}
@@ -38,7 +38,7 @@ public class DeleteDraft
 				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 			}
 		}
-		catch (BulksignException bex)
+		catch (BulksignApiException bex)
 		{
 			//handle failed request here
 			Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

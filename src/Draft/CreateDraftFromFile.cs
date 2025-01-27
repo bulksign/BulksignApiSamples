@@ -18,9 +18,9 @@ public class CreateDraftFromFile
 
 		try
 		{
-			BulksignResult<string> result = client.CreateDraftFromFile(token,File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),"test.pdf");
+			ApiResult<string> result = client.CreateDraftFromFile(token,File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),"test.pdf");
 
-			if (!result.IsSuccessful)
+			if (!result.IsSuccess)
 			{
 				Console.WriteLine($"Draft could noty be created : {result.ErrorMessage}");
 				return;
@@ -30,7 +30,7 @@ public class CreateDraftFromFile
 				Console.WriteLine($"Draft with id '{result.Result}' was created");
 			}
 		}
-		catch (BulksignException bex)
+		catch (BulksignApiException bex)
 		{
 			//handle failed request here
 			Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

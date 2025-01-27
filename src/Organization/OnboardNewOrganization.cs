@@ -20,7 +20,7 @@ namespace Bulksign.ApiSamples
 
 			BulksignApiClient client = new BulksignApiClient();
 
-			BulksignResult<string> result = client.CreateOrganization(token, new CreateOrganizationApiModel()
+			ApiResult<string> result = client.CreateOrganization(token, new CreateOrganizationApiModel()
 			{
 				OrganizationName = "MyOrganization",
 				AdministratorEmail = "admin@email.com",
@@ -29,7 +29,7 @@ namespace Bulksign.ApiSamples
 				AdministratorPassword = "AdminPassword"
 			});
 
-			if (result.IsSuccessful == false)
+			if (result.IsSuccess == false)
 			{
 				Console.WriteLine($"Request failed, requestId {result.RequestId}, error {result.ErrorMessage} , code {result.ErrorCode}");
 			}

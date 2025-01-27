@@ -32,9 +32,9 @@ public class ResetSignatureType
 				}
 			};
 
-			BulksignResult<int> result = client.ResetSignatureType(token, model);
+			ApiResult<int> result = client.ResetSignatureType(token, model);
 
-			if (result.IsSuccessful)
+			if (result.IsSuccess)
 			{
 				Console.WriteLine($"{result.Result} signature fields were changed");
 			}
@@ -43,7 +43,7 @@ public class ResetSignatureType
 				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 			}
 		}
-		catch (BulksignException bex)
+		catch (BulksignApiException bex)
 		{
 			//handle failed request here
 			Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

@@ -51,9 +51,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<string> result = client.AddDocumentsRecipientsToDraft(token, model);
+				ApiResult<string> result = client.AddDocumentsRecipientsToDraft(token, model);
 				
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine($"Data was successfully added to draft");
 				}
@@ -62,7 +62,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

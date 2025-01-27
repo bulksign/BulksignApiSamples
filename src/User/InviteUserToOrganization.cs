@@ -39,9 +39,9 @@ public class InviteUserToOrganization
             // };
             
             
-            BulksignResult<string> result = client.InviteUserToOrganization(token, invite);
+            ApiResult<string> result = client.InviteUserToOrganization(token, invite);
 
-            if (result.IsSuccessful == false)
+            if (result.IsSuccess == false)
             {
                 Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
             }
@@ -50,7 +50,7 @@ public class InviteUserToOrganization
                 Console.WriteLine($"User was successfully added");
             }
         }
-        catch (BulksignException bex)
+        catch (BulksignApiException bex)
         {
             //handle failed request here
             Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

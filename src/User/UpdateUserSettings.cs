@@ -29,9 +29,9 @@ namespace Bulksign.ApiSamples
 			try
 			{
 				//this will update all NON-NULL values that we send
-				BulksignResult<string> result = client.UpdateUserSettings(token, model);
+				ApiResult<string> result = client.UpdateUserSettings(token, model);
 
-				if (result.IsSuccessful == false)
+				if (result.IsSuccess == false)
 				{
 					Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
 				}
@@ -40,7 +40,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

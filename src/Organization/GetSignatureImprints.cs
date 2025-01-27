@@ -19,9 +19,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<string[]> result = client.GetSignatureImprints(token);
+				ApiResult<string[]> result = client.GetSignatureImprints(token);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine($"Found {result.Result.Length} signature imprints");
 				}
@@ -30,7 +30,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

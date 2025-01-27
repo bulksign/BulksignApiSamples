@@ -27,9 +27,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<string> result = client.AddSharedContact(token, contact);
+				ApiResult<string> result = client.AddSharedContact(token, contact);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine("Contact was successfully added");
 				}
@@ -38,7 +38,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here. See
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

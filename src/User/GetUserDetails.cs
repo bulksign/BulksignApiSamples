@@ -20,9 +20,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<UserDetailsApiModel> result = client.GetUserDetails(token);
+				ApiResult<UserDetailsApiModel> result = client.GetUserDetails(token);
 
-				if (result.IsSuccessful == false)
+				if (result.IsSuccess == false)
 				{
 					Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
 				}
@@ -31,7 +31,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine($"User name is : {result.Result.FirstName} {result.Result.LastName}");
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here. See
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

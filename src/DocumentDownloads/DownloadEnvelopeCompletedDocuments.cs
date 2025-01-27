@@ -19,9 +19,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<byte[]> result = client.DownloadEnvelopeCompletedDocuments(token, "your_envelope_id");
+				ApiResult<byte[]> result = client.DownloadEnvelopeCompletedDocuments(token, "your_envelope_id");
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					//the result here will by a byte[] of a zip file which contains all signed documents + audit trail file
 					Console.WriteLine($"File size :  {result.Result.Length}");
@@ -31,7 +31,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here. See
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

@@ -107,9 +107,9 @@ namespace Bulksign.ApiSamples
 				};
 
 
-				BulksignResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
+				ApiResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine("Access code for recipient " + result.Result.RecipientAccess[0].RecipientEmail + " is " + result.Result.RecipientAccess[0].AccessCode);
 					Console.WriteLine("Envelope id is : " + result.Result.EnvelopeId);
@@ -119,7 +119,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				Console.WriteLine(bex.Message + Environment.NewLine + bex.Response);
 			}

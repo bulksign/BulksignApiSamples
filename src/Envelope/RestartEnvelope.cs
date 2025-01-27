@@ -22,9 +22,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<string> result = client.RestartEnvelope(token, EXPIRED_ENVELOPE_ID);
+				ApiResult<string> result = client.RestartEnvelope(token, EXPIRED_ENVELOPE_ID);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine("Envelope was successfully restarted");
 				}
@@ -33,7 +33,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here. See
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

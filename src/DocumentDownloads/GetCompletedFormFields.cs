@@ -23,9 +23,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<RecipientFormFillApiModel[]> formFields = client.GetCompletedFormFields(token, envelopeId);
+				ApiResult<RecipientFormFillApiModel[]> formFields = client.GetCompletedFormFields(token, envelopeId);
 
-				if (!formFields.IsSuccessful)
+				if (! formFields.IsSuccess)
 				{
 					Console.WriteLine($"The request failed, error code :  {formFields.ErrorCode}, message : {formFields.ErrorMessage}");
 					return;
@@ -60,7 +60,7 @@ namespace Bulksign.ApiSamples
 					}
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

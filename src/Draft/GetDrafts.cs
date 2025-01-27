@@ -19,9 +19,9 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				BulksignResult<DraftItemResultApiModel[]> result = client.GetDrafts(token);
+				ApiResult<DraftItemResultApiModel[]> result = client.GetDrafts(token);
 
-				if (result.IsSuccessful == false)
+				if (result.IsSuccess == false)
 				{
 					Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
 				}
@@ -30,7 +30,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine(result.Result.Length + " drafts found");
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here. See
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");

@@ -5,8 +5,8 @@ namespace Bulksign.ApiSamples
 {
 	public class CancelEnvelopes
 	{
-        //replace this with your own "InProgress" envelope which will be canceled 
-        const string ENVELOPE_ID = "000000000000000000000000";
+		//replace this with your own "InProgress" envelope which will be canceled 
+		const string ENVELOPE_ID = "000000000000000000000000";
 
 		public void RunSample()
 		{
@@ -23,9 +23,9 @@ namespace Bulksign.ApiSamples
 			try
 			{
 				//this works only for "InProgress" envelopes
-				BulksignResult<string> result = client.CancelEnvelope(token, ENVELOPE_ID);
+				ApiResult<string> result = client.CancelEnvelope(token, ENVELOPE_ID);
 
-				if (result.IsSuccessful)
+				if (result.IsSuccess)
 				{
 					Console.WriteLine($"Envelope was canceled");
 				}
@@ -34,7 +34,7 @@ namespace Bulksign.ApiSamples
 					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
 				}
 			}
-			catch (BulksignException bex)
+			catch (BulksignApiException bex)
 			{
 				//handle failed request here
 				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
