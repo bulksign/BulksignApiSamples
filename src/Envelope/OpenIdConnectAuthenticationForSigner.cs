@@ -43,7 +43,7 @@ namespace Bulksign.ApiSamples
 						new RecipientAuthenticationApiModel()
 						{
 							AuthenticationType = RecipientAuthenticationTypeApi.AuthenticationProvider,
-							Details = providers.Result.FirstOrDefault().Identifier
+							Details = providers.Result.FirstOrDefault()?.Identifier
 						}
 					}
 				}
