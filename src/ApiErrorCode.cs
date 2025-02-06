@@ -1,5 +1,5 @@
 
-namespace Bulksign.DomainLogic.Api
+namespace SampleCodes
 {
 	public static class ApiErrorCode
 	{
