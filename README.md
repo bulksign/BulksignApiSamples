@@ -54,10 +54,10 @@ Please see this repository  https://github.com/bulksign/GRPC-API-Samples
 
 [CustomDocumentAccess.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/CustomDocumentAccess.cs) : shows to assign different documents to different recipients in same envelope.
 
-[SetFormFieldValues.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/SetFormFieldValues.cs) : example of setting a pdf form field value when sending the envelope for signing.
+[OverwriteFormFieldValues.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/OverwriteFormFieldValues.cs.cs) : example of setting a pdf form field value when sending the envelope for signing.
 
 [AddTextAnnotationsToDocument.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/AddTextAnnotationsToDocument.cs) : example of adding new text annotations to documents.
 
-[OpenIdConnectAuthenticationForSigner.cs.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/OpenIdConnectAuthenticationForSigner.cs) : example of using an OpenId Connection authentication for a signer.
+[OpenIdConnectAuthenticationForSigner.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/OpenIdConnectAuthenticationForSigner.cs) : example of using an OpenId Connection authentication for a signer.
 
 ++ <a href="https://github.com/bulksign/BulksignAPISamples/tree/master/src/">and more samples</a>
