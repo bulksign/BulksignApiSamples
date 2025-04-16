@@ -37,7 +37,7 @@ namespace Bulksign.ApiSamples
 			};
 
 
-			ApiResult<EnvelopeApiModel> result = null;
+			ApiResult<EnvelopeApiModel> result;
 
 			try
 			{

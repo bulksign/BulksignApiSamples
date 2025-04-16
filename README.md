@@ -1,7 +1,8 @@
 # Bulksign API Samples
 Bulksign API sample code in C# 
 
-This repository contains sample C# code for interacting with Bulksign API. This is using the [Bulksign dotNet SDK](https://www.nuget.org/packages/BulksignSdk) and contains projects for .NET 8. The SDK targets NET Standard 2.0 and can also be used with .NET Framework  (feel free to copy the samples into your .NET Framework project) 
+This repository contains sample C# code for interacting with Bulksign API. It's using the [Bulksign dotNet SDK](https://www.nuget.org/packages/BulksignSdk).
+The SDK targets NET Standard 2.0 and the sample code can be used from both .NET and .NET Framework (feel free to copy the samples into your .NET Framework project).
 <br/>
 <br/>
 
@@ -22,11 +23,14 @@ To target a specific Bulksign instance, specify the root path to Bulksign WebAPI
 BulksignApiClient api = new BulksignApiClient("https://__your_instance__/webapi/");
 ```
 
+<br/>
+<br/>
 
 ### Looking for GRPC API sample code ?
 
 Please see this repository  https://github.com/bulksign/GRPC-API-Samples
-
+<br/>
+<br/>
 
 ### API Documentation
 
@@ -35,6 +39,8 @@ Please see this repository  https://github.com/bulksign/GRPC-API-Samples
 
 - Swagger definition and documentation about all  API properties and their meaning is available <a href="https://bulksign.com/webapi/swagger" target="_blank">here</a>
 
+<br/>
+<br/>
 
 ### Samples and scenarios included
 
@@ -54,10 +60,10 @@ Please see this repository  https://github.com/bulksign/GRPC-API-Samples
 
 [CustomDocumentAccess.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/CustomDocumentAccess.cs) : shows to assign different documents to different recipients in same envelope.
 
-[SetFormFieldValues.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/SetFormFieldValues.cs) : example of setting a pdf form field value when sending the envelope for signing.
+[OverwriteFormFieldValues.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/OverwriteFormFieldValues.cs.cs) : example of setting a pdf form field value when sending the envelope for signing.
 
 [AddTextAnnotationsToDocument.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/AddTextAnnotationsToDocument.cs) : example of adding new text annotations to documents.
 
-[OpenIdConnectAuthenticationForSigner.cs.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/OpenIdConnectAuthenticationForSigner.cs) : example of using an OpenId Connection authentication for a signer.
+[OpenIdConnectAuthenticationForSigner.cs](https://github.com/bulksign/BulksignAPISamples/blob/master/src/Envelope/OpenIdConnectAuthenticationForSigner.cs) : example of using an OpenId Connection authentication for a signer.
 
 ++ <a href="https://github.com/bulksign/BulksignAPISamples/tree/master/src/">and more samples</a>
