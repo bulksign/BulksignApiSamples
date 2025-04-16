@@ -64,7 +64,7 @@ namespace Bulksign.ApiSamples
 					Email = "your_email_address_here",
 					Index = 1,
 					Name = "Test",
-					RecipientType = RecipientTypeApi.Signer
+					RecipientType = RecipientTypeApi.Signer,
 				}
 			};
 
