@@ -47,10 +47,12 @@ public class CreateDraftWithSignGroup
 				EnableBatchSign               = true
 			};
 
+			
+			//now create the draft recipients based on the SignGroup
 			newDraft.Recipients = new RecipientApiModel[signGroup.Members.Length];
 
-			//create the SignGroup
-
+			//"copy" the recipients from SignGroup to the draft
+			
 			for (int i = 0; i < newDraft.Recipients.Length; i++)
 			{
 				newDraft.Recipients[i] = new RecipientApiModel()
@@ -59,9 +61,12 @@ public class CreateDraftWithSignGroup
 					Name  = signGroup.Members[i].Name,
 					RecipientType = RecipientTypeApi.Signer,
 					SignNotificationChannel = SignNotificationChannelTypeApi.Email,
-					SignGroup = signGroup.Name
+					SignGroup = signGroup.Name,
+					PhoneNumber = signGroup.Members[i].PhoneNumber
 				};
 			}
+			
+			
 			
 			ApiResult<string> result = client.CreateDraft(token, newDraft);
 
