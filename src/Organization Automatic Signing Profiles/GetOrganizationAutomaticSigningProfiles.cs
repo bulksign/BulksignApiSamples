@@ -3,7 +3,7 @@ using Bulksign.Api;
 
 namespace Bulksign.ApiSamples
 {
-	public class OrganizationAutomaticSigningProfile
+	public class GetOrganizationAutomaticSigningProfiles
 	{
 
 		public void RunSample()
