@@ -3,7 +3,7 @@ using Bulksign.Api;
 
 namespace Bulksign.ApiSamples
 {
-	public class AuthenticationProviders
+	public class GetAuthenticationProviders
 	{
 		public void RunSample()
 		{

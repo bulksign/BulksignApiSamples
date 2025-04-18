@@ -3,7 +3,7 @@ using Bulksign.Api;
 
 namespace Bulksign.ApiSamples
 {
-	public class OnboardNewOrganization
+	public class CreateOrganization
 	{
 		//NOTE : The CreateOrganization API is ONLY available for the OnPremise version of Bulksign.
 		//It will NOT work on SAAS version at https://bulksign.com
