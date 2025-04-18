@@ -5,6 +5,9 @@ This repository contains sample C# code for interacting with Bulksign API. It's 
 The SDK targets NET Standard 2.0 and the sample code can be used from both .NET and .NET Framework (feel free to copy the samples into your .NET Framework project).
 <br/>
 <br/>
+The sample code names match their API specs. So , for example, if you wnt to see the sample code for the "GetSignatureImprints" API, just open the project in your IDE and search for "GetSignatureImprints" to see the code.
+<br/>
+<br/>
 
 ### Running the code
 
