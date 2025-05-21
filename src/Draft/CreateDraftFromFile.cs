@@ -23,7 +23,6 @@ public class CreateDraftFromFile
 			if (!result.IsSuccess)
 			{
 				Console.WriteLine($"Draft could noty be created : {result.ErrorMessage}");
-				return;
 			}
 			else
 			{

@@ -25,8 +25,8 @@ namespace Bulksign.ApiSamples
 			AddDocumentsOrRecipientsToDraftApiModel model = new AddDocumentsOrRecipientsToDraftApiModel()
 			{
 				DraftId = existingDraftId,
-				Recipients = new[]
-				{
+				Recipients =
+				[
 					new RecipientApiModel()
 					{
 						Email = "test.recipient@test.com",
@@ -34,9 +34,9 @@ namespace Bulksign.ApiSamples
 						Index = 3,
 						RecipientType = RecipientTypeApi.Signer
 					}
-				},
-				Documents = new[]
-				{
+				],
+				Documents =
+				[
 					new DocumentApiModel()
 					{
 						Index = 1,
@@ -46,7 +46,7 @@ namespace Bulksign.ApiSamples
 							ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
 						}
 					}
-				}
+				]
 			};
 
 			try
