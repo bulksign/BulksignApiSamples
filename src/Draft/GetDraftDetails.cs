@@ -16,15 +16,26 @@ public class GetDraftDetails
 
 		BulksignApiClient client = new BulksignApiClient();
 
+		ApiResult<string> draftResult = null;
+			
 		try
 		{
-			ApiResult<string> draftResult = client.CreateDraftFromFile(token,File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),"test.pdf");
+			draftResult = client.CreateDraftFromFile(token,File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),"test.pdf");
 
-			if (!draftResult.IsSuccess)
+			if (draftResult.IsSuccess == false)
 			{
-				Console.WriteLine($"Draft could noty be created : {draftResult.ErrorMessage}");
+				FailedRequestHandler.HandleFailedRequest(draftResult, nameof(client.CreateDraftFromFile));
 				return;
 			}
+		}
+		catch (Exception ex)
+		{
+			FailedRequestHandler.HandleException(ex, nameof(client.GetDraftDetails));
+			return;
+		}
+		
+		try
+		{
 
 			ApiResult<DraftDetailsResultApiModel> result = client.GetDraftDetails(token, draftResult.Result);
 
@@ -34,13 +45,12 @@ public class GetDraftDetails
 			}
 			else
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				FailedRequestHandler.HandleFailedRequest(result, nameof(client.GetDraftDetails));
 			}
 		}
-		catch (BulksignApiException bex)
+		catch (Exception ex)
 		{
-			//handle failed request here
-			Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			FailedRequestHandler.HandleException(ex, nameof(client.GetDraftDetails));
 		}
 	}
 }

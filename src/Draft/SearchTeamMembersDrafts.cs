@@ -11,7 +11,7 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
+				Console.WriteLine("Please edit Authentication.cs and fset your own API key there");
 				return;
 			}
 

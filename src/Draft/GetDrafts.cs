@@ -27,13 +27,12 @@ namespace Bulksign.ApiSamples
 				}
 				else
 				{
-					Console.WriteLine(result.Result.Length + " drafts found");
+					FailedRequestHandler.HandleFailedRequest(result, nameof(client.GetDrafts));
 				}
 			}
-			catch (BulksignApiException bex)
+			catch (Exception ex)
 			{
-				//handle failed request here. See
-				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+				FailedRequestHandler.HandleException(ex, nameof(client.GetDrafts));
 			}
 		}
 	}

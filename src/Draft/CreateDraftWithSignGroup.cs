@@ -28,7 +28,8 @@ public class CreateDraftWithSignGroup
 			}
 			else
 			{
-				Console.WriteLine("ERROR : " + resultGroups.ErrorCode + " " + resultGroups.ErrorMessage);
+				FailedRequestHandler.HandleFailedRequest(resultGroups, nameof(client.GetOrganizationSignGroups));
+				return;
 			}
 
 			if (resultGroups.Result.Any() == false)
@@ -76,14 +77,12 @@ public class CreateDraftWithSignGroup
 			}
 			else
 			{
-				Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+				FailedRequestHandler.HandleFailedRequest(result, nameof(client.CreateDraft));
 			}
 		}
-		catch (BulksignApiException bex)
+		catch (Exception ex)
 		{
-			//handle failed request here
-			Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+			FailedRequestHandler.HandleException(ex, nameof(client.CreateDraft));
 		}
 	}
-
 }
