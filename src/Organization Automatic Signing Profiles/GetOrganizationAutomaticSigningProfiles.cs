@@ -5,7 +5,6 @@ namespace Bulksign.ApiSamples
 {
 	public class GetOrganizationAutomaticSigningProfiles
 	{
-
 		public void RunSample()
 		{
 			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
@@ -28,13 +27,12 @@ namespace Bulksign.ApiSamples
 				}
 				else
 				{
-					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+					FailedRequestHandler.HandleFailedRequest(result, nameof(client.GetOrganizationAutomaticSigningProfiles));
 				}
 			}
-			catch (BulksignApiException bex)
+			catch (Exception ex)
 			{
-				//handle failed request here
-				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+				FailedRequestHandler.HandleException(ex, nameof(client.GetOrganizationAutomaticSigningProfiles));
 			}
 		}
 	}

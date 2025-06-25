@@ -18,31 +18,31 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				ApiResult<AuditTrailEntryApiModel[]> response = client.GetCompletedAuditTrail(token, "your_completed_envelope_id");
+				ApiResult<AuditTrailEntryApiModel[]> result = client.GetCompletedAuditTrail(token, "your_completed_envelope_id");
 
-				if (response.IsSuccess == false)
+				if (result.IsSuccess)
 				{
-					Console.WriteLine("ERROR : " + response.ErrorCode + " " + response.ErrorMessage);
-					return;
+					//Let's say we are interested in finding all dates when signing was finished, so filter by specific AuditTrailType to find those entries
+
+					AuditTrailEntryApiModel[] finishedDates = result.Result
+						.Where(a => a.AuditTrailType == AuditTrailTypeApi.Finished).ToArray();
+
+					//you can map the recipient identifier to the response of GetEnvelopeDetails to find the recipient info (email, name , etc...)
+
+					foreach (AuditTrailEntryApiModel date in finishedDates)
+					{
+						Console.WriteLine(
+							$"Signer with identifier '{date.RecipientIdentifier}' finished signing at '{date.EntryDateUTC.ToString()}'");
+					}
 				}
-
-
-				//Let's say we are interested in finding all dates when signing was finished, so filter by specific AuditTrailType to find those entries
-
-				AuditTrailEntryApiModel[] finishedDates = response.Result.Where(a => a.AuditTrailType == AuditTrailTypeApi.Finished).ToArray();
-
-
-				//you can map the recipient identifier to the response of GetEnvelopeDetails to find the recipient info (email, name , etc...)
-
-				foreach (AuditTrailEntryApiModel date in finishedDates)
+				else
 				{
-					Console.WriteLine($"Signer with identifier '{date.RecipientIdentifier}' finished signing at '{date.EntryDateUTC.ToString()}'");
+					FailedRequestHandler.HandleFailedRequest(result, nameof(client.GetCompletedAuditTrail));
 				}
 			}
-			catch (BulksignApiException bex)
+			catch (Exception ex)
 			{
-				//handle failed request here
-				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+				FailedRequestHandler.HandleException(ex, nameof(client.GetCompletedAuditTrail));
 			}
 		}
 	}

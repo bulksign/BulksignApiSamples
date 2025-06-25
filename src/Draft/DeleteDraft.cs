@@ -2,7 +2,7 @@
 
 namespace Bulksign.ApiSamples;
 
-public class CreateDraft
+public class DeleteDraft
 {
 	public void RunSample()
 	{

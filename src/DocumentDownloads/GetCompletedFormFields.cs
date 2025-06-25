@@ -23,47 +23,48 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				ApiResult<RecipientFormFillApiModel[]> formFields = client.GetCompletedFormFields(token, envelopeId);
+				ApiResult<RecipientFormFillApiModel[]> result = client.GetCompletedFormFields(token, envelopeId);
 
-				if (! formFields.IsSuccess)
+				if (result.IsSuccess)
 				{
-					Console.WriteLine($"The request failed, error code :  {formFields.ErrorCode}, message : {formFields.ErrorMessage}");
-					return;
-				}
 
-				foreach (RecipientFormFillApiModel model in formFields.Result)
-				{
-					Console.WriteLine($"Processing form fields for recipient {model.RecipientEmail}");
-
-					foreach (FormFillResultApiModel fieldModel in model.FormFillResult)
+					foreach (RecipientFormFillApiModel model in result.Result)
 					{
-						switch (fieldModel.FieldType)
+						Console.WriteLine($"Processing form fields for recipient {model.RecipientEmail}");
+
+						foreach (FormFillResultApiModel fieldModel in model.FormFillResult)
 						{
-							case FormFieldTypeApi.TextBox:
-								break;
-							case FormFieldTypeApi.RadioButton:
-								break;
-							case FormFieldTypeApi.CheckBox:
-								break;
-							case FormFieldTypeApi.ComboBox:
-								break;
-							case FormFieldTypeApi.ListBox:
-								break;
-							case FormFieldTypeApi.Signature:
-								break;
-							case FormFieldTypeApi.Attachment:
-								break;
-							default:
-								Console.WriteLine("Invalid form field type");
-								break;
+							switch (fieldModel.FieldType)
+							{
+								case FormFieldTypeApi.TextBox:
+									break;
+								case FormFieldTypeApi.RadioButton:
+									break;
+								case FormFieldTypeApi.CheckBox:
+									break;
+								case FormFieldTypeApi.ComboBox:
+									break;
+								case FormFieldTypeApi.ListBox:
+									break;
+								case FormFieldTypeApi.Signature:
+									break;
+								case FormFieldTypeApi.Attachment:
+									break;
+								default:
+									Console.WriteLine("Invalid form field type");
+									break;
+							}
 						}
 					}
 				}
+				else
+				{
+					FailedRequestHandler.HandleFailedRequest(result, nameof(client.GetCompletedFormFields));
+				}
 			}
-			catch (BulksignApiException bex)
+			catch (Exception ex)
 			{
-				//handle failed request here
-				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+				FailedRequestHandler.HandleException(ex, nameof(client.GetCompletedFormFields));
 			}
 		}
 	}

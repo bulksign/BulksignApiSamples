@@ -41,20 +41,18 @@ public class InviteUserToOrganization
             
             ApiResult<string> result = client.InviteUserToOrganization(token, invite);
 
-            if (result.IsSuccess == false)
-            {
-                Console.WriteLine($"Request failed : RequestId {result.RequestId}, ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
-            }
-            else
+            if (result.IsSuccess)
             {
                 Console.WriteLine($"User was successfully added");
             }
+            else
+            {
+                FailedRequestHandler.HandleFailedRequest(result, nameof(client.InviteUserToOrganization));
+            }
         }
-        catch (BulksignApiException bex)
+        catch (Exception ex)
         {
-            //handle failed request here
-            Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+            FailedRequestHandler.HandleException(ex, nameof(client.InviteUserToOrganization));
         }
     }
-        
 }

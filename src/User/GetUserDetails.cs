@@ -28,13 +28,12 @@ namespace Bulksign.ApiSamples
 				}
 				else
 				{
-					Console.WriteLine($"User name is : {result.Result.FirstName} {result.Result.LastName}");
+					FailedRequestHandler.HandleFailedRequest(result, nameof(client.GetUserDetails));
 				}
 			}
-			catch (BulksignApiException bex)
+			catch (Exception ex)
 			{
-				//handle failed request here. See
-				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+				FailedRequestHandler.HandleException(ex, nameof(client.GetUserDetails));
 			}
 		}
 	}

@@ -25,14 +25,14 @@ namespace Bulksign.ApiSamples
 				Email = "new_email_address",
 
 				//here is how to set up password authentication for the new recipient
-				RecipientAuthenticationMethods = new[]
-				{
+				RecipientAuthenticationMethods =
+				[
 					new RecipientAuthenticationApiModel
 					{
 						AuthenticationType = RecipientAuthenticationTypeApi.Password,
 						Details = "_insert_recipient_password"
 					}
-				},
+				],
 
 				//specifying the recipient to be replace can be done in multiple ways 
 				//here is an example by specifying the email of the existing recipient
@@ -53,13 +53,12 @@ namespace Bulksign.ApiSamples
 				}
 				else
 				{
-					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+					FailedRequestHandler.HandleFailedRequest(result, nameof(client.ReplaceEnvelopeRecipient));
 				}
 			}
-			catch (BulksignApiException bex)
+			catch (Exception ex)
 			{
-				//handle failed request here
-				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+				FailedRequestHandler.HandleException(ex, nameof(client.ReplaceEnvelopeRecipient));
 			}
 		}
 	}

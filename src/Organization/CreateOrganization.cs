@@ -20,20 +20,30 @@ namespace Bulksign.ApiSamples
 
 			BulksignApiClient client = new BulksignApiClient();
 
-			ApiResult<string> result = client.CreateOrganization(token, new CreateOrganizationApiModel()
+			ApiResult<string> result = null;
+			
+			try
 			{
-				OrganizationName = "MyOrganization",
-				AdministratorEmail = "admin@email.com",
-				AdministratorFirstName = "FirstName",
-				AdministratorLastName = "SecondName",
-				AdministratorPassword = "AdminPassword"
-			});
+				result = client.CreateOrganization(token, new CreateOrganizationApiModel()
+				{
+					OrganizationName = "MyOrganization",
+					AdministratorEmail = "admin@email.com",
+					AdministratorFirstName = "FirstName",
+					AdministratorLastName = "SecondName",
+					AdministratorPassword = "AdminPassword"
+				});
 
-			if (result.IsSuccess == false)
-			{
-				Console.WriteLine($"Request failed, requestId {result.RequestId}, error {result.ErrorMessage} , code {result.ErrorCode}");
+				if (result.IsSuccess == false)
+				{
+					FailedRequestHandler.HandleFailedRequest(result, nameof(client.CreateOrganization));
+					return;
+				}
 			}
-
+			catch (Exception ex)
+			{
+				FailedRequestHandler.HandleException(ex, nameof(client.CreateOrganization));
+				return;
+			}
 
 			//make the new requests authenticated 
 			AuthenticationApiModel newOrgToken = new AuthenticationApiModel()
