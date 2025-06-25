@@ -20,7 +20,22 @@ public class CreateDraftFromFile
 		{
 			ApiResult<string> result = client.CreateDraftFromFile(token,File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),"test.pdf");
 
+<<<<<<< HEAD
 			if (result.IsSuccess)
+||||||| d14f9fe
+			if (!result.IsSuccess)
+			{
+				Console.WriteLine($"Draft could noty be created : {result.ErrorMessage}");
+				return;
+			}
+			else
+=======
+			if (!result.IsSuccess)
+			{
+				Console.WriteLine($"Draft could noty be created : {result.ErrorMessage}");
+			}
+			else
+>>>>>>> 3f883de436c0335894c102c2832ea4cf8153327a
 			{
 				Console.WriteLine($"Draft with id '{result.Result}' was created");
 			}

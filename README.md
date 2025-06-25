@@ -35,6 +35,13 @@ Please see this repository  https://github.com/bulksign/GRPC-API-Samples
 <br/>
 <br/>
 
+### Looking to make tests requests from Postman/ other API client tool?
+
+Please see this repository  https://github.com/bulksign/PostmanRestApiCollection
+<br/>
+<br/>
+
+
 ### API Documentation
 
 
