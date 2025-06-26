@@ -19,11 +19,11 @@ namespace Bulksign.ApiSamples
 			BulksignApiClient client = new BulksignApiClient();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
-			envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
+			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
 			envelope.DisableRecipientNotifications = false;
 
-			envelope.Recipients = new[]
-			{
+			envelope.Recipients =
+			[
 				new RecipientApiModel
 				{
 					Name          = "Recipient First",
@@ -31,10 +31,10 @@ namespace Bulksign.ApiSamples
 					Index         = 1,
 					RecipientType = RecipientTypeApi.Signer
 				}
-			};
+			];
 
-			envelope.Documents = new[]
-			{
+			envelope.Documents =
+			[
 				new DocumentApiModel
 				{
 					Index    = 1,
@@ -59,7 +59,7 @@ namespace Bulksign.ApiSamples
 						}
 					}
 				}
-			};
+			];
 
 			try
 			{
@@ -72,13 +72,12 @@ namespace Bulksign.ApiSamples
 				}
 				else
 				{
-					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+					FailedRequestHandler.HandleFailedRequest(result, nameof(client.SendEnvelope));
 				}
 			}
-			catch (BulksignApiException bex)
+			catch (Exception ex)
 			{
-				//handle failed request here
-				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}" );	
+				FailedRequestHandler.HandleException(ex, nameof(client.SendEnvelope));
 			}
 		}
 	}

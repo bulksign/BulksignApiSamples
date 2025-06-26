@@ -17,7 +17,7 @@ namespace Bulksign.ApiSamples
 				return;
 			}
 
-			BulksignApiClient api = new BulksignApiClient();
+			BulksignApiClient client = new BulksignApiClient();
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType                    = EnvelopeTypeApi.Serial;
@@ -53,7 +53,7 @@ namespace Bulksign.ApiSamples
 
 			try
 			{
-				ApiResult<SendEnvelopeResultApiModel> result = api.SendEnvelope(token, envelope);
+				ApiResult<SendEnvelopeResultApiModel> result = client.SendEnvelope(token, envelope);
 
 				if (result.IsSuccess)
 				{
@@ -62,13 +62,12 @@ namespace Bulksign.ApiSamples
 				}
 				else
 				{
-					Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+					FailedRequestHandler.HandleFailedRequest(result, nameof(client.SendEnvelope));
 				}
 			}
-			catch (BulksignApiException bex)
+			catch (Exception ex)
 			{
-				//handle failed request here
-				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+				FailedRequestHandler.HandleException(ex, nameof(client.SendEnvelope));
 			}
 		}
 	}

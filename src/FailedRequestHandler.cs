@@ -1,4 +1,5 @@
 using Bulksign;
+using Bulksign.DomainLogic.Api;
 
 namespace Bulksign.ApiSamples;
 
@@ -14,6 +15,19 @@ public class FailedRequestHandler
         if (result.IsSuccess == false)
         {
             Console.WriteLine($"ERROR : Request to '{name}' failed, errorCode : {result.ErrorCode}, message : {result.ErrorMessage}, requestId : {result.RequestId} ");
+            
+            //you can now also handle specific API error results here
+            switch (result.ErrorCode)
+            {
+                case ApiErrorCode.API_ERROR_CODE_NO_RECIPIENTS:
+                    //do something here
+                    break;
+					
+                case ApiErrorCode.API_ERROR_CODE_FIELD_ASSIGNMENT_INVALID_RECIPIENT_IDENTIFIER:
+                    //do something here
+                    break;
+                
+            }
         }
     }
 

@@ -11,7 +11,7 @@ namespace Bulksign.ApiSamples
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
-				Console.WriteLine("Please edit Authentication.cs and fset your own API key there");
+				Console.WriteLine("Please edit Authentication.cs and set your own API key there");
 				return;
 			}
 
@@ -27,13 +27,12 @@ namespace Bulksign.ApiSamples
 				}
 				else
 				{
-					Console.WriteLine("ERROR : " + result.ErrorCode + " " + result.ErrorMessage);
+					FailedRequestHandler.HandleFailedRequest(result, nameof(client.SearchTeamMembersDrafts));
 				}
 			}
-			catch (BulksignApiException bex)
+			catch (Exception ex)
 			{
-				//handle failed request here
-				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+				FailedRequestHandler.HandleException(ex, nameof(client.SearchTeamMembersDrafts));
 			}
 		}
 	}
