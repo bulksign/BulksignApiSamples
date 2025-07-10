@@ -57,8 +57,6 @@ namespace Bulksign.ApiSamples
 
 			client.UpdateOrganizationSettings(newOrgToken, new OrganizationUpdateSettingsApiModel()
 			{
-				EmailSenderType = EmailSenderTypeApi.Organization,
-
 				SignatureSettings = new OrganizationSigningSettingsApiModel()
 				{
 					AllowRejectWithoutRejectionText = false,

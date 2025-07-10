@@ -17,10 +17,22 @@ namespace Bulksign.ApiSamples
 
 			BulksignApiClient client = new BulksignApiClient();
 
-			//we need to set only the values you want updated
+			//NOTE : we need to set only the values that we want to update. Everything lese must be null
+			
+			
+			//Let's say we want to update the org name and one of the policies
+			
 			OrganizationUpdateSettingsApiModel newSettings = new OrganizationUpdateSettingsApiModel();
 
-			newSettings.Name = "New Organization Name";
+			newSettings.Settings = new OrganizationBasicSettingsApiModel()
+			{
+				Name = "New Organization Name"
+			};
+
+			newSettings.Policies = new OrganizationPoliciesApiModel()
+			{
+				ForceBatchSign = true
+			};
 
 			try
 			{

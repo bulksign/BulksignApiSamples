@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="BulksignSdk" Version="4.113.0" />
+      <PackageReference Include="BulksignSdk" Version="4.117.0" />
     </ItemGroup>
 
 </Project>
