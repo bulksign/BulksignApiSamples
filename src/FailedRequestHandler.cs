@@ -5,11 +5,12 @@ namespace Bulksign.ApiSamples;
 
 public class FailedRequestHandler
 {
-    public static void HandleFailedRequest<T>(ApiResult<T> result, string name)
+    public static void HandleFailedRequest<T>(ApiResult<T>? result, string name)
     {
         if (result == null)
         {
             Console.WriteLine($"ERROR : Request to '{name}' failed, result is null");
+            return;
         }
         
         if (result.IsSuccess == false)
