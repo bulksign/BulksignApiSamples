@@ -53,7 +53,7 @@ namespace Bulksign.ApiSamples
 
 			if (result.IsSuccess == false)
 			{
-				Console.WriteLine($"Request failed : ErrorCode '{result.ErrorCode}' , Message {result.ErrorMessage}");
+				FailedRequestHandler.HandleFailedRequest(result, nameof(client.PrepareSendEnvelope));
 				return;
 			}
 
