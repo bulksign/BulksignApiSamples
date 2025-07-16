@@ -43,13 +43,11 @@ namespace Bulksign.ApiSamples
 			{
 				result = client.PrepareSendEnvelope(token, prepare);
 			}
-			catch (BulksignApiException bex)
+			catch (Exception ex)
 			{
-				//handle failed request here
-				Console.WriteLine($"Exception {bex.Message}, response is {bex.Response}");
+				FailedRequestHandler.HandleException(ex, nameof(client.PrepareSendEnvelope));
 				return;
 			}
-
 
 			if (result.IsSuccess == false)
 			{
