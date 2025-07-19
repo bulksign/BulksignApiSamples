@@ -41,7 +41,7 @@ namespace Bulksign.ApiSamples
 					FileName = "singlepage.pdf",
 					FileContentByteArray = new FileContentByteArray
 					{
-						ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_sample.pdf")
+						ContentBytes = FileUtility.GetFileContent("bulksign_test_sample.pdf")
 					},
 					NewAttachments = new[]
 					{

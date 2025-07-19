@@ -56,7 +56,7 @@ namespace Bulksign.ApiSamples
 					FileName = "singlepage.pdf",
 					FileContentByteArray = new FileContentByteArray
 					{
-						ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\singlepage.pdf")
+						ContentBytes = FileUtility.GetFileContent("singlepage.pdf")
 					},
 					NewSignatures = new[]
 					{

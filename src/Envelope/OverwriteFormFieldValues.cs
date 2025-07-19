@@ -41,7 +41,7 @@ namespace Bulksign.ApiSamples
 					FileName = "forms.pdf",
 					FileContentByteArray = new FileContentByteArray()
 					{
-						ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\forms.pdf")
+						ContentBytes = FileUtility.GetFileContent("forms.pdf")
 					},
 
 					OverwriteValues = new []

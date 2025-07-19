@@ -32,8 +32,8 @@ namespace Bulksign.ApiSamples
 			{
 				new FileInput
 				{
-					Filename = "bulksign_test_Sample.odt",
-					FileContent = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_advanced_tags.odt")
+					Filename = "bulksign_test_sample.odt",
+					FileContent = FileUtility.GetFileContent("bulksign_advanced_tags.odt")
 				}
 			};
 

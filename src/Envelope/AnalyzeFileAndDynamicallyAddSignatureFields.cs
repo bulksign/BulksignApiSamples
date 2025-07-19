@@ -10,6 +10,12 @@ namespace Bulksign.ApiSamples
 			BulksignApiClient client = new BulksignApiClient();
 
 			AuthenticationApiModel token = new Authentication().GetAuthenticationModel();
+			
+			ApiResult<AnalyzedFileResultApiModel> analyzeResult = client.AnalyzeFile(token, new FileInput()
+			{
+				FileContent = FileUtility.GetFileContent("bulksign_test_sample.pdf"),
+				Filename = "bulksign_test_sample.pdf"
+			});
 
 			if (string.IsNullOrEmpty(token.Key))
 			{
@@ -19,11 +25,6 @@ namespace Bulksign.ApiSamples
 
 			byte[] pfdContent = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\singlepage.pdf");
 
-			ApiResult<AnalyzedFileResultApiModel> analyzeResult = client.AnalyzeFile(token, new FileInput()
-			{
-				FileContent = pfdContent,
-				Filename = "pfdContent.pdf"
-			});
 
 			EnvelopeApiModel envelope = new EnvelopeApiModel();
 			envelope.EnvelopeType = EnvelopeTypeApi.Serial;
