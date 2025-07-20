@@ -43,10 +43,10 @@ namespace Bulksign.ApiSamples
 				new DocumentApiModel()
 				{
 					Index = 1,
-					FileName = "test.pdf",
+					FileName = "bulksign_test_sample.pdf",
 					FileContentByteArray = new FileContentByteArray()
 					{
-						ContentBytes = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf")
+						ContentBytes = FileUtility.GetFileContent("bulksign_test_sample.pdf")
 					}
 				}
 			};

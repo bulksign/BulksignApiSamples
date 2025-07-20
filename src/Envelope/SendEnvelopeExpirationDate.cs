@@ -24,8 +24,8 @@ namespace Bulksign.ApiSamples
 
 			ApiResult<string> temporaryFile = client.StoreTemporaryFile(token,new FileInput()
 			{
-				FileContent = File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),
-				Filename    = "bulksign_test_Sample.pdf"
+				FileContent = FileUtility.GetFileContent("bulksign_test_sample.pdf"),
+				Filename    = "bulksign_test_sample.pdf"
 			});
 
 

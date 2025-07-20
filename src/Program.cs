@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Bulksign.ApiSamples
+﻿namespace Bulksign.ApiSamples
 {
 	class Program
 	{

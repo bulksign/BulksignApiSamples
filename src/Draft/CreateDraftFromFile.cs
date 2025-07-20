@@ -18,7 +18,7 @@ public class CreateDraftFromFile
 
 		try
 		{
-			ApiResult<string> result = client.CreateDraftFromFile(token,File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),"test.pdf");
+			ApiResult<string> result = client.CreateDraftFromFile(token, FileUtility.GetFileContent("bulksign_test_sample.pdf"),"bulksign_test_sample.pdf");
 
 			if (result.IsSuccess)
 			{

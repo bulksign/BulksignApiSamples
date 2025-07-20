@@ -18,7 +18,7 @@ public class DeleteDraft
 
 		try
 		{
-			ApiResult<string> draftResult = client.CreateDraftFromFile(token,File.ReadAllBytes(Environment.CurrentDirectory + @"\Files\bulksign_test_Sample.pdf"),"test.pdf");
+			ApiResult<string> draftResult = client.CreateDraftFromFile(token, FileUtility.GetFileContent("bulksign_test_sample.pdf"),"bulksign_test_sample.pdf");
 
 			if (!draftResult.IsSuccess)
 			{

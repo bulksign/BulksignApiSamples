@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Bulksign.Api;
+﻿using Bulksign.Api;
 
 namespace Bulksign.ApiSamples
 {
